@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Autostarts
+compton &
+$HOME/.fehbg
+$HOME/.config/dunst/launch.sh
+$HOME/.config/sxhkd/launch.sh
+$HOME/.config/polybar/launch.sh
+

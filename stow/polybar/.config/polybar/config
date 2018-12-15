@@ -1,0 +1,266 @@
+; =============================================================================
+;
+;   Polybar configuration
+;
+;   DON'T EDIT THIS FILE:
+;       Don't edit full config file directly. It is written by merging script.
+;       conf.d/ directory has separated config file, please edit these.
+;
+;   Author:
+;       - Piu Tranquillo (https://github.com/piutranq)
+;       - and Original by Adrian Karbowniczyn (https://github.com/s1amber)
+;
+; =============================================================================
+
+
+[colors]
+empty = #00000000
+background = #cc000000
+foreground = #ebdbb2
+
+grey_0 = #282828
+grey_1 = #3c3836
+grey_2 = #7c6f64
+grey_3 = #a89984
+grey_4 = #ebdbb2
+grey_5 = #fbf1c7
+
+red = #fb4934
+orange = #fe8019
+yellow = #fabd2f
+green = #b8bb26
+cyan = #8ec07c
+blue = #83a598
+violet = #a197ae
+magenta = #d3869b
+
+[bar/top]
+width = 100%
+height = 24
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = UbuntuMonoNF:size=12
+modules-left = bspwm sxhkd
+modules-center =
+modules-right = dropbox wireless pulseaudio date battery
+
+separator=" "
+
+[bar/sub]
+width = 100%
+height = 24
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = UbuntuMonoNF:size=12
+
+modules-left =
+modules-center = mpd-nowplaying
+modules-right =
+bottom = true
+
+separator = " "
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+fuzzy-match = false
+ws-icon-0 = 0;0
+ws-icon-1 = 1;1
+ws-icon-2 = 2;2
+ws-icon-3 = 3;3
+ws-icon-4 = 4;4
+ws-icon-5 = 5;5
+ws-icon-6 = 6;6
+
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-underline = ${colors.green}
+label-mode-background = ${colors.grey_1}
+
+label-focused = %icon%
+label-focused-background = ${colors.grey_1}
+label-focused-underline = ${colors.yellow}
+label-focused-padding = 1
+
+label-unfocused = %icon%
+label-unfocused-foreground = ${colors.grey_2}
+label-unfocused-padding = 1
+
+label-visible = %icon%
+label-visible-foreground = ${colors.grey_4}
+label-visible-underline = ${colors.grey}
+label-visible-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.yellow}
+label-urgent-underline = ${colors.red}
+label-urgent-padding = 1
+
+
+[module/bspwm]
+type = internal/bspwm
+enable-scroll = false
+
+ws-icon-default = 
+
+format = <label-state>
+;format = <label-state> <label-mode>
+;label-mode-underline = ${colors.green}
+;label-mode-background = ${colors.grey_1}
+;label-mode-padding = 1
+
+label-empty = %icon%
+label-empty-foreground = ${colors.grey_1}
+label-empty-padding = 1
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.grey_2}
+label-occupied-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.red}
+label-urgend-padding = 1
+
+label-focused = %icon%
+label-focused-foreground = ${colors.grey_4}
+label-focused-padding = 1
+
+[module/sxhkd]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/sxhkd/index.js
+tail = true
+label = %output%
+
+[module/wireless]
+type = internal/network
+interface = wlp2s0
+interval = 5
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-padding = 1
+format-connected-underline = ${colors.green}
+label-connected = %essid:3:6%
+ramp-signal-0 = 
+
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 1
+format-disconnected-underline = ${colors.grey_1}
+format-disconnected-foreground = ${colors.grey_1}
+label-disconnected = 
+
+format-packetloss = <animation-packetloss> <label-connected>
+format-packetloss-padding = 1
+format-packetloss-underline = ${colors.red}
+animation-packetloss-0 = ⚠
+animation-packetloss-1 = ⚠
+animation-packetloss-0-foreground = ${colors.red}
+animation-packetloss-1-foreground = ${colors.grey_1}
+animation-packetloss-framerate = 500
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+
+interval = 5
+
+ramp-volume-0 = 墳
+label-volume = %percentage:2%%
+format-volume = <ramp-volume> <label-volume>
+format-volume-underline = ${colors.grey_2}
+format-volume-padding = 1
+
+label-muted = "婢    "
+label-muted-underline = ${colors.grey_1}
+label-muted-foreground = ${colors.grey_2}
+label-muted-padding = 1
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %Y-%m-%d %a"
+time = " %H:%M"
+
+format-underline = ${colors.grey_2}
+format-padding = 1
+
+label = "%date% / %time%"
+
+
+[module/battery]
+type = internal/battery
+full-at = 100
+battery = BAT0
+adapter = AC
+poll-interval = 10
+
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.green}
+format-charging-padding = 1
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.grey_2}
+format-discharging-padding = 1
+
+format-full = <ramp-capacity> <label-full>
+format-full-underline = ${colors.green}
+format-full-padding = 1
+
+label-charging = %percentage:2%% (%time%)
+label-discharging = %percentage:2%% (%time%)
+label-full = %percentage:2%% (FULL)
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+
+[module/dropbox]
+type = custom/script
+interval = 2
+exec = $HOME/.config/polybar/scripts/indicator-dropbox/index.sh
+label = %output%
+
+
+[module/mpd-nowplaying]
+type = custom/script
+interval = 0.5
+exec = $HOME/.config/polybar/scripts/mpd-nowplaying/index.sh
+click-left = mpc toggle
+label = %output%
+
+

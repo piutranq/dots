@@ -1,0 +1,6 @@
+[module/dropbox]
+type = custom/script
+interval = 2
+exec = $HOME/.config/polybar/scripts/indicator-dropbox/index.sh
+label = %output%
+

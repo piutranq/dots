@@ -1,0 +1,5 @@
+[module/sxhkd]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/sxhkd/index.js
+tail = true
+label = %output%

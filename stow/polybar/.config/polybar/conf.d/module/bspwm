@@ -1,0 +1,27 @@
+[module/bspwm]
+type = internal/bspwm
+enable-scroll = false
+
+ws-icon-default = 
+
+format = <label-state>
+;format = <label-state> <label-mode>
+;label-mode-underline = ${colors.green}
+;label-mode-background = ${colors.grey_1}
+;label-mode-padding = 1
+
+label-empty = %icon%
+label-empty-foreground = ${colors.grey_1}
+label-empty-padding = 1
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.grey_2}
+label-occupied-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.red}
+label-urgend-padding = 1
+
+label-focused = %icon%
+label-focused-foreground = ${colors.grey_4}
+label-focused-padding = 1

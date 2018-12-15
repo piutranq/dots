@@ -1,0 +1,63 @@
+/* Common */
+*
+{
+  font: "UbuntuMonoNF 12";
+
+  background-color:   @empty;
+  text-color:         @fg;
+  highlight:          @fgb;
+}
+
+#window {
+  y-offset:     24px;
+  width:        20%;
+  height:       100%;
+  location:     northwest;
+  anchor:       northwest;
+  border:       0px 0px 0px 0px;
+
+  orientation:  horizontal;
+  children:     [mainbox];
+}
+
+#mainbox {
+  width: 20%;
+  expand: false;
+  background-color: @bg;
+}
+
+#inputbar {
+  padding: 0.5em;
+}
+#element {
+  padding: 0.25em 0 0.25em 0.5em;
+  text-color: @grey3;
+}
+#element active {
+  text-color: @yellow;
+}
+#element urgent {
+  text-color: @red;
+}
+#element selected {
+  text-color: @white;
+  background-color: @grey1;
+}
+#element selected active {
+  text-color: @yellow;
+  background-color: @grey1;
+}
+#element selected urgent {
+  background-color: @grey1;
+  text-color: @red;
+}
+
+#inputbar {
+  children: [ prompt,prompt-colon,entry,case-indicator ];
+}
+
+#prompt-colon {
+  expand: false;
+  str:    " ";
+  margin: 0 0.3em 0 0;
+}

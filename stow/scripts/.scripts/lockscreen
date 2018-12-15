@@ -1,0 +1,39 @@
+#!/bin/sh
+
+text_time="%H:%M"
+text_date="%Y-%m-%d, %A"
+
+color_empty=00000000
+color_white=f5f4f1ff
+color_red=f92672ff
+
+lock() {
+	i3lock \
+        --blur 5 \
+		--timepos="x+60:h-80" \
+		--datepos="x+60:h-50" \
+        --indpos="x+320:h-86" \
+        --timesize=60 --time-font=Cantarell \
+        --datesize=20 --date-font=Cantarell \
+		--radius=40 --ring-width=5 \
+		--clock --time-align 1 --timestr "$text_time" \
+        --date-align 1 --datestr "$text_date" \
+        --veriftext="" --wrongtext="" --noinputtext="" \
+        --separatorcolor=$color_empty \
+        --insidecolor=$color_empty \
+        --insidevercolor=$color_empty \
+        --insidewrongcolor=$color_empty \
+        --line-uses-inside \
+        --ringcolor=$color_empty \
+		--ringvercolor=$color_empty \
+        --ringwrongcolor=$color_red \
+        --keyhlcolor=$color_white \
+        --bshlcolor=$color_white \
+		--verifcolor=$color_white \
+        --timecolor=$color_white \
+        --datecolor=$color_white \
+        --force-clock $lockargs
+}
+
+lock
+

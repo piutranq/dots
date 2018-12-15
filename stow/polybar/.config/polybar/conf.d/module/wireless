@@ -1,0 +1,26 @@
+[module/wireless]
+type = internal/network
+interface = wlp2s0
+interval = 5
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-padding = 1
+format-connected-underline = ${colors.green}
+label-connected = %essid:3:6%
+ramp-signal-0 = 
+
+format-disconnected = <label-disconnected>
+format-disconnected-padding = 1
+format-disconnected-underline = ${colors.grey_1}
+format-disconnected-foreground = ${colors.grey_1}
+label-disconnected = 
+
+format-packetloss = <animation-packetloss> <label-connected>
+format-packetloss-padding = 1
+format-packetloss-underline = ${colors.red}
+animation-packetloss-0 = ⚠
+animation-packetloss-1 = ⚠
+animation-packetloss-0-foreground = ${colors.red}
+animation-packetloss-1-foreground = ${colors.grey_1}
+animation-packetloss-framerate = 500
+

@@ -1,0 +1,12 @@
+[module/date]
+type = internal/date
+interval = 5
+
+date = " %Y-%m-%d %a"
+time = " %H:%M"
+
+format-underline = ${colors.grey_2}
+format-padding = 1
+
+label = "%date% / %time%"
+

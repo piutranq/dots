@@ -1,0 +1,114 @@
+#!/bin/sh
+
+# ============================================================================
+#
+#   hatate: Simple screen capture & save script
+#
+#   Author:
+#       Piu Tranquillo (https://github.com/piutranq)
+#
+#   Requires:
+#       gawk, imagemagik, slop, xdotool, xorg-xdpyinfo, xorg-xwininfo
+#
+#   How to setup:
+#       1. Set $DIRECTORY, $FILENAME on # Config section.
+#           - Capture is written on $DIRECTORY/$FILENAME
+#           - $DIRECTORY can be created automatically.
+#           - But parent directory of $FILENAME can't be.
+#       2. Copy this script to your $PATH and give executable permission.
+#       3. Make keyboard mapping for each command on your desktop environment.
+#           - hatate screen:    Capture entire screen
+#           - hatate area:      Capture selected window
+#           - hatate window:    Capture activated window
+#           - hatate last:      Capture last captured area
+#
+# ============================================================================
+
+# Config
+
+DIRECTORY=$HOME/Dropbox/Pictures/Capture/$(date "+%Y-%m")
+FILENAME=piutranq_$(date '+%Y%m%d_%H%M%S').png
+
+
+# Check requires
+
+exit_norequire() {
+    echo 'Requires: '
+    echo '  gawk, imagemagick, slop, xdotool, xorg-xdpyinfo, xorg-xwininfo'
+    exit 1
+}
+
+[ -x /usr/bin/awk ]         || exit_norequire
+[ -x /usr/bin/import ]      || exit_norequire
+[ -x /usr/bin/slop ]        || exit_norequire
+[ -x /usr/bin/xdotool ]     || exit_norequire
+[ -x /usr/bin/xdpyinfo ]    || exit_norequire
+[ -x /usr/bin/xwininfo ]    || exit_norequire
+
+
+# Path setup
+
+[ -d $DIRECTORY ] || mkdir -p $DIRECTORY
+[ -d $HOME/.cache ] || mkdir -p $HOME/.cache
+OUTPUT=$DIRECTORY/$FILENAME
+CACHE=$HOME/.cache/hatate
+
+
+# Check args and set geometry
+
+exit_argerr() {
+    echo 'Usage: '
+    echo '  hatate screen|window|area|last|output'
+    echo 'Commands: '
+    echo '  screen: capture entire screen'
+    echo '  window: capture active window'
+    echo '  area:   capture selected area'
+    echo '  last:   capture last captured area'
+    echo '  output: print last output file path'
+    exit 1
+}
+
+[ $# -eq 1 ] || exit_argerr
+case $1 in
+    'screen')
+        GEOMETRY=$(xdpyinfo | awk '/dimensions/{print $2}')+0+0;;
+    'window')
+        AW=$(xdotool getactivewindow)
+        POSX=$(xwininfo -id $AW | awk '/Absolute upper-left X: /{print $4}')
+        POSY=$(xwininfo -id $AW | awk '/Absolute upper-left Y: /{print $4}')
+        WIDTH=$(xwininfo -id $AW | awk '/Width: /{print $2}')
+        HEIGHT=$(xwininfo -id $AW | awk '/Height: /{print $2}')
+        GEOMETRY=$WIDTH\x$HEIGHT+$POSX+$POSY;;
+    'area')
+        GEOMETRY=$(slop -f "%g");;
+    'last')
+        GEOMETRY=$(cat $CACHE | awk '/GEOMETRY/{print $2}');;
+    'output')
+        cat $CACHE | awk '/OUTPUT/{print $2}'
+        exit 0;;
+    *) exit_argerr ;;
+esac
+
+
+# Capture and save img
+
+echo $GEOMETRY
+echo $OUTPUT
+import -window root -crop $GEOMETRY $OUTPUT &
+
+
+# Notify
+
+notify-send \
+    --app-name=Hatate \
+    --urgency=normal \
+    "Hatate has taken screen capture!"
+
+# Write cache file
+
+printf "" > $CACHE
+echo "OUTPUT $OUTPUT" >> $CACHE
+echo "GEOMETRY $GEOMETRY" >> $CACHE
+
+
+exit 0
