@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Autostarts
+xsetroot -cursor_name left_ptr
 compton &
 $HOME/.fehbg
 $HOME/.config/dunst/launch.sh
