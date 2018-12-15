@@ -20,7 +20,6 @@ main() {
         "colors"
         "bar/top"
         "bar/sub"
-        "module/i3"
         "module/bspwm"
         "module/sxhkd"
         "module/wireless"
