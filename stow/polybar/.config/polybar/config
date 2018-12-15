@@ -74,7 +74,6 @@ bottom = true
 
 separator = " "
 
-
 [module/bspwm]
 type = internal/bspwm
 enable-scroll = false

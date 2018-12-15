@@ -30,7 +30,7 @@
   padding: 0.5em;
 }
 #element {
-  padding: 0.25em 0 0.25em 0.5em;
+  padding: 0.25em 0.25em 0.25em 0.5em;
   text-color: @grey3;
 }
 #element active {
