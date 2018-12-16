@@ -7,7 +7,7 @@ killall -q polybar &> /dev/null 2>&1
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Merge config file
-$XDG_CONFIG_HOME/polybar/merge-config.sh
+$XDG_CONFIG_HOME/polybar/scripts/merge-config.sh
 
 # Launch bars
 polybar top &> /dev/null 2>&1 &

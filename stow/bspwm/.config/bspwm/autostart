@@ -4,7 +4,7 @@
 xsetroot -cursor_name left_ptr
 compton &
 $HOME/.fehbg
-$HOME/.config/dunst/launch.sh
-$HOME/.config/sxhkd/launch.sh
-$HOME/.config/polybar/launch.sh
+$HOME/.config/dunst/scripts/launch.sh
+$HOME/.config/sxhkd/scripts/launch.sh
+$HOME/.config/polybar/scripts/launch.sh
 
