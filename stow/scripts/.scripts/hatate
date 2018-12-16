@@ -71,20 +71,20 @@ exit_argerr() {
 [ $# -eq 1 ] || exit_argerr
 case $1 in
     'screen')
-        GEOMETRY=$(xdpyinfo | awk '/dimensions/{print $2}')+0+0;;
+        GEOMETRY=$(xdpyinfo | awk '/dimensions/{print $2}')+0+0 || exit 1;;
     'window')
-        AW=$(xdotool getactivewindow)
+        AW=$(xdotool getactivewindow) || exit 1
         POSX=$(xwininfo -id $AW | awk '/Absolute upper-left X: /{print $4}')
         POSY=$(xwininfo -id $AW | awk '/Absolute upper-left Y: /{print $4}')
         WIDTH=$(xwininfo -id $AW | awk '/Width: /{print $2}')
         HEIGHT=$(xwininfo -id $AW | awk '/Height: /{print $2}')
         GEOMETRY=$WIDTH\x$HEIGHT+$POSX+$POSY;;
     'area')
-        GEOMETRY=$(slop -f "%g");;
+        GEOMETRY=$(slop -f "%g") || exit 1;;
     'last')
-        GEOMETRY=$(cat $CACHE | awk '/GEOMETRY/{print $2}');;
+        GEOMETRY=$(cat $CACHE | awk '/GEOMETRY/{print $2}') || exit 1;;
     'output')
-        cat $CACHE | awk '/OUTPUT/{print $2}'
+        $(cat $CACHE | awk '/OUTPUT/{print $2}') || exit 1
         exit 0;;
     *) exit_argerr ;;
 esac
