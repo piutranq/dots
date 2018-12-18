@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ $(pgrep -u $UID -x compton) ]];
+then
+    pkill -USR1 -x compton
+else
+    compton
+fi
+
