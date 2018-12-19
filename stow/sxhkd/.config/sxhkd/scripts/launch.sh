@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Alias
-FIFO_PATH="$HOME/.cache/sxhkd.fifo"
+FIFO_PATH="/run/user/$UID/sxhkd.fifo"
 
 # Kill sxhkd
 killall -q sxhkd

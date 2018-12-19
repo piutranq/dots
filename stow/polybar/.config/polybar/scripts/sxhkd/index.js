@@ -14,7 +14,7 @@ const color_ul = '%{u' + color.green + '}'
 const color_ol = '%{o' + color.empty + '}'
 
 // The full path of sxhkd status pipe
-const pipe = require('os').homedir() + '/.cache/sxhkd.fifo'
+const pipe = '/run/user/' + process.getuid() + '/sxhkd.fifo'
 
 const label = {
   prefix: color_fg + color_bg + color_ul + color_ol + ' ',
