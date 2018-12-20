@@ -49,7 +49,7 @@ module-margin-right = 0
 font-0 = UbuntuMonoNF:size=12
 modules-left = bspwm sxhkd
 modules-center =
-modules-right = dropbox wireless pulseaudio date battery
+modules-right = dropbox wireless mpd-volume pulseaudio date battery
 
 separator=" "
 
@@ -143,12 +143,12 @@ sink = alsa_output.pci-0000_00_1b.0.analog-stereo
 interval = 5
 
 ramp-volume-0 = 墳
-label-volume = %percentage:2%%
+label-volume = %percentage:3%%
 format-volume = <ramp-volume> <label-volume>
 format-volume-underline = ${colors.grey_2}
 format-volume-padding = 1
 
-label-muted = "婢    "
+label-muted = "婢     "
 label-muted-underline = ${colors.grey_1}
 label-muted-foreground = ${colors.grey_2}
 label-muted-padding = 1
@@ -219,5 +219,15 @@ exec = $HOME/.config/polybar/scripts/mpd/nowplaying.sh
 click-left = mpc toggle
 label = %output%
 tail = true
+
+[module/mpd-volume]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/mpd/volume-indicator.sh idle
+label = %output%
+tail = true
+
+click-left = mpc-mute -t 1
+scroll-up = mpc volume +5
+scroll-down = mpc volume -5
 
 

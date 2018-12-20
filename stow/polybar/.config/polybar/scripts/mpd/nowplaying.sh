@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 
+# Requires
 source "$XDG_CONFIG_HOME/polybar/scripts/color.sh"
 
 # Global Constants
 declare -ri CONST_MAX_LENGTH=60
-
+declare -r ICON_MUTED=""
 declare -r ICON_PLAY=""
 declare -r ICON_PAUSE=""
 
 main () {
 
     # Get mpd status
-    if   [[ $(mpc 2>/dev/null | grep "^\[playing\]") ]]; then
+    if [[ $(mpc 2>/dev/null | grep "^\[playing\]") ]]; then
         export STATUS="PLAY"
     elif [[ $(mpc 2>/dev/null | grep "^\[paused\]")  ]]; then
         export STATUS="PAUSE"
@@ -66,7 +67,8 @@ loop () {
     while read -r event; do
         main
     done
+    echo ""
 }
 
 main
-mpc idleloop player | loop
+mpc idleloop player 2>/dev/null | loop

@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+
+echoerr () {
+    echo "$@" 1>&2;
+}
+
+show_help () {
+    echo ''
+    echo 'Mute/unmute mpd output by `mpc outputs`'
+    echo
+    echo 'Usage:'
+    echo '  mpc-mute [OPTION] OUTPUT'
+    echo ''
+    echo '  Output argument must be number, label of output will not work.'
+    echo ''
+    echo 'Options:'
+    echo '  -s, --status    Echo whether the mpd is muted. (muted|unmuted)'
+    echo '  -m, --mute      Mute the mpd for following outputs.'
+    echo '  -u, --unmute    Unmute the mpd for following outputs.'
+    echo '  -t, --toggle    Toggle mute state.'
+    echo '  -h, --help      Echo this messages. (output number is ignored)'
+    echo ''
+    echo '  Multiple options are ignored, and the last option will be used only.'
+    echo ''
+    echo 'Examples:'
+    echo '  mpc-mute --toggle 1'
+    echo ''
+    exit 0
+}
+
+option_error () {
+    echoerr 'Invalid option. please see `mpc-mute --help`.'
+    exit 1
+}
+
+output_error () {
+    echoerr 'Invalid output argument. please see `mpc-mute --help`.'
+    exit 1
+}
+
+not_found () {
+    echoerr "Output $1 is not found. please see \`mpc outputs\`"
+    exit 1
+}
+
+eval set -- $(getopt -o 'smuth' --long 'status,mute,unmute,toggle,help'\
+    -n 'mpc-mute' -- "$@")
+
+while true; do
+    case "$1" in
+        '-s'|'--status')
+            MODE='status'
+            shift;;
+        '-m'|'--mute')
+            MODE='mute'
+            shift;;
+        '-u'|'--unmute')
+            MODE='unmute'
+            shift;;
+        '-t'|'--toggle')
+            MODE='toggle'
+            shift;;
+        '-h'|'--help')
+            show_help;;
+        '--')
+            shift
+            break;;
+        *)
+            option_error;;
+    esac
+done
+
+output_check () {
+    [[ $(echo $1 | egrep -c "[0-9]+") -le 0 ]] && output_error
+
+    local -ri GREP=$(echo $(mpc outputs | grep -c "^Output $1"))
+    [[ $GREP -le 0 ]] && not_found $1
+}
+
+mode_status () {
+    local GREP=$(echo $(mpc outputs | grep "^Output $1" | grep -c "enabled$"))
+    [[ $GREP -gt 0 ]] && echo "unmuted" || echo "muted"
+}
+
+mode_mute () {
+    mpc disable $1
+}
+
+mode_unmute () {
+    mpc enable $1
+}
+
+mode_toggle () {
+    local -r STATUS=$(mode_status $1)
+    if [[ $STATUS == "muted" ]]; then
+        mpc enable $1
+    elif [[ $STATUS == "unmuted" ]]; then
+        mpc disable $1
+    fi
+}
+
+output_check $1
+case $MODE in
+    'status')
+        mode_status $1;;
+    'mute')
+        mode_mute $1;;
+    'unmute')
+        mode_unmute $1;;
+    'toggle')
+        mode_toggle $1;;
+    '')
+        option_error;;
+esac
+
+

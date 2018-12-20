@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# Start daemons
+# Start xorg-independent daemons
 dropbox-cli start &> /dev/null 2>&1
+mpd; mpc stop
 
 
 # Add $PATH

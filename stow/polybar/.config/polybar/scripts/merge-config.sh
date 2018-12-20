@@ -28,6 +28,7 @@ main() {
         "module/battery"
         "module/dropbox"
         "module/mpd-nowplaying"
+        "module/mpd-volume"
         "footer"
     )
 

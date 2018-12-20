@@ -13,6 +13,6 @@ module-margin-right = 0
 font-0 = UbuntuMonoNF:size=12
 modules-left = bspwm sxhkd
 modules-center =
-modules-right = dropbox wireless pulseaudio date battery
+modules-right = dropbox wireless mpd-volume pulseaudio date battery
 
 separator=" "
