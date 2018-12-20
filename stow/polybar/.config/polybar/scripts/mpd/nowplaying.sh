@@ -8,8 +8,6 @@ declare -ri CONST_MAX_LENGTH=60
 declare -r ICON_PLAY=""
 declare -r ICON_PAUSE=""
 
-declare -r FIFO="/run/user/$UID/mpc-fifo/fifo"
-
 main () {
 
     # Get mpd status
