@@ -1,6 +1,6 @@
 [module/mpd-nowplaying]
 type = custom/script
-interval = 0.5
-exec = $HOME/.config/polybar/scripts/mpd-nowplaying/index.sh
+exec = $HOME/.config/polybar/scripts/mpd/nowplaying.sh
 click-left = mpc toggle
 label = %output%
+tail = true
