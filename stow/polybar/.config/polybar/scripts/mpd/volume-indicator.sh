@@ -1,52 +1,51 @@
 #!/usr/bin/env bash
 
 # Configures
-declare -r OUTPUT=1 # Target mpd audio output
+declare OUTPUT=1 # Target mpd audio output
 
 # Requires
 source "$XDG_CONFIG_HOME/polybar/scripts/color.sh"
 
 # Global Constants
-declare -r ICON_UNMUTED="ﱘ"
-declare -r ICON_MUTED="ﱙ"
-declare -r GETVOL="mpc volume | egrep -P \"[0-9]+\""
-declare -r CACHE="/run/user/$UID/mpd"
+declare ICON_UNMUTED="ﱘ"
+declare ICON_MUTED="ﱙ"
+declare CACHE="/run/user/$UID/mpd"
 
 main () {
     # Get mpd status
-    local -r status=$(mpc-mute -s $OUTPUT)
+    local status=$(mpc-mute -s $OUTPUT 2>/dev/null)
+
+    # Get mpd volume
+    local volume="$(mpc volume | grep -oP "[0-9]+")"
+    [[ $volume != "" ]] && local volume="$(printf '%3s' $volume)%"
 
     # Get color and icon
     if [[ $status == "unmuted" ]]; then
-        local -r color_bg=$COLOR_BACKGROUND
-        local -r color_fg=$COLOR_GREY_4
-        local -r color_ul=$COLOR_GREY_2
-        local -r color_ol=$COLOR_EMPTY
-        local -r icon=$ICON_UNMUTED
-        local -r volume="$(mpc volume | grep -oP "[0-9]+")%"
+        local color_bg=$COLOR_BACKGROUND
+        local color_fg=$COLOR_GREY_4
+        local color_ul=$COLOR_GREY_2
+        local color_ol=$COLOR_EMPTY
+        local color_string="%{F$color_fg}%{u$color_ul}%{B$color_bg}%{o$color_ol}"
+        local icon=$ICON_UNMUTED
+        [[ $volume != "" ]] && echo "$color_string $icon $volume" || echo ""
     elif [[ $status == "muted" ]]; then
-        local -r color_bg=$COLOR_BACKGROUND
-        local -r color_fg=$COLOR_GREY_2
-        local -r color_ul=$COLOR_GREY_1
-        local -r color_ol=$COLOR_EMPTY
-        local -r icon=$ICON_MUTED
-        local -r volume=""
+        local color_bg=$COLOR_BACKGROUND
+        local color_fg=$COLOR_GREY_2
+        local color_ul=$COLOR_GREY_1
+        local color_ol=$COLOR_EMPTY
+        local color_string="%{F$color_fg}%{u$color_ul}%{B$color_bg}%{o$color_ol}"
+        local icon=$ICON_MUTED
+        echo "$color_string $icon     "
+    else
+        echo ""
     fi
-
-    # Make color string
-    local -r color_string="%{F$color_fg}%{u$color_ul}%{B$color_bg}%{o$color_ol}"
-
-    # Make message
-    message=$(printf '%4s' $volume)
-
-    echo "$color_string $icon $message "
 }
 
 loop () {
-    while read -r event; do
+    while read event; do
         main
     done
 }
 
 main
-mpc idleloop mixer | loop
+mpc idleloop player mixer 2>/dev/null | loop
