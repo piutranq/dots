@@ -82,33 +82,16 @@ mode_status () {
     [[ $GREP -gt 0 ]] && echo "unmuted" || echo "muted"
 }
 
-mode_mute () {
-    mpc disable $1
-}
-
-mode_unmute () {
-    mpc enable $1
-}
-
-mode_toggle () {
-    local -r STATUS=$(mode_status $1)
-    if [[ $STATUS == "muted" ]]; then
-        mpc enable $1
-    elif [[ $STATUS == "unmuted" ]]; then
-        mpc disable $1
-    fi
-}
-
 output_check $1
 case $MODE in
     'status')
         mode_status $1;;
     'mute')
-        mode_mute $1;;
+        mpc disable $1;;
     'unmute')
-        mode_unmute $1;;
+        mpc enable $1;;
     'toggle')
-        mode_toggle $1;;
+        mpc toggleoutput $1;;
     '')
         option_error;;
 esac
