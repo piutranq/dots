@@ -11,4 +11,3 @@ $XDG_CONFIG_HOME/polybar/scripts/merge-config.sh
 
 # Launch bars
 polybar top &> /dev/null 2>&1 &
-polybar sub &> /dev/null 2>&1 &

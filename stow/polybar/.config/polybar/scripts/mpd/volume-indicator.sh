@@ -17,7 +17,7 @@ main () {
 
     # Get mpd volume
     local volume="$(mpc volume | grep -oP "[0-9]+")"
-    [[ $volume != "" ]] && local volume="$(printf '%3s' $volume)%"
+    [[ $volume != "" ]] && local volume="$(printf '%2s' $volume)%"
 
     # Get color and icon
     if [[ $status == "unmuted" ]]; then

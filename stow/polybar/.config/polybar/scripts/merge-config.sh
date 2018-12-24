@@ -19,7 +19,6 @@ main() {
         "header"
         "colors"
         "bar/top"
-        "bar/sub"
         "module/bspwm"
         "module/sxhkd"
         "module/wireless"

@@ -19,9 +19,9 @@ format-full = <ramp-capacity> <label-full>
 format-full-underline = ${colors.green}
 format-full-padding = 1
 
-label-charging = %percentage:2%% (%time%)
-label-discharging = %percentage:2%% (%time%)
-label-full = %percentage:2%% (FULL)
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 

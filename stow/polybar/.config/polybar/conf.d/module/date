@@ -8,5 +8,5 @@ time = " %H:%M"
 format-underline = ${colors.grey_2}
 format-padding = 1
 
-label = "%date% / %time%"
+label = "%time%"
 

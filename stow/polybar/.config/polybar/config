@@ -48,31 +48,10 @@ module-margin-right = 0
 
 font-0 = UbuntuMonoNF:size=12
 modules-left = bspwm sxhkd
-modules-center =
+modules-center = mpd-nowplaying
 modules-right = dropbox wireless mpd-volume pulseaudio date battery
 
 separator=" "
-
-[bar/sub]
-width = 100%
-height = 24
-fixed-center = true
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-line-size = 2
-
-module-margin-left = 0
-module-margin-right = 0
-
-font-0 = UbuntuMonoNF:size=12
-
-modules-left =
-modules-center = mpd-nowplaying
-modules-right =
-bottom = true
-
-separator = " "
 
 [module/bspwm]
 type = internal/bspwm
@@ -113,11 +92,10 @@ type = internal/network
 interface = wlp2s0
 interval = 5
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
 format-connected-padding = 1
 format-connected-underline = ${colors.green}
-label-connected = %essid:3:6%
-ramp-signal-0 = 
+label-connected = 
 
 format-disconnected = <label-disconnected>
 format-disconnected-padding = 1
@@ -125,7 +103,7 @@ format-disconnected-underline = ${colors.grey_1}
 format-disconnected-foreground = ${colors.grey_1}
 label-disconnected = 
 
-format-packetloss = <animation-packetloss> <label-connected>
+format-packetloss = <animation-packetloss>
 format-packetloss-padding = 1
 format-packetloss-underline = ${colors.red}
 animation-packetloss-0 = ⚠
@@ -164,7 +142,7 @@ time = " %H:%M"
 format-underline = ${colors.grey_2}
 format-padding = 1
 
-label = "%date% / %time%"
+label = "%time%"
 
 
 [module/battery]
@@ -188,9 +166,9 @@ format-full = <ramp-capacity> <label-full>
 format-full-underline = ${colors.green}
 format-full-padding = 1
 
-label-charging = %percentage:2%% (%time%)
-label-discharging = %percentage:2%% (%time%)
-label-full = %percentage:2%% (FULL)
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
