@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-ROFI_DIR="$HOME/.config/rofi"
+ROFI_DIR="$XDG_CONFIG_HOME/rofi"
 ROFI_CONF="$ROFI_DIR/config"
 ROFI_THEME="$ROFI_DIR/theme.rasi"
 NF_LIST="$ROFI_DIR/nerdfont-cheatsheet"

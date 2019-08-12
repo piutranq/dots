@@ -1,7 +1,7 @@
 /* Common */
 *
 {
-  font: "UbuntuMonoNF 12";
+  font: "monospace 11";
 
   background-color:   @empty;
   text-color:         @fg;
@@ -30,7 +30,7 @@
   padding: 0.5em;
 }
 #element {
-  padding: 0.25em 0.25em 0.25em 0.5em;
+  padding: 0.25em 0.25em 0.48em 0.5em;
   text-color: @grey3;
 }
 #element active {

@@ -1,10 +1,3 @@
 #!/usr/bin/env bash
 
-# Autostarts
-xsetroot -cursor_name left_ptr
-compton &
-$HOME/.fehbg
-$HOME/.config/dunst/scripts/launch.sh
-$HOME/.config/sxhkd/scripts/launch.sh
-$HOME/.config/polybar/scripts/launch.sh
-
+$XDG_CONFIG_HOME/polybar/scripts/launch.sh
