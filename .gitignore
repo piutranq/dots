@@ -1,0 +1,3 @@
+# ignore plugins
+stow/nvim/.config/nvim/plugged/
+stow/tmux/.tmux/plugins/
