@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+#==============================================================================
+#   nowplaying: wrapper of `mpc -f`
+#==============================================================================
+
+declare -r FORMAT_ARG=$1
+
+get_mpd_status () {
+    if [[ $(mpc 2>/dev/null | grep "^\[playing\]") ]]; then
+        echo "PLAY"
+    elif [[ $(mpc 2>/dev/null | grep "^\[paused\]")  ]]; then
+        echo "PAUSE"
+    else
+        echo "OFF"
+    fi
+}
+
+check_isplaying () {
+    if [[ $(get_mpd_status) == "OFF" ]]; then
+        echo "mpd or any song isn't playing :(" >> /dev/stderr
+        exit 1
+    fi
+}
+
+set_format () {
+    if [[ $DEFAULT_FORMAT == "" ]] && [[ $MPC_FORMAT == "" ]]; then
+        local -r DEFAULT_FORMAT="[%artist% - ][%title%]|[%file%]"
+    elif [[ $DEFAULT_FORMAT == "" ]]; then
+        local -r DEFAULT_FORMAT="$MPC_FORMAT"
+    fi
+
+    if [[ $FORMAT_ARG == "" ]]; then
+        echo "$DEFAULT_FORMAT"
+    else
+        echo "$FORMAT_ARG"
+    fi
+}
+
+render () {
+    echo $(mpc -f "$1" 2>/dev/null | head -n -2)
+}
+
+main () {
+    check_isplaying
+    local -r FORMAT=$(set_format)
+    render "$FORMAT"
+}
+
+main

@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Start xorg-independent daemons
-dropbox-cli start &> /dev/null 2>&1
-
 # Add $PATH
 addpath(){
   for ARG in "$@"

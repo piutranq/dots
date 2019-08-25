@@ -16,3 +16,5 @@ modules-center = mpd-nowplaying
 modules-right = dropbox wireless mpd-volume pulseaudio date battery
 
 separator=" "
+
+enable-ipc = true

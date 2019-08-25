@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-local PWD=$(pwd)
-cd $HOME/workspace/magaroido
-node src $@
-cd $PWD
