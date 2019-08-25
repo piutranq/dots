@@ -24,10 +24,10 @@ check_isplaying () {
 }
 
 set_format () {
-    if [[ $DEFAULT_FORMAT == "" ]] && [[ $MPC_FORMAT == "" ]]; then
-        local -r DEFAULT_FORMAT="[%artist% - ][%title%]|[%file%]"
-    elif [[ $DEFAULT_FORMAT == "" ]]; then
+    if [[ $MPC_FORMAT != "" ]]; then
         local -r DEFAULT_FORMAT="$MPC_FORMAT"
+    else
+        local -r DEFAULT_FORMAT="[%artist% - ][%title%]|[%file%]"
     fi
 
     if [[ $FORMAT_ARG == "" ]]; then
