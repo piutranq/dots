@@ -6,19 +6,10 @@
 
 declare -r FORMAT_ARG=$1
 
-get_mpd_status () {
-    if [[ $(mpc 2>/dev/null | grep "^\[playing\]") ]]; then
-        echo "PLAY"
-    elif [[ $(mpc 2>/dev/null | grep "^\[paused\]")  ]]; then
-        echo "PAUSE"
-    else
-        echo "OFF"
-    fi
-}
-
 check_isplaying () {
-    if [[ $(get_mpd_status) == "OFF" ]]; then
-        echo "mpd or any song isn't playing :(" >> /dev/stderr
+    [[ $(mpc 2>/dev/null | grep -E "^\[playing\]|^\[paused\]") ]]
+    if [[ $? -ne 0 ]]; then
+        echo "mpd or any song isn't playing :(" > /dev/stderr
         exit 1
     fi
 }

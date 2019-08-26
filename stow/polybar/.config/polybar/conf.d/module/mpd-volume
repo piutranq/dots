@@ -1,9 +1,0 @@
-[module/mpd-volume]
-type = custom/script
-exec = $HOME/.config/polybar/scripts/mpd/volume-indicator.sh idle
-label = %output%
-tail = true
-
-click-left = mpc-mute -t 1
-scroll-up = mpc volume +5
-scroll-down = mpc volume -5

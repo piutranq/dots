@@ -1,10 +1,31 @@
 #!/usr/bin/env bash
 
-# Reload sxhkd
-[ -e '/usr/bin/sxhkd' ] && $XDG_CONFIG_HOME/sxhkd/scripts/launch.sh
+wait_for_launch () {
+    while [ ! $(find /tmp/polybar_mqueue.*) ]; do sleep 0.1; done
+}
 
-# Merge config file
-$XDG_CONFIG_HOME/polybar/scripts/merge-config.sh
+autostart () {
+    $XDG_CONFIG_HOME/polybar/scripts/autostart.sh
+}
 
-# Launch bars
-pkill -USR1 -x polybar &
+launch-all () {
+    polybar top &
+}
+
+reload-all () {
+    polybar-msg cmd restart
+}
+
+is_launched () {
+    $(pgrep -u $UID -x polybar > /dev/null)
+}
+
+main () {
+    is_launched && reload-all || launch-all
+    wait_for_launch
+    autostart
+}
+
+main >/dev/null 2>&1
+
+
