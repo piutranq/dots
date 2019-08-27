@@ -8,8 +8,7 @@ addpath(){
   done
 }
 
-addpath "$HOME/.scripts"                # Custom scripts
-addpath "$HOME/.nodejs/selected/bin"    # NodeJS
+addpath "$HOME/.local/bin"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
