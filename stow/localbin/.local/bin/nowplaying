@@ -5,37 +5,20 @@
 #==============================================================================
 
 declare -r FORMAT_ARG=$1
+declare -r ERROR_MSG="mpd or any song isn't playing :("
+declare DEFAULT_FORMAT="[%artist% - ][%title%]|[%file%]"
 
 check_isplaying () {
-    [[ $(mpc 2>/dev/null | grep -E "^\[playing\]|^\[paused\]") ]]
-    if [[ $? -ne 0 ]]; then
-        echo "mpd or any song isn't playing :(" > /dev/stderr
-        exit 1
-    fi
+    local -r status="$(mpc status)"
+    [[ $status == *"[playing]"* ]] && return 0
+    [[ $status == *"[paused]"*  ]] && return 0
+    echo $ERROR_MSG > /dev/stderr  && exit 1
 }
 
-set_format () {
-    if [[ $MPC_FORMAT != "" ]]; then
-        local -r DEFAULT_FORMAT="$MPC_FORMAT"
-    else
-        local -r DEFAULT_FORMAT="[%artist% - ][%title%]|[%file%]"
-    fi
-
-    if [[ $FORMAT_ARG == "" ]]; then
-        echo "$DEFAULT_FORMAT"
-    else
-        echo "$FORMAT_ARG"
-    fi
+format () {
+    [[ $MPC_FORMAT == "" ]] || DEFAULT_FORMAT="$MPC_FORMAT"
+    [[ $FORMAT_ARG == "" ]] && echo "$DEFAULT_FORMAT" || echo "$FORMAT_ARG"
 }
 
-render () {
-    echo $(mpc -f "$1" 2>/dev/null | head -n -2)
-}
-
-main () {
-    check_isplaying
-    local -r FORMAT=$(set_format)
-    render "$FORMAT"
-}
-
-main
+check_isplaying
+echo $(mpc -f "$(format)" 2>/dev/null | head -n -2)
