@@ -8,6 +8,7 @@ addpath(){
   done
 }
 
+addpath "$HOME/.cargo/bin"
 addpath "$HOME/.local/bin"
 
 export XDG_CONFIG_HOME="$HOME/.config"

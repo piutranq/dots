@@ -68,8 +68,8 @@ super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus/send to the given desktop
-super + {_,shift + }{1-4}
-	bspc {desktop -f,node -d} '^{1-4}'
+super + {_,shift + }{1-6}
+	bspc {desktop -f,node -d} '^{1-6}'
 
 # focus/send to the prev/next desktop
 super + {_,shift + }bracket{left,right}

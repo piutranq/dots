@@ -16,6 +16,7 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'cespare/vim-toml'
 call plug#end()
 
 
