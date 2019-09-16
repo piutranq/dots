@@ -9,7 +9,7 @@ declare -r ERROR_MSG="mpd or any song isn't playing :("
 declare DEFAULT_FORMAT="[%artist% - ][%title%]|[%file%]"
 
 check_isplaying () {
-    local -r status="$(mpc status)"
+    local -r status="$(mpc status 2>/dev/null)"
     [[ $status == *"[playing]"* ]] && return 0
     [[ $status == *"[paused]"*  ]] && return 0
     echo $ERROR_MSG > /dev/stderr  && exit 1
@@ -21,4 +21,4 @@ format () {
 }
 
 check_isplaying
-echo $(mpc -f "$(format)" 2>/dev/null | head -n -2)
+echo "$(mpc -f "$(format)" 2>/dev/null | head -n -2)"
