@@ -20,12 +20,12 @@ OPTIONS+=($OPTION_HIBERNATE)
 OPTIONS+=($OPTION_POWEROFF)
 OPTIONS+=($OPTION_REBOOT)
 
-SELECTED=$(\
+SELECTED=exec\
     printf '%s\n' "${OPTIONS[@]}" | \
     rofi -dmenu -i                  \
     -p          $TITLE              \
     -config     $ROFI_CONF          \
-    -theme      $ROFI_THEME         )
+    -theme      $ROFI_THEME
 
 case $SELECTED in
     $OPTION_LOCKSCREEN) lockscreen          ;;

@@ -6,8 +6,8 @@ ROFI_THEME="$ROFI_DIR/theme.rasi"
 
 TITLE=""
 
-$(rofi                      \
-    -show drun              \
-    -display-drun $TITLE    \
-    -config $ROFI_CONF      \
-    -theme $ROFI_THEME      )
+exec rofi\
+    -show drun\
+    -display-drun $TITLE\
+    -config $ROFI_CONF\
+    -theme $ROFI_THEME
