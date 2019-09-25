@@ -17,6 +17,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'cespare/vim-toml'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 
