@@ -7,10 +7,10 @@ NF_LIST="$ROFI_DIR/nerdfont-cheatsheet"
 
 TITLE=""
 
-SELECTED=exec cat $NF_LIST |\
+SELECTED=$(cat $NF_LIST |\
     rofi    -dmenu -i\
     -p      $TITLE\
     -config $ROFI_CONF\
-    -theme  $ROFI_THEME
+    -theme  $ROFI_THEME)
 
 echo $SELECTED | awk '{ printf $2 }' | xclip -selection CLIPBOARD
