@@ -7,18 +7,14 @@
 #   Author:
 #       - Piu Tranquillo (https://github.com/piutranq)
 #
-#   Based on:
-#       - odedlaz/tmux-onedark-theme
-#           (https://github.com/odelaz/tmux-onedark-theme)
-#
 #   Require:
 #       - Nerd font (Author uses UbuntuMono NF)
 #           (https://github.com/ryanoasis/nerd-fonts)
-#       - tmux-prefix-highlight
+#       - tmux-prefix-highlight (if uses ${seg_prefix})
 #           (https://github.com/tmux-plugins/tmux-prefix-highlight)
-#       - tumx-battery (if uses #{$battery_segment})
+#       - tumx-battery (if uses ${seg_battery})
 #           (https://github.com/tmux-plugins/tmux-battery)
-#       - tmux-online-status (if uses #{$online_segment})
+#       - tmux-online-status (if uses ${seg_online})
 #           (https://github.com/tmux-plugins/tmux-online-status)
 #
 # ============================================================================
@@ -102,6 +98,7 @@ set "status-bg" "$co_black"
 set "status-fg" "$co_white"
 
 # Plugin: prefix_highlight
+seg_prefix="#{prefix_highlight}"
 set "@prefix_highlight_empty_has_affixes" "off"
 set "@prefix_highlight_empty_attr" ""
 set "@prefix_highlight_show_copy_mode" "on"
@@ -114,12 +111,12 @@ set "@prefix_highlight_output_suffix" "#[]"
 # Time & date segment
 date_format=$(get "@date_format" "%y-%m-%d %a")
 time_format=$(get "@time_format" "%R")
-timedate_segment="${fb_reset} ${date_format} / ${time_format} ${fb_reset}"
+seg_timedate="${fb_reset} ${date_format} / ${time_format} ${fb_reset}"
 
 # Plugin: tmux-battery
 
 ## segment
-battery_segment="#{battery_color_bg}#{battery_color_fg} #{battery_icon} #{battery_percentage} ${fb_reset}"
+seg_battery="#{battery_color_bg}#{battery_color_fg} #{battery_icon} #{battery_percentage} ${fb_reset}"
 
 ## status icons
 set "@batt_icon_status_charged" "  "
@@ -168,24 +165,23 @@ set "@batt_color_status_secondary_unknown" "$co_white"
 
 
 # Plugin: tmux-online-status
+seg_online="#{online_status}"
 set "@online_icon" "#[fg=$co_white,bg=$co_black]   ${fb_reset}"
-set "@offline_icon" "#[fg=$co_grey,bg=$co_black]   ${fb_reset}"
-online_segment="#{online_status}"
-userhost_segment="#[fg=$co_green,bold]λ #[fg=$co_yellow,bold]#h"
-session_segment="#[bold] Session ###S${fb_reset}"
+set "@offline_icon" "#[fg=$co_black,bg=$co_red]   ${fb_reset}"
+
 
 # status-right
 set "status-right-length" "60"
-set "status-right" "
-#{prefix_highlight}${online_segment}${timedate_segment}${battery_segment}
-"
+set "status-right" "${seg_prefix}${seg_online}${seg_timedate}${seg_battery}"
+
 # status-left
+session_segment="#[bold] Session ###S${fb_reset}"
 set "status-left-length" "60"
 set "status-left" "${session_segment} "
 
 set "window-status-format" "
-#[fg=$co_grey,bg=$co_black,nobold] #I "
+#[fg=$co_grey,bg=$co_black,nobold] #W ${fb_reset}"
 
 set "window-status-current-format" "
-#[fg=$co_white,bg=$co_blue,bold] #I ${fb_reset}"
+#[fg=$co_white,bg=$co_blue,bold] #W ${fb_reset}"
 

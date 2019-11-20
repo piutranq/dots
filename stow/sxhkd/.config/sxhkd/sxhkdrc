@@ -63,6 +63,10 @@ alt + {_,shift + }F4
 super + {t,f,shift + t,shift + f}
 	bspc node -t {tiled,floating,pseudo_tiled,fullscreen}
 
+# Toggle the desktop layout
+super + m
+    bspc desktop -l next
+
 # focus/swap the node in the given direction
 super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
