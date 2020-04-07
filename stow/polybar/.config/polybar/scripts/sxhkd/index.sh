@@ -4,15 +4,16 @@ source $XDG_CONFIG_HOME/polybar/scripts/color.sh
 # ============================================================================
 #   Configuration Section
 # ============================================================================
-declare -r COLOR_BG="%{B$COLOR_GREY_1}"
-declare -r COLOR_FG="%{F$COLOR_GREY_4}"
+declare -r COLOR_BG="%{B$COLOR_GREY1}"
+declare -r COLOR_FG="%{F$COLOR_GREY4}"
 declare -r COLOR_UL="%{u$COLOR_GREEN}"
 declare -r COLOR_OL="%{o$COLOR_EMPTY}"
 
-declare -r PIPE="/run/user/$UID/sxhkd.fifo"
+declare -r PIPE="/run/user/$UID/sxhkd.fifo.sxhkd-statusd"
 
 declare -r LABEL_PREFIX="$COLOR_BG$COLOR_FG$COLOR_UL$COLOR_OL "
 declare -r LABEL_SUFFIX=" "
+
 
 # List of the labels ---------------------------------------------------------
 #
@@ -22,8 +23,8 @@ declare -r LABEL_SUFFIX=" "
 #   Value: Label of the hotkey chain to display
 #
 # ----------------------------------------------------------------------------
-declare -r LABEL_TABLE=(
-    "Hsuper + r:Resize" # Example for single prefix
+declare -Ar LABEL_TABLE=(
+    ["Hsuper + r"]="Resize Windows" # Example for single prefix
 )
 
 
@@ -47,10 +48,9 @@ event_hotkey () {
     local key
     local val
 
-    for elem in "${LABEL_TABLE[@]}"; do
-        key="${elem%%:*}"
-        val="${elem##*:}"
-        [[ $(echo "$event" | grep "$key") ]] && display_label $val
+    for key in "${!LABEL_TABLE[@]}"; do
+        val="${LABEL_TABLE[$key]}"
+        [[ $(echo "$event" | grep "$key$") ]] && display_label "$val"
     done
 }
 
@@ -76,10 +76,11 @@ handle_event () {
 
 # Waiting input event from pipe
 loop () {
-    cat $PIPE | \
+    (socat UNIX-CONNECT:$PIPE -) | \
     while read event; do
         handle_event "$event"
     done
 }
 
 loop
+

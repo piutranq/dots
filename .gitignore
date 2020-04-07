@@ -1,3 +1,9 @@
-# ignore plugins
+# Ignore the auto-generated config files
+stow/polybar/.config/polybar/color
+stow/rofi/.config/rofi/color.rasi
+stow/termite/.config/termite/config
+stow/cologen-refresh/.config/cologen-refresh/source.sh
+
+# Ignore the external plugins
 stow/nvim/.config/nvim/plugged/
 stow/tmux/.tmux/plugins/

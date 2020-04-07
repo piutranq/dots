@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 wait_for_launch () {
     while [ ! $(find /tmp/polybar_mqueue.*) ]; do sleep 0.1; done
 }
@@ -27,5 +26,4 @@ main () {
 }
 
 main >/dev/null 2>&1
-
 

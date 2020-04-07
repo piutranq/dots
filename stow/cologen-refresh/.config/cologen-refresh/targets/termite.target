@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+source "$COLOGEN_REFRESH_CONFIG/path.sh"
+
+declare -r OPTION="$XDG_CONFIG_HOME/termite/config.option"
+declare -r INPUT="$COLOGEN_REFRESH_TEMPLATES/termite.template"
+declare -r OUTPUT="$XDG_CONFIG_HOME/termite/config"
+declare -r SCHEME="$COLOGEN_REFRESH_CURRENT_SCHEME"
+
+generate() {
+    [ -w "$OUTPUT" ] || touch "$OUTPUT" && chmod +w "$OUTPUT"
+    cat "$OPTION" > "$OUTPUT"
+    cat "$INPUT" | cologen "$SCHEME" >> "$OUTPUT"
+    chmod -w "$OUTPUT"
+}
+
+refresh() {
+    killall -USR1 termite
+}
+
+generate
+refresh

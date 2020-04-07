@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+source "$COLOGEN_REFRESH_CONFIG/path.sh"
+
+declare -r INPUT="$COLOGEN_REFRESH_TEMPLATES/cologen-source.template"
+declare -r OUTPUT="$COLOGEN_REFRESH_CONFIG/source.sh"
+declare -r SCHEME="$COLOGEN_REFRESH_CURRENT_SCHEME"
+
+generate() {
+    [ -w "$OUTPUT" ] || touch "$OUTPUT" && chmod +w "$OUTPUT"
+    cat "$INPUT" | cologen "$SCHEME" > "$OUTPUT"
+    chmod -w "$OUTPUT"
+}
+
+refresh() {
+    $XDG_CONFIG_HOME/bspwm/color # bspwm
+}
+
+generate
+refresh

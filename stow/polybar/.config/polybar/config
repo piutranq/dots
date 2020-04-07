@@ -1,40 +1,40 @@
-; =============================================================================
-;
-;   Polybar configuration
-;
-;   Author:
-;       - Piu Tranquillo (https://github.com/piutranq)
-;       - and Original by Adrian Karbowniczyn (https://github.com/s1amber)
-;
-; =============================================================================
+[device-specific]
+include-file = $XDG_CONFIG_HOME/polybar/device-specific/current
 
-[path]
-polybar = $XDG_CONFIG_HOME/polybar
-scripts = $XDG_CONFIG_HOME/polybar/scripts
+[color]
+include-file = $XDG_CONFIG_HOME/polybar/color
 
-[colors]
-include-file = $XDG_CONFIG_HOME/polybar/include/colors
 
 [bar/top]
 width = 100%
 height = 24
-fixed-center = true
-background = ${colors.background}
-foreground = ${colors.foreground}
-
 line-size = 2
-
+fixed-center = true
+separator=" "
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = monospace:size=11;1
-modules-left = bspwm sxhkd
-modules-center = mpd-nowplaying
-modules-right = dropbox wireless mpd-volume pulseaudio date battery
+font-0 = monospace:size=12;0
 
-separator=" "
+background = ${color.background}
+foreground = ${color.foreground}
+
+modules-left = ${device-specific/module-list.left}
+modules-center = ${device-specific/module-list.center}
+modules-right = ${device-specific/module-list.right}
 
 enable-ipc = true
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+format-background = ${color.background}
+format-foreground = ${color.foreground}
+format-underline = ${color.grey2}
+format-padding = 1
+label = %title%
+label-maxlen = 40
+
 
 [module/bspwm]
 type = internal/bspwm
@@ -54,26 +54,27 @@ ws-icon-9 = 9;
 format = <label-state>
 
 label-empty = %icon%
-label-empty-foreground = ${colors.grey_1}
-label-empty-underline = ${colors.grey_1}
+label-empty-foreground = ${color.grey1}
+label-empty-underline = ${color.grey1}
 label-empty-padding = 1
 
 label-occupied = %icon%
-label-occupied-foreground = ${colors.grey_2}
-label-occupied-underline = ${colors.grey_1}
+label-occupied-foreground = ${color.grey2}
+label-occupied-underline = ${color.grey1}
 label-occupied-padding = 1
 
 label-urgent = %icon%
-label-urgent-background = ${colors.red}
-label-urgent-foreground = ${colors.yellow}
-label-urgent-underline = ${colors.yellow}
+label-urgent-background = ${color.red}
+label-urgent-foreground = ${color.yellow}
+label-urgent-underline = ${color.yellow}
 label-urgent-padding = 1
 
 label-focused = %icon%
-label-focused-background = ${colors.grey_1}
-label-focused-foreground = ${colors.grey_4}
-label-focused-underline = ${colors.grey_4}
+label-focused-background = ${color.grey1}
+label-focused-foreground = ${color.grey4}
+label-focused-underline = ${color.grey4}
 label-focused-padding = 1
+
 
 [module/sxhkd]
 type = custom/script
@@ -81,46 +82,47 @@ exec = $XDG_CONFIG_HOME/polybar/scripts/sxhkd/index.sh
 tail = true
 label = %output%
 
+
 [module/wireless]
 type = internal/network
-interface = wlp2s0
+interface = ${device-specific/wireless.interface}
 interval = 5
 
 format-connected = <label-connected>
 format-connected-padding = 1
-format-connected-underline = ${colors.green}
+format-connected-underline = ${color.green}
 label-connected = 
 
 format-disconnected = <label-disconnected>
 format-disconnected-padding = 1
-format-disconnected-underline = ${colors.grey_1}
-format-disconnected-foreground = ${colors.grey_1}
+format-disconnected-underline = ${color.grey1}
+format-disconnected-foreground = ${color.grey1}
 label-disconnected = 
 
 format-packetloss = <animation-packetloss>
 format-packetloss-padding = 1
-format-packetloss-underline = ${colors.red}
+format-packetloss-underline = ${color.red}
 animation-packetloss-0 = ⚠
 animation-packetloss-1 = ⚠
-animation-packetloss-0-foreground = ${colors.red}
-animation-packetloss-1-foreground = ${colors.grey_1}
+animation-packetloss-0-foreground = ${color.red}
+animation-packetloss-1-foreground = ${color.grey1}
 animation-packetloss-framerate = 500
 
 
 [module/pulseaudio]
 type = internal/pulseaudio
-sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+sink = ${device-specific/pulseaudio.sink}
 interval = 5
 
 ramp-volume-0 = 墳
 label-volume = %percentage:2%%
 format-volume = <ramp-volume> <label-volume>
-format-volume-underline = ${colors.grey_2}
+format-volume-underline = ${color.grey2}
 format-volume-padding = 1
 
 label-muted = "婢    "
-label-muted-underline = ${colors.grey_1}
-label-muted-foreground = ${colors.grey_2}
+label-muted-underline = ${color.grey1}
+label-muted-foreground = ${color.grey2}
 label-muted-padding = 1
 
 
@@ -131,7 +133,7 @@ interval = 5
 date = " %Y-%m-%d %a"
 time = " %H:%M"
 
-format-underline = ${colors.grey_2}
+format-underline = ${color.grey2}
 format-padding = 1
 
 label = "%time%"
@@ -139,23 +141,23 @@ label = "%time%"
 
 [module/battery]
 type = internal/battery
-full-at = 100
-battery = BAT0
-adapter = AC
+full-at = ${device-specific/battery.full-at}
+battery = ${device-specific/battery.battery}
+adapter = ${device-specific/battery.adapter}
 poll-interval = 10
 
 time-format = %H:%M
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.green}
+format-charging-underline = ${color.green}
 format-charging-padding = 1
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${colors.grey_2}
+format-discharging-underline = ${color.grey2}
 format-discharging-padding = 1
 
 format-full = <ramp-capacity> <label-full>
-format-full-underline = ${colors.green}
+format-full-underline = ${color.green}
 format-full-padding = 1
 
 label-charging = %percentage%%
@@ -193,9 +195,10 @@ animation-charging-framerate = 750
 
 [module/dropbox]
 type = custom/script
-interval = 2
+interval = 5
 exec = $XDG_CONFIG_HOME/polybar/scripts/indicator-dropbox/index.sh
 label = %output%
+
 
 [module/mpd-nowplaying]
 type = custom/script
@@ -215,4 +218,4 @@ click-left = mpc-mute -t 1
 scroll-up = mpc volume +5
 scroll-down = mpc volume -5
 
-
+; vim:ft=dosini

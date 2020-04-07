@@ -1,0 +1,26 @@
+# ==============================================================================
+# gruvbox-dark for cologen
+#   - Based on gruvbox light (https://github.com/morhetz/gruvbox)
+# ==============================================================================
+
+name: "gruvbox-light"
+color:
+  # Monochromes
+  grey0: [ 0xFB, 0xF1, 0xC7 ] # fg0
+  grey1: [ 0xEB, 0xDB, 0xB2 ] # fg1
+  grey2: [ 0xBD, 0xAE, 0x93 ] # fg3
+  grey3: [ 0x66, 0x5C, 0x54 ] # bg3
+  grey4: [ 0x3C, 0x38, 0x36 ] # bg1
+  grey5: [ 0x28, 0x28, 0x28 ] # bg0
+
+  # Chromatics
+  red:      [ 0xCC, 0x24, 0x1D ] # red
+  green:    [ 0x98, 0x97, 0x1A ] # green
+  yellow:   [ 0xD7, 0x99, 0x21 ] # yellow
+  blue:     [ 0x45, 0x85, 0x88 ] # blue
+  magenta:  [ 0xB1, 0x62, 0x86 ] # purple
+  cyan:     [ 0x68, 0x9D, 0x6A ] # aqua
+
+  # Special Purpose
+  background: [ 0xFF, 0xFF, 0xFF, 0xCC ]
+  foreground: [ 0x3c, 0x38, 0x36 ]

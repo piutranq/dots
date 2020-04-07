@@ -11,13 +11,13 @@ declare -r ICON_PLAY=""
 declare -r ICON_PAUSE=""
 
 declare -r COLOR_PLAY_BG=$COLOR_BACKGROUND
-declare -r COLOR_PLAY_FG=$COLOR_GREY_4
+declare -r COLOR_PLAY_FG=$COLOR_GREY4
 declare -r COLOR_PLAY_UL=$COLOR_BLUE
 declare -r COLOR_PLAY_OL=$COLOR_EMPTY
 
 declare -r COLOR_PAUSE_BG=$COLOR_BACKGROUND
-declare -r COLOR_PAUSE_FG=$COLOR_GREY_2
-declare -r COLOR_PAUSE_UL=$COLOR_GREY_2
+declare -r COLOR_PAUSE_FG=$COLOR_GREY2
+declare -r COLOR_PAUSE_UL=$COLOR_GREY2
 declare -r COLOR_PAUSE_OL=$COLOR_EMPTY
 
 getcolor_playing () {

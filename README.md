@@ -1,8 +1,6 @@
 # .dots
 My dotfiles and configuration backup. Managed by stow and git
 
-This branch is configuration for 'tsuna' the laptop pc
-
 ## How to use
 ```
 $ git clone https://github.com/piutranq/dots $HOME/.dots # or another path you want

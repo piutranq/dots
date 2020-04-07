@@ -1,0 +1,22 @@
+# ==============================================================================
+# solarized-light for cologen
+#   - Based on Solarized Light (https://ethanschoonover.com/solarized)
+# ==============================================================================
+
+name: "solarized-dark"
+color:
+  # Monochromes
+  grey0: [ 0xFD, 0xF6, 0xE3 ] # base3
+  grey1: [ 0xEE, 0xE8, 0xD5 ] # base2
+  grey2: [ 0x93, 0xA1, 0xA1 ] # base1
+  grey3: [ 0x83, 0x94, 0x96 ] # base0
+  grey4: [ 0x65, 0x7B, 0x83 ] # base00
+  grey5: [ 0x58, 0x6E, 0x75 ] # base01
+
+  # Chromatics
+  red:      [ 0xDC, 0x32, 0x2F ] # red
+  green:    [ 0x85, 0x99, 0x00 ] # green
+  yellow:   [ 0xB5, 0x89, 0x00 ] # yellow
+  blue:     [ 0x26, 0x8B, 0xD2 ] # blue
+  magenta:  [ 0xD3, 0x36, 0x82 ] # magenta
+  cyan:     [ 0x2A, 0xA1, 0x98 ] # cyan

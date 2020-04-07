@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Theme
+hsetroot -cover $HOME/.wallpaper/58947893_p0.png
+xsetroot -cursor_name left_ptr
+picom &
+
+# Launch IME
+GTK_IM_MODULE=nimf
+QT4_IM_MODULE=nimf
+QT_IM_MODULE=nimf
+XMODIFIERS=@im=nimf
+setxkbmap -option "korean:ralt_hangul, korean:rctrl_hanja"
+nimf &

@@ -1,0 +1,23 @@
+# ==============================================================================
+# hybrid-material-light for cologen
+#   - Based on hybrid-material by kristijanhusak, with piutranq's custom.
+#   - See also: https://github.com/kristijanhusak/vim-hybrid-material
+# ==============================================================================
+
+name: "hybrid-material-light"
+color:
+  # Monochromes
+  grey0: [ 0xEC, 0xEF, 0xF1 ]
+  grey1: [ 0xCF, 0xD8, 0xDC ]
+  grey2: [ 0x90, 0xA4, 0xAE ]
+  grey3: [ 0x45, 0x5A, 0x64 ]
+  grey4: [ 0x37, 0x47, 0x4F ]
+  grey5: [ 0x15, 0x1D, 0x21 ]
+
+  # Chromatics
+  red:      [ 0xA5, 0x42, 0x42 ]
+  green:    [ 0x8C, 0x94, 0x40 ]
+  yellow:   [ 0xD4, 0xA1, 0x5B ]
+  blue:     [ 0x5F, 0x81, 0x9D ]
+  magenta:  [ 0x85, 0x67, 0x8F ]
+  cyan:     [ 0x5E, 0x8D, 0x87 ]

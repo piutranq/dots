@@ -1,0 +1,33 @@
+[colors]
+
+# Special Purpose
+foreground          = @[grey4:#%xR%xG%xB]
+foreground_bold     = @[grey5:#%xR%xG%xB]
+background          = @[grey0:rgba(%dR, %dG, %dB, %.A)]
+
+# 16 colors
+## Black
+color0  = @[grey1:#%xR%xG%xB]
+color8  = @[grey2:#%xR%xG%xB]
+## White
+color7  = @[grey4:#%xR%xG%xB]
+color15 = @[grey5:#%xR%xG%xB]
+## Red
+color1  = @[red:#%xR%xG%xB]
+color9  = @[red:#%xR%xG%xB]
+## Green
+color2  = @[green:#%xR%xG%xB]
+color10 = @[green:#%xR%xG%xB]
+## Yellow
+color3  = @[yellow:#%xR%xG%xB]
+color11 = @[yellow:#%xR%xG%xB]
+## Blue
+color4  = @[blue:#%xR%xG%xB]
+color12 = @[blue:#%xR%xG%xB]
+## Magenta
+color5  = @[magenta:#%xR%xG%xB]
+color13 = @[magenta:#%xR%xG%xB]
+## Cyan
+color6  = @[cyan:#%xR%xG%xB]
+color14 = @[cyan:#%xR%xG%xB]
+

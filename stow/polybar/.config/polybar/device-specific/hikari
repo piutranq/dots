@@ -1,0 +1,17 @@
+[device-specific/module-list]
+left = bspwm sxhkd
+center = mpd-nowplaying
+right = dropbox wireless mpd-volume pulseaudio date battery
+
+[device-specific/wireless]
+interface = wlp2s0
+
+[device-specific/pulseaudio]
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+
+[device-specific/battery]
+full-at = 100
+battery = BAT1
+adapter = AC
+
+; vim:ft=dosini

@@ -1,9 +1,8 @@
-""""""""""""
+"""""""""""
 " vim-plug "
 """"""""""""
 call plug#begin()
-Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
+Plug 'noahfrederick/vim-noctu'
 Plug 'leafgarland/typescript-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
@@ -52,6 +51,7 @@ set clipboard=unnamedplus
 " Column
 set colorcolumn=80
 
+set nofoldenable
 
 """""""""""""""""""
 " Visual Settings "
@@ -65,16 +65,11 @@ set cursorline
 set showmatch
 
 " Color
-set background=dark
-set termguicolors
-colorscheme gruvbox
-highlight Normal guibg=none ctermbg=none
+colorscheme noctu
 
 " lightline.vim
-let g:lightline = {
-\   'colorscheme': 'gruvbox'
-\}
-
+let g:lightline = {}
+let g:lightline.colorscheme = '16color'
 
 """""""""""""""""""""
 " Language Settings "
