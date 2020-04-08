@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source "$COLOGEN_REFRESH_CONFIG/path.sh"
+source "$COLOGEN_REFRESH_CONFIG/source.sh"
 
 bspc config normal_border_color     "$COLOR_GREY1"
 bspc config focused_border_color    "$COLOR_GREY2"
