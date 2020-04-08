@@ -6,9 +6,6 @@ xsetroot -cursor_name left_ptr
 picom &
 
 # Launch IME
-GTK_IM_MODULE=nimf
-QT4_IM_MODULE=nimf
-QT_IM_MODULE=nimf
-XMODIFIERS=@im=nimf
 setxkbmap -option "korean:ralt_hangul, korean:rctrl_hanja"
 nimf &
+export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
