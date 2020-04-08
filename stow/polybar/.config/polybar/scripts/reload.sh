@@ -3,10 +3,6 @@ wait_for_launch () {
     while [ ! $(find /tmp/polybar_mqueue.*) ]; do sleep 0.1; done
 }
 
-autostart () {
-    $XDG_CONFIG_HOME/polybar/scripts/autostart.sh
-}
-
 launch-all () {
     polybar top &
 }
@@ -22,8 +18,7 @@ is_launched () {
 main () {
     is_launched && reload-all || launch-all
     wait_for_launch
-    autostart
 }
 
-main >/dev/null 2>&1
-
+#main >/dev/null 2>&1
+main
