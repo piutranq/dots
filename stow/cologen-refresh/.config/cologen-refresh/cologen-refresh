@@ -22,7 +22,7 @@ execute_all_targets() {
     chmod +r $COLOGEN_REFRESH_CURRENT_SCHEME
     for target in $(ls $COLOGEN_REFRESH_TARGETS); do
         echo "executing \"$target\"..."
-        $($COLOGEN_REFRESH_TARGETS/$target)
+        $COLOGEN_REFRESH_TARGETS/$target
     done
     chmod -r $COLOGEN_REFRESH_CURRENT_SCHEME
 }

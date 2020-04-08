@@ -20,5 +20,4 @@ main () {
     wait_for_launch
 }
 
-#main >/dev/null 2>&1
-main
+main >/dev/null 2>&1

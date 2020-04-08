@@ -1,5 +1,6 @@
-# Ignore the auto-generated config files
+# Ignore the auto-generated / temporary config files
 stow/polybar/.config/polybar/color
+stow/polybar/.config/polybar/device-specific/current
 stow/rofi/.config/rofi/color.rasi
 stow/termite/.config/termite/config
 stow/cologen-refresh/.config/cologen-refresh/source.sh

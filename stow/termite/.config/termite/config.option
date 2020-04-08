@@ -1,7 +1,7 @@
 [options]
 
 allow_bold = true
-font = monospace 12
+font = monospace 13
 scrollback_lines = 10000
 scrollbar = off
 

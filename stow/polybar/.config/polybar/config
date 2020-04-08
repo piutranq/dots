@@ -14,7 +14,8 @@ separator=" "
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = monospace:size=12;0
+font-0 = "monospace:size=13;2"
+font-1 = "Symbols Nerd Font:size=13;2"
 
 background = ${color.background}
 foreground = ${color.foreground}
@@ -54,13 +55,13 @@ ws-icon-9 = 9;
 format = <label-state>
 
 label-empty = %icon%
-label-empty-foreground = ${color.grey1}
-label-empty-underline = ${color.grey1}
+label-empty-foreground = ${color.empty}
+label-empty-underline = ${color.grey2}
 label-empty-padding = 1
 
 label-occupied = %icon%
 label-occupied-foreground = ${color.grey2}
-label-occupied-underline = ${color.grey1}
+label-occupied-underline = ${color.grey2}
 label-occupied-padding = 1
 
 label-urgent = %icon%
@@ -70,7 +71,7 @@ label-urgent-underline = ${color.yellow}
 label-urgent-padding = 1
 
 label-focused = %icon%
-label-focused-background = ${color.grey1}
+label-focused-background = ${color.grey2}
 label-focused-foreground = ${color.grey4}
 label-focused-underline = ${color.grey4}
 label-focused-padding = 1
