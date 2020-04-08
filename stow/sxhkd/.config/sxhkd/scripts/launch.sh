@@ -13,3 +13,4 @@ mkfifo "$FIFO_PATH"
 
 # Launch sxhkd
 sxhkd -s "$FIFO_PATH" &
+sxhkd-statusd -l silent "$FIFO_PATH" &
