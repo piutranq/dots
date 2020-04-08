@@ -1,8 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ============================================================================
-#
-# Tmux statusbar theme for base16 colorscheme
 #
 #   Author:
 #       - Piu Tranquillo (https://github.com/piutranq)
@@ -127,10 +125,10 @@ set "@batt_icon_status_unknown" " "
 set "@batt_icon_charge_tier8" "  " # 95% ~
 set "@batt_icon_charge_tier7" "  " # 80% ~
 set "@batt_icon_charge_tier6" "  " # 65% ~
-set "@batt_icon_charge_tier5" "  " # 50% ~
+set "@batt_icon_charge_tier5" "  " # 50% ~
 set "@batt_icon_charge_tier4" "  " # 35% ~
-set "@batt_icon_charge_tier3" "  " # 20% ~
-set "@batt_icon_charge_tier2" "  " # 5% ~
+set "@batt_icon_charge_tier3" "  " # 20% ~
+set "@batt_icon_charge_tier2" "  " # 5% ~
 set "@batt_icon_charge_tier1" "  " # 0% ~
 
 ## charge colors (fg)
