@@ -84,7 +84,8 @@ case $1 in
     'last')
         GEOMETRY=$(cat $CACHE | awk '/GEOMETRY/{print $2}') || exit 1;;
     'output')
-        $(cat $CACHE | awk '/OUTPUT/{print $2}') || exit 1
+        GEOMETRY=$(cat $CACHE | awk '/OUTPUT/{print $2}') || exit 1
+        echo $GEOMETRY
         exit 0;;
     *) exit_argerr ;;
 esac
