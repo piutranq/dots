@@ -25,7 +25,7 @@ alt + F1
     $XDG_CONFIG_HOME/rofi/scripts/rofi-drun.sh
 alt + F2
 	$XDG_CONFIG_HOME/rofi/scripts/rofi-run.sh
-alt + Tab
+super + Tab
     $XDG_CONFIG_HOME/rofi/scripts/rofi-win.sh
 ctrl + alt + Delete
     $XDG_CONFIG_HOME/rofi/scripts/rofi-dmenu-exit.sh
@@ -71,6 +71,10 @@ super + m
 super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
+# focus the next node in current desktop
+alt + {_,shift + }Tab
+    bspc node -f {next.local,prev.local}
+
 # focus/send to the given desktop
 super + {_,shift + }{1-6}
 	bspc {desktop -f,node -d} '^{1-6}'
@@ -87,9 +91,9 @@ super + Escape
 
 # resize the node
 super + r: {Left,Down,Up,Right}
-	bspc node -z {right -8 0,bottom 0 17,bottom 0 -17,right 8 0}
+	bspc node -z {right -9 0,bottom 0 22,bottom 0 -22,right 9 0}
 super + r: ctrl + {Left,Down,Up,Right}
-	bspc node -z {right -40 0,bottom 0 85,bottom 0 -85,right 40 0}
+	bspc node -z {right -45 0,bottom 0 110,bottom 0 -110,right 45 0}
 super + r: shift + {Left,Down,Up,Right}
 	bspc node -z {right -1 0,bottom 0 1,bottom 0 -1,right 1 0}
 

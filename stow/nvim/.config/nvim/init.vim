@@ -2,7 +2,6 @@
 " vim-plug "
 """"""""""""
 call plug#begin()
-Plug 'lepture/vim-css'
 Plug 'noahfrederick/vim-noctu'
 Plug 'leafgarland/typescript-vim'
 Plug 'plasticboy/vim-markdown'

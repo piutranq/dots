@@ -55,12 +55,12 @@ ws-icon-9 = 9;
 format = <label-state>
 
 label-empty = %icon%
-label-empty-foreground = ${color.empty}
+label-empty-foreground = ${color.grey2}
 label-empty-underline = ${color.grey2}
 label-empty-padding = 1
 
 label-occupied = %icon%
-label-occupied-foreground = ${color.grey2}
+label-occupied-foreground = ${color.grey3}
 label-occupied-underline = ${color.grey2}
 label-occupied-padding = 1
 

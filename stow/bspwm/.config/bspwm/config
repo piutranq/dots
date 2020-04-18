@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 # Workspaces
 bspc monitor -d 1 2 3 4 5 6
 
@@ -11,6 +12,6 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 # Rules
-bspc rule -a Termite:floatingTerm state=floating rectangle=730x475+12+36
+bspc rule -a Termite:floatingTerm state=floating rectangle=848x588+12+36
 bspc rule -a Lxappearance state=floating
 bspc rule -a Thunar:floatingFileManager state=floating
