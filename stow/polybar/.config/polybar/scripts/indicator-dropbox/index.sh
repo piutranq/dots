@@ -64,4 +64,4 @@ case $INDICATOR_STATUS in
     ;;
 esac
 
-echo "%{F$COLOR_FG}%{u$COLOR_UL}%{B$COLOR_BG}%{o$COLOR_OL} $INDICATOR_ICON "
+echo "%{F$COLOR_FG}%{u$COLOR_UL}%{+u}%{B$COLOR_BG}%{o$COLOR_OL} $INDICATOR_ICON "

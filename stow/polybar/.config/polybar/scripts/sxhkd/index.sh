@@ -6,7 +6,7 @@ source $XDG_CONFIG_HOME/polybar/scripts/color.sh
 # ============================================================================
 declare -r COLOR_BG="%{B$COLOR_GREY1}"
 declare -r COLOR_FG="%{F$COLOR_GREY4}"
-declare -r COLOR_UL="%{u$COLOR_GREEN}"
+declare -r COLOR_UL="%{u$COLOR_GREEN}%{+u}"
 declare -r COLOR_OL="%{o$COLOR_EMPTY}"
 
 declare -r PIPE="/run/user/$UID/sxhkd.fifo.sxhkd-statusd"

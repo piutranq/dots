@@ -26,7 +26,7 @@ getformat_unmuted () {
     local -r UL=$COLOR_UNMUTED_UL
     local -r OL=$COLOR_UNMUTED_OL
 
-    local -r COLOR="%{F$FG}%{u$UL}%{B$BG}%{o$OL}"
+    local -r COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
     local -r ICON=$ICON_UNMUTED
 
     export FORMAT="$COLOR $ICON $(printf '%2s' $volume)% "
@@ -38,7 +38,7 @@ getformat_muted () {
     local -r UL=$COLOR_MUTED_UL
     local -r OL=$COLOR_MUTED_OL
 
-    local -r COLOR="%{F$FG}%{u$UL}%{B$BG}%{o$OL}"
+    local -r COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
     local -r ICON=$ICON_MUTED
 
     export FORMAT="$COLOR $ICON     "

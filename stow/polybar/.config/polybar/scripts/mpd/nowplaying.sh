@@ -26,7 +26,7 @@ getcolor_playing () {
     local -r UL=$COLOR_PLAY_UL
     local -r OL=$COLOR_PLAY_OL
 
-    export COLOR="%{F$FG}%{u$UL}%{B$BG}%{o$OL}"
+    export COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
     export ICON=$ICON_PLAY
 }
 
@@ -36,7 +36,7 @@ getcolor_paused () {
     local -r UL=$COLOR_PAUSE_UL
     local -r OL=$COLOR_PAUSE_OL
 
-    export COLOR="%{F$FG}%{u$UL}%{B$BG}%{o$OL}"
+    export COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
     export ICON=$ICON_PAUSE
 }
 
