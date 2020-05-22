@@ -1,0 +1,25 @@
+# ==============================================================================
+# gruvbox-material-dark for cologen
+#   - Based on gruvbox dark (https://github.com/morhetz/gruvbox)
+#   - And gruvbox material dark (https://github.com/sainnhe/gruvbox-material)
+#   - Using hard contrast mode and some custom
+# ==============================================================================
+
+name: "gruvbox-material-dark"
+color:
+  # Monochromes
+  grey0: [ 0x19, 0x1A, 0x1A, 0xFF ] # bg0 (non-transparent)
+  grey0: [ 0x00, 0x00, 0x00, 0xCC ] # (transparent)
+  grey1: [ 0x28, 0x28, 0x28 ] # bg0
+  grey2: [ 0x66, 0x5C, 0x54 ] # bg3
+  grey3: [ 0xBD, 0xAE, 0x93 ] # fg3
+  grey4: [ 0xD4, 0xBE, 0x98 ] # fg1 custom
+  grey5: [ 0xEF, 0xDA, 0xB9 ] # fg0 custom
+
+  # Chromatics
+  red:      [ 0xEA, 0x69, 0x62 ] # red (bold)
+  green:    [ 0xA9, 0xB6, 0x65 ] # green (bold)
+  yellow:   [ 0xD8, 0xA6, 0x57 ] # yellow (bold)
+  blue:     [ 0x7D, 0xAE, 0xA3 ] # blue (bold)
+  magenta:  [ 0xD3, 0x86, 0x9B ] # purple (bold)
+  cyan:     [ 0x89, 0xB4, 0x82 ] # aqua (bold)

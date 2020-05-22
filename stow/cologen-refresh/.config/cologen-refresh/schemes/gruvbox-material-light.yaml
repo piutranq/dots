@@ -1,10 +1,11 @@
 # ==============================================================================
-# gruvbox-light for cologen
+# gruvbox-material-light for cologen
 #   - Based on gruvbox light (https://github.com/morhetz/gruvbox)
-#   - Using soft contrast mode and some custom
+#   - And gruvbox material light (https://github.com/sainnhe/gruvbox-material)
+#   - Using soft constrast mode and some custom
 # ==============================================================================
 
-name: "gruvbox-light"
+name: "gruvbox-material-light"
 color:
   # Monochromes
   grey0: [ 0xF2, 0xE5, 0xBC ] # fg0
@@ -15,9 +16,9 @@ color:
   grey5: [ 0x50, 0x49, 0x45 ] # bg2
 
   # Chromatics
-  red:      [ 0xCC, 0x24, 0x1D ] # red
-  green:    [ 0x98, 0x97, 0x1A ] # green
-  yellow:   [ 0xD7, 0x99, 0x21 ] # yellow
-  blue:     [ 0x45, 0x85, 0x88 ] # blue
-  magenta:  [ 0xB1, 0x62, 0x86 ] # purple
-  cyan:     [ 0x68, 0x9D, 0x6A ] # aqua
+  red:      [ 0xB8, 0x56, 0x51 ] # red
+  green:    [ 0x8F, 0x9A, 0x52 ] # green
+  yellow:   [ 0xC1, 0x8F, 0x41 ] # yellow
+  blue:     [ 0x68, 0x94, 0x8A ] # blue
+  magenta:  [ 0xAB, 0x6C, 0x7D ] # purple
+  cyan:     [ 0x72, 0x96, 0x6C ] # aqua
