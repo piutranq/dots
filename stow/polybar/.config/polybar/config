@@ -6,6 +6,7 @@ include-file = $XDG_CONFIG_HOME/polybar/color
 
 
 [bar/top]
+locale=en_US.UTF-8
 width = 100%
 height = 24
 line-size = 2
@@ -14,8 +15,8 @@ separator=" "
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = "monospace:size=13;2"
-font-1 = "Symbols Nerd Font:size=13;2"
+font-0 = ${device-specific/font.monospace}
+font-1 = ${device-specific/font.symbols}
 
 background = ${color.background}
 foreground = ${color.foreground}
@@ -25,6 +26,10 @@ modules-center = ${device-specific/module-list.center}
 modules-right = ${device-specific/module-list.right}
 
 enable-ipc = true
+
+tray-position = none
+tray-background = ${color.background}
+
 
 [module/xwindow]
 type = internal/xwindow

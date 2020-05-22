@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Theme
-hsetroot -cover $HOME/.wallpaper/58947893_p0.png
+hsetroot -cover $HOME/.wallpaper
 xsetroot -cursor_name left_ptr
 picom &
 

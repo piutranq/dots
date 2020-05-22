@@ -1,3 +1,7 @@
+[device-specific/font]
+monospace = "monospace:size=12;2"
+symbols = "Symbols Nerd Font:size=12;2"
+
 [device-specific/module-list]
 left = bspwm sxhkd
 center = mpd-nowplaying
