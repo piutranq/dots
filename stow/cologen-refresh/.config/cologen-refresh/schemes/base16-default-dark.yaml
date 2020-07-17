@@ -1,0 +1,26 @@
+# ==============================================================================
+# base16-default-dark for cologen
+#   - Based on base16-default-dark by chriskempson, with piutranq's custom.
+#   - See also)
+#     https://github.com/chriskempson/base16
+#     https://github.com/chriskempson/base16-default-schemes
+# ==============================================================================
+
+name: "base16-default-dark"
+color:
+  # Monochromes
+  # grey0: [ 0x18, 0x18, 0x18 ]
+  grey0: [ 0x00, 0x00, 0x00, 0xCC ]
+  grey1: [ 0x28, 0x28, 0x28 ]
+  grey2: [ 0x58, 0x58, 0x58 ]
+  grey3: [ 0xA8, 0xA8, 0xA8 ]
+  grey4: [ 0xC8, 0xC8, 0xC8 ]
+  grey5: [ 0xE8, 0xE8, 0xE8 ]
+
+  # Chromatics
+  red:      [ 0xAB, 0x46, 0x42 ]
+  green:    [ 0xA1, 0xB5, 0x6C ]
+  yellow:   [ 0xF7, 0xCA, 0x88 ]
+  blue:     [ 0x7C, 0xAF, 0xC2 ]
+  magenta:  [ 0xBA, 0x8B, 0xAF ]
+  cyan:     [ 0x86, 0xC1, 0xB9 ]
