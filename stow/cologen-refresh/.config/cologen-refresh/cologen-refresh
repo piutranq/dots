@@ -34,7 +34,7 @@ print_help() {
     echo "    $0 -h                 # Print this help"
 }
 
-while getopts "hc:" arg; do
+while getopts "hlc:" arg; do
     case $arg in
     c)
         COLORSCHEME_CHANGE="TRUE"
@@ -42,6 +42,10 @@ while getopts "hc:" arg; do
     ;;
     h)
         print_help
+        exit 0
+    ;;
+    l)
+        ls $COLOGEN_REFRESH_SCHEMES | tr ' ' '\n'
         exit 0
     ;;
     *)
