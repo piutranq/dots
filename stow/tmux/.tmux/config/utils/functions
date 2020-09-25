@@ -1,0 +1,16 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_UTILS_FUNCTIONS" != "true" ]] && {
+    export SOURCED_TMUX_UTILS_FUNCTIONS="true"
+
+    function strjoin() {
+        local tmpstr=""
+        for arg in "${@}"; do
+            local tmpstr="${tmpstr}${arg}"
+        done
+        echo "${tmpstr}"
+    }
+
+    export -f strjoin
+}
+
+# vim:ft=sh

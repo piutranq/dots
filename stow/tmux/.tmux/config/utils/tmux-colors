@@ -1,0 +1,13 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_UTILS_COLORS" != "true" ]] && {
+    export SOURCED_TMUX_UTILS_COLORS="true"
+    export co0="black";     export co8="brightblack"
+    export co1="red";       export co9="brightred"
+    export co2="green";     export coA="brightgreen"
+    export co3="yellow";    export coB="brightyellow"
+    export co4="blue";      export coC="brightblue"
+    export co5="magenta";   export coD="brightmagenta"
+    export co6="cyan";      export coE="brightcyan"
+    export co7="white";     export coF="brightwhite"
+}
+# vim:ft=sh

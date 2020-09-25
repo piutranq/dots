@@ -1,0 +1,21 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_CONFIG_KEYBINDINGS" != "true" ]] && {
+
+    export SOURCED_TMUX_CONFIG_KEYBINDINGS="true"
+
+    source $TMUXDIR/config/utils/tmux-cmd
+
+    # Keybinding presets
+    tmux-set -gq status-keys emacs
+    tmux-set -gq mode-keys vi
+
+    #  TODO: status-key bindings
+    #  TODO: mode-key bindings
+    # root bindings
+    ## End, Home behavor similar outside of tmux
+    tmux-bind -T "root" "End" "send-key C-e"
+    tmux-bind -T "root" "Home" "send-key C-a"
+
+}
+
+# vim:ft=sh

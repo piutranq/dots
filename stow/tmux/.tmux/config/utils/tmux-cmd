@@ -1,0 +1,14 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_UTILS_CMD" != "true" ]] && {
+    export SOURCED_TMUX_UTILS_CMD="true"
+    function tmux-get() { tmux show-options "$@"; }
+    function tmux-set() { tmux set-option "$@"; }
+    function tmux-bind() { tmux bind-key "$@"; }
+    function tmux-plug() { tmux set-option -g "@plugin" "$@"; }
+    export -f tmux-get
+    export -f tmux-set
+    export -f tmux-bind
+    export -f tmux-plug
+}
+
+# vim:ft=sh

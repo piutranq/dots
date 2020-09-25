@@ -1,0 +1,30 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_CONFIG_STYLE" != "true" ]] && {
+
+    export SOURCED_TMUX_CONFIG_STYLE="true"
+
+    source $TMUXDIR/config/utils/tmux-cmd
+    source $TMUXDIR/config/utils/tmux-colors
+
+    # Darker text when panes and windows are inactive
+    tmux-set -gqw "window-active-style" "fg=$co7,bg=default"
+    tmux-set -gwq "window-style" "fg=$co8,bg=default"
+
+    # Message bar style
+    tmux-set -gq "message-style" "bg=$coB,fg=$co0"
+    tmux-set -gq "message-command-style" "bg=$coB,fg=$co0"
+
+    # Pane border and pane number style
+    tmux-set -gqw "pane-border-style" "fg=$co8,bg=default"
+    tmux-set -gqw "pane-active-border-style" "fg=$coB,bg=default"
+    tmux-set -gq "display-panes-active-colour" "$coB"
+    tmux-set -gq "display-panes-colour" "$co8"
+
+    # Clock mode
+    tmux-set -gqw clock-mode-style 24
+    tmux-set -gqw clock-mode-colour "$coB"
+
+}
+
+# vim:ft=sh
+# vim:wrap!

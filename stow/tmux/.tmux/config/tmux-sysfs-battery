@@ -1,0 +1,40 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_CONFIG_SEG_BATT" != "true" ]] && {
+
+    export SOURCED_TMUX_CONFIG_SEG_BATT="true"
+
+    source $TMUXDIR/config/utils/tmux-cmd
+    source $TMUXDIR/config/utils/tmux-colors
+
+    # Main battery name
+    tmux-set -gq "@sysbat-battery-name" "${DEV_POWER_MAIN_BAT}"
+
+    # Thresholds
+    tmux-set -gq "@sysbat-capacity-threshold0" "15"
+    tmux-set -gq "@sysbat-capacity-threshold1" "30"
+    tmux-set -gq "@sysbat-capacity-threshold2" "75"
+    tmux-set -gq "@sysbat-simple-threshold" "90"
+
+    # Normal formats
+    tmux-set -gq "@sysbat-normal-fmt0" "#[fg=$coF,bg=$co0,bold  ] FULL #[default] "
+    tmux-set -gq "@sysbat-normal-fmt1" "#[fg=$co0,bg=$coA,bold  ] + #{capacity} #[default]"
+    tmux-set -gq "@sysbat-normal-fmt2" "#[fg=$coB,bg=$co0,nobold] = #{capacity} #[default]"
+    tmux-set -gq "@sysbat-normal-fmt3" "#[fg=$co7,bg=$co0,nobold] - #{capacity} #[default]"
+    tmux-set -gq "@sysbat-normal-fmt4" "#[fg=$co7,bg=$co0,nobold] - #{capacity} #[default]"
+    tmux-set -gq "@sysbat-normal-fmt5" "#[fg=$co8,bg=$coB,bold  ] - #{capacity} #[default]"
+    tmux-set -gq "@sysbat-normal-fmt6" "#[fg=$co8,bg=$co9,bold  ] - #{capacity} #[default]"
+    tmux-set -gq "@sysbat-normal-fmt7" "#[fg=$co8,bg=$co0,bold  ] ? #{capacity} #[default]"
+
+    # Simple formats
+    tmux-set -gq "@sysbat-simple-fmt0" "#[default]"
+    tmux-set -gq "@sysbat-simple-fmt1" "#[fg=$co0,bg=$coA,bold  ] + #[default]"
+    tmux-set -gq "@sysbat-simple-fmt2" "#[fg=$coB,bg=$co0,nobold] = #[default]"
+    tmux-set -gq "@sysbat-simple-fmt3" "#[fg=$co7,bg=$co0,nobold] - #[default]"
+    tmux-set -gq "@sysbat-simple-fmt4" "#[fg=$co7,bg=$co0,nobold] - #[default]"
+    tmux-set -gq "@sysbat-simple-fmt5" "#[fg=$co8,bg=$coB,bold  ] - #[default]"
+    tmux-set -gq "@sysbat-simple-fmt6" "#[fg=$co8,bg=$co9,bold  ] - #[default]"
+    tmux-set -gq "@sysbat-simple-fmt7" "#[fg=$co8,bg=$co0,bold  ] ? #[default]"
+
+}
+# vim:ft=sh
+# vim:wrap!

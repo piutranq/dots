@@ -1,0 +1,25 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_CONFIG_OPTIONS" != "true" ]] && {
+
+    export SOURCED_TMUX_CONFIG_OPTIONS="true"
+
+    source $TMUXDIR/config/utils/tmux-cmd
+
+    # Set the defailt terminal and use true color mode
+    tmux-set -gq default-terminal "screen-256color"
+    tmux-set -sqa terminal-override ",xterm-termite:Tc"
+
+    # Server options
+    tmux-set -sq escape-time 0
+
+    # Global Session options
+    tmux-set -gq default-shell "/usr/bin/zsh"
+    tmux-set -gq mouse on
+    tmux-set -gq base-index 1
+    tmux-set -gq display-time 4000
+    tmux-set -gq history-limit 50000
+    tmux-set -gq allow-rename off
+    tmux-set -gq status-interval 2
+}
+
+# vim:ft=sh

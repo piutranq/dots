@@ -1,0 +1,72 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_CONFIG_STATUSBAR" != "true" ]] && {
+
+    export SOURCED_TMUX_CONFIG_STATUSBAR="true"
+
+    source $TMUXDIR/config/utils/tmux-cmd
+    source $TMUXDIR/config/utils/tmux-colors
+    source $TMUXDIR/config/utils/functions
+
+    # Common
+    tmux-set -gq "status" "on"
+    tmux-set -gq "status-position" "top"
+    tmux-set -gq "status-justify" "left"
+
+    tmux-set -gq "status-bg" "default"
+    tmux-set -gq "status-fg" "$co7"
+
+    ## Segment: Session
+    declare seg_session="#[fg=$coF,bg=$co0,bold] #S #[default] "
+
+    ## Segment: Timedate
+    declare seg_date="#[fg=$coF,bg=$co0] %m/%d %a #[default]"
+    declare seg_time="#[fg=$coF,bg=$co8] %H:%M #[default]"
+
+    ## Segment: Ping (Required: tmux-plugins/tmux-online-status)
+    declare seg_ping="#{online_status}"
+    tmux-set -gq "@online_icon" "#[fg=$co8,bg=$coA,bold] PING #[default]"
+    tmux-set -gq "@offline_icon" "#[fg=$coF,bg=$co9,bold] PING #[default]"
+
+    ## Segment: Prefix (Required: tmux-plugins/tmux-prefix-highlight)
+    declare seg_prefix="#{prefix_highlight}"
+    tmux-set -gq "@prefix_highlight_empty_has_affixes" "off"
+    tmux-set -gq "@prefix_highlight_empty_attr" ""
+    tmux-set -gq "@prefix_highlight_show_copy_mode" "on"
+    tmux-set -gq "@prefix_highlight_prefix_prompt" "    "
+    tmux-set -gq "@prefix_highlight_empty_prompt" "    "
+    tmux-set -gq "@prefix_highlight_copy_prompt" "    "
+    tmux-set -gq "@prefix_highlight_output_prefix" "#[]"
+    tmux-set -gq "@prefix_highlight_output_suffix" "#[]"
+
+    ## Segment: Battery (Required: piutranq/tmux-sysfs-battery)
+    declare seg_battery="#{tmux-sysfs-battery}"
+    source $TMUXDIR/config/tmux-sysfs-battery
+
+    ## Segment: Window
+    tmux-set -gqw "window-status-style" "fg=$co8,bg=$co0,nobold"
+    tmux-set -gqw "window-status-format" " #W "
+    tmux-set -gqw "window-status-current-style" "fg=$coF,bg=$co4,bold"
+    tmux-set -gqw "window-status-current-format" " #W "
+    tmux-set -gqw "window-status-separator" ""
+
+    ## status-left
+    declare bar0_left=$(strjoin \
+        "$seg_session" \
+    ) # When using strjoin, all arguments should be quoted
+    tmux-set -gq "status-left-length" "40"
+    tmux-set -gq "status-left" "$bar0_left"
+
+    ## status-right
+    declare bar0_right=$(strjoin \
+        "$seg_prefix" \
+        "$seg_ping" \
+        "$seg_date" \
+        "$seg_time" \
+        "$seg_battery" \
+    ) # When using strjoin, all arguments should be quoted
+    tmux-set -gq "status-right-length" "60"
+    tmux-set -gq "status-right" "$bar0_right"
+}
+
+# vim:ft=sh
+# vim:wrap!
