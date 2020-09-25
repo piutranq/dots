@@ -49,7 +49,7 @@ set smartcase
 set clipboard=unnamedplus
 
 " Column
-set colorcolumn=80
+set colorcolumn=70
 
 set nofoldenable
 
@@ -74,13 +74,16 @@ let g:lightline.colorscheme = '16color'
 """""""""""""""""""""
 " Language Settings "
 """""""""""""""""""""
-"HTML/CSS/JS/TS
-autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd Filetype javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd Filetype typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd Filetype json setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd Filetype yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+" ts: tabstop | sts: softtabstop | sw: shiftwidth
+autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd Filetype markdown setlocal ts=2 sts=2 sw=2
+autocmd FileType css setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
+autocmd Filetype json setlocal ts=2 sts=2 sw=2
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
+autocmd Filetype toml setlocal ts=2 sts=2 sw=2
+autocmd Filetype xml setlocal ts=2 sts=2 sw=2
 
 """""""""""""""
 " Keybindings "
