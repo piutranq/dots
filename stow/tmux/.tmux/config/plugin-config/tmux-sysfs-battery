@@ -1,7 +1,7 @@
 [[ -n "$TMUX" ]] && \
-[[ "$SOURCED_TMUX_CONFIG_SEG_BATT" != "true" ]] && {
+[[ "$SOURCED_TMUX_CONFIG_TMUX_SYSFS_BATTERY" != "true" ]] && {
 
-    export SOURCED_TMUX_CONFIG_SEG_BATT="true"
+    export SOURCED_TMUX_CONFIG_TMUX_SYSFS_BATTERY="true"
 
     source $TMUXDIR/config/utils/tmux-cmd
     source $TMUXDIR/config/utils/tmux-colors

@@ -1,0 +1,19 @@
+[[ -n "$TMUX" ]] && \
+[[ -n "$SOURCED_TMUX_CONFIG_TMUX_PREFIX_HIGHLIGHT" != "true" ]] && {
+
+    export SOURCED_TMUX_CONFIG_TMUX_PREFIX_HIGHLIGHT="true"
+
+    source $TMUXDIR/config/utils/tmux-cmd
+
+    tmux-set -gq "@prefix_highlight_empty_has_affixes" "off"
+    tmux-set -gq "@prefix_highlight_empty_attr" ""
+    tmux-set -gq "@prefix_highlight_show_copy_mode" "on"
+    tmux-set -gq "@prefix_highlight_prefix_prompt" "    "
+    tmux-set -gq "@prefix_highlight_empty_prompt" "    "
+    tmux-set -gq "@prefix_highlight_copy_prompt" "    "
+    tmux-set -gq "@prefix_highlight_output_prefix" "#[]"
+    tmux-set -gq "@prefix_highlight_output_suffix" "#[]"
+
+}
+
+# vim:ft=sh

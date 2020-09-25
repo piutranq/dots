@@ -22,25 +22,15 @@
     declare seg_date="#[fg=$coF,bg=$co0] %m/%d %a #[default]"
     declare seg_time="#[fg=$coF,bg=$co8] %H:%M #[default]"
 
-    ## Segment: Ping (Required: tmux-plugins/tmux-online-status)
-    declare seg_ping="#{online_status}"
+    ## Plugin: tmux-plugins/tmux-online-status
     tmux-set -gq "@online_icon" "#[fg=$co8,bg=$coA,bold] PING #[default]"
     tmux-set -gq "@offline_icon" "#[fg=$coF,bg=$co9,bold] PING #[default]"
 
-    ## Segment: Prefix (Required: tmux-plugins/tmux-prefix-highlight)
-    declare seg_prefix="#{prefix_highlight}"
-    tmux-set -gq "@prefix_highlight_empty_has_affixes" "off"
-    tmux-set -gq "@prefix_highlight_empty_attr" ""
-    tmux-set -gq "@prefix_highlight_show_copy_mode" "on"
-    tmux-set -gq "@prefix_highlight_prefix_prompt" "    "
-    tmux-set -gq "@prefix_highlight_empty_prompt" "    "
-    tmux-set -gq "@prefix_highlight_copy_prompt" "    "
-    tmux-set -gq "@prefix_highlight_output_prefix" "#[]"
-    tmux-set -gq "@prefix_highlight_output_suffix" "#[]"
+    ## Plugin: tmux-plugins/tmux-prefix-highlight
+    source $TMUXDIR/config/plugin-config/tmux-prefix-highlight
 
-    ## Segment: Battery (Required: piutranq/tmux-sysfs-battery)
-    declare seg_battery="#{tmux-sysfs-battery}"
-    source $TMUXDIR/config/tmux-sysfs-battery
+    ## Plugin: piutranq/tmux-sysfs-battery
+    source $TMUXDIR/config/plugin-config/tmux-sysfs-battery
 
     ## Segment: Window
     tmux-set -gqw "window-status-style" "fg=$co8,bg=$co0,nobold"
@@ -58,11 +48,11 @@
 
     ## status-right
     declare bar0_right=$(strjoin \
-        "$seg_prefix" \
-        "$seg_ping" \
+        "#{prefix_highlight}" \
+        "#{online_status}" \
         "$seg_date" \
         "$seg_time" \
-        "$seg_battery" \
+        "#{tmux-sysfs-battery}" \
     ) # When using strjoin, all arguments should be quoted
     tmux-set -gq "status-right-length" "60"
     tmux-set -gq "status-right" "$bar0_right"
