@@ -1,0 +1,81 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_CONF_STATUSBAR_SEGMENT_WINDOW" != "true" ]] && {
+
+    export SOURCED_TMUX_CONF_STATUSBAR_SEGMENT_WINDOW="true"
+
+    source $TMUXDIR/config/utils
+    source $TMUXDIR/config/colors
+
+    tmux-set -gqw "monitor-activity" "off"
+    tmux-set -gqw "monitor-silence" "0"
+    tmux-set -gqw "monitor-bell" "on"
+
+    tmux-set -gqw "window-status-style" "fg=$co8,bg=$co0,nobold"
+    tmux-set -gqw "window-status-current-style" "fg=$coF,bg=$co4,bold"
+    tmux-set -gqw "window-status-last-style" "default"
+    tmux-set -gqw "window-status-activity-style" "default"
+    tmux-set -gqw "window-status-bell-style" "fg=$co8,bg=$coB,bold"
+
+    tmux-set -gqw "window-status-format" " #W "
+    tmux-set -gqw "window-status-current-format" " #W "
+    tmux-set -gqw "window-status-separator" ""
+
+    declare flagL="#{window_last_flag}"
+    declare flagA="#{||:#{window_activity_flag},#{window_silence_flag}}"
+    declare flagB="#{window_bell_flag}"
+
+    declare styleL="#{window-status-last-style}"
+    declare styleA="#{window-status-activity-style}"
+    declare styleB="#{window-status-bell-style}"
+    declare styleC="#{window-status-current-style}"
+    declare styleN="#{window-status-style}"
+
+    declare statusL="#{&&:${flagL},#{!=:${styleL},default}}"
+    declare statusA="#{&&:${flagA},#{!=:${styleA},default}}"
+    declare statusB="#{&&:${flagB},#{!=:${styleB},default}}"
+    declare statusC="#{!=:${styleC},default}"
+
+    declare apply_style_normal=$(strj "#[" \
+        "range=window|#{window_index} " \
+        "${styleN} " \
+        "#{?${statusL},${styleL},} " \
+        "#{?${statusB},${styleB},#{?${statusA},${styleA},}} " \
+    "]" )
+
+    declare apply_style_current=$(strj "#[" \
+        "range=window|#{window_index} " \
+        "list=focus " \
+        "#{?${statusC},${styleC},${styleN}} " \
+        "#{?${statusL},${styleL},} " \
+        "#{?${statusB},${styleB},#{?${statusA},${styleA},}} " \
+    "]" )
+
+    declare fmtw_normal=$(strj \
+        "${apply_style_normal}" \
+        "#[push-default]" \
+        "#{T:window-status-format}" \
+        "#[pop-default]" \
+        "#[norange default]" \
+        "#{?window_end_flag,,#{window-status-separator}}"
+    )
+
+    declare fmtw_current=$(strj ""\
+        "${apply_style_current}" \
+        "#[push-default]" \
+        "#{T:window-status-current-format}" \
+        "#[pop-default]" \
+        "#[norange default]" \
+        "#{?window_end_flag,,#{window-status-separator}}"
+    )
+
+    declare segment_window=$(strj \
+        "#[list=on align=#{status-justify}]" \
+        "#[list=left-marker]<#[list=right-marker]>#[list=on]" \
+        "#{W:${fmtw_normal},${fmtw_current}}" \
+    )
+
+    export segment_window
+
+}
+# vim:ft=sh
+# vim:wrap!

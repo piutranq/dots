@@ -1,9 +1,9 @@
 [[ -n "$TMUX" ]] && \
-[[ -n "$SOURCED_TMUX_CONFIG_TMUX_PREFIX_HIGHLIGHT" != "true" ]] && {
+[[ "$SOURCED_TMUX_CONF_STATUSBAR_SEGMENT_PREFIX" != "true" ]] && {
 
-    export SOURCED_TMUX_CONFIG_TMUX_PREFIX_HIGHLIGHT="true"
+    export SOURCED_TMUX_CONF_STATUSBAR_SEGMENT_PREFIX="true"
 
-    source $TMUXDIR/config/utils/tmux-cmd
+    source $TMUXDIR/config/utils
 
     tmux-set -gq "@prefix_highlight_empty_has_affixes" "off"
     tmux-set -gq "@prefix_highlight_empty_attr" ""
@@ -14,6 +14,9 @@
     tmux-set -gq "@prefix_highlight_output_prefix" "#[]"
     tmux-set -gq "@prefix_highlight_output_suffix" "#[]"
 
+    export segment_prefix="#{prefix_highlight}"
+
 }
 
 # vim:ft=sh
+# vim:wrap!

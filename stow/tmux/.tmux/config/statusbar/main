@@ -1,0 +1,60 @@
+[[ -n "$TMUX" ]] && \
+[[ "$SOURCED_TMUX_CONF_STATUSBAR_MAIN" != "true" ]] && {
+
+    export SOURCED_TMUX_CONF_STATUSBAR_MAIN="true"
+
+    source $TMUXDIR/config/utils
+    source $TMUXDIR/config/colors
+
+    # Common
+    tmux-set -gq "status" "on"
+    tmux-set -gq "status-position" "top"
+    tmux-set -gq "status-justify" "left"
+
+    tmux-set -gq "status-bg" "default"
+    tmux-set -gq "status-fg" "$co7"
+
+    ## Segment: Session
+    declare seg_session="#[fg=$coF,bg=$co0,bold] #S #[default]"
+
+    ## Segment: Date
+    declare segment_date="#[fg=$coF,bg=$co0] %m/%d %a #[default]"
+
+    ## Segment: Time
+    declare segment_time="#[fg=$coF,bg=$co8] %H:%M #[default]"
+
+    ## Segment: Ping (plugin required: tmux-plugins/tmux-online-status)
+    tmux-set -gq "@online_icon" "#[fg=$co8,bg=$coA,bold] PING #[default]"
+    tmux-set -gq "@offline_icon" "#[fg=$coF,bg=$co9,bold] PING #[default]"
+    declare segment_ping="#{online_status}"
+
+    ## Segment: Prefix (plugin required: tmux-plugins/tmux-prefix-highlight)
+    source $TMUXDIR/config/statusbar/segment-prefix
+
+    ## Segemnt: Battery (plugin required: piutranq/tmux-sysfs-battery)
+    source $TMUXDIR/config/statusbar/segment-battery
+
+    ## Segment: Window
+    source $TMUXDIR/config/statusbar/segment-window
+
+    ## status-left
+    declare bar0_left=$(strj \
+        "$seg_session" \
+    ) # When using strj, all arguments should be quoted
+    tmux-set -gq "status-left-length" "40"
+    tmux-set -gq "status-left" "$bar0_left"
+
+    ## status-right
+    declare bar0_right=$(strj \
+        "$segment_prefix" \
+        "$segment_ping" \
+        "$segment_date" \
+        "$segment_time" \
+        "$segment_battery" \
+    ) # When using strj, all arguments should be quoted
+    tmux-set -gq "status-right-length" "60"
+    tmux-set -gq "status-right" "$bar0_right"
+}
+
+# vim:ft=sh
+# vim:wrap!

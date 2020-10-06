@@ -5,7 +5,7 @@
 
     source $TMUXDIR/config/options
     source $TMUXDIR/config/keybindings
-    source $TMUXDIR/config/statusbar
+    source $TMUXDIR/config/statusbar/main
     source $TMUXDIR/config/style
 
 }

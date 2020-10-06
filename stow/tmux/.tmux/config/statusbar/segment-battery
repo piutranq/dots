@@ -1,10 +1,10 @@
 [[ -n "$TMUX" ]] && \
-[[ "$SOURCED_TMUX_CONFIG_TMUX_SYSFS_BATTERY" != "true" ]] && {
+[[ "$SOURCED_TMUX_CONF_STATUSBAR_SEGMENT_BATTERY" != "true" ]] && {
 
-    export SOURCED_TMUX_CONFIG_TMUX_SYSFS_BATTERY="true"
+    export SOURCED_TMUX_CONF_STATUSBAR_SEGMENT_BATTERY="true"
 
-    source $TMUXDIR/config/utils/tmux-cmd
-    source $TMUXDIR/config/utils/tmux-colors
+    source $TMUXDIR/config/utils
+    source $TMUXDIR/config/colors
 
     # Main battery name
     tmux-set -gq "@sysbat-battery-name" "${DEV_POWER_MAIN_BAT}"
@@ -34,6 +34,8 @@
     tmux-set -gq "@sysbat-simple-fmt5" "#[fg=$co8,bg=$coB,bold  ] - #[default]"
     tmux-set -gq "@sysbat-simple-fmt6" "#[fg=$co8,bg=$co9,bold  ] - #[default]"
     tmux-set -gq "@sysbat-simple-fmt7" "#[fg=$co8,bg=$co0,bold  ] ? #[default]"
+
+    export segment_battery="#{tmux-sysfs-battery}"
 
 }
 # vim:ft=sh

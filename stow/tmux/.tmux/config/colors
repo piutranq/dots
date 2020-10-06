@@ -1,6 +1,6 @@
 [[ -n "$TMUX" ]] && \
-[[ "$SOURCED_TMUX_UTILS_COLORS" != "true" ]] && {
-    export SOURCED_TMUX_UTILS_COLORS="true"
+[[ "$SOURCED_TMUX_CONF_COLORS" != "true" ]] && {
+    export SOURCED_TMUX_CONF_COLORS="true"
     export co0="black";     export co8="brightblack"
     export co1="red";       export co9="brightred"
     export co2="green";     export coA="brightgreen"

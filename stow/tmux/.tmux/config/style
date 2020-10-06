@@ -3,8 +3,8 @@
 
     export SOURCED_TMUX_CONFIG_STYLE="true"
 
-    source $TMUXDIR/config/utils/tmux-cmd
-    source $TMUXDIR/config/utils/tmux-colors
+    source $TMUXDIR/config/utils
+    source $TMUXDIR/config/colors
 
     # Darker text when panes and windows are inactive
     tmux-set -gqw "window-active-style" "fg=$co7,bg=default"

@@ -3,7 +3,7 @@
 
     export SOURCED_TMUX_CONFIG_OPTIONS="true"
 
-    source $TMUXDIR/config/utils/tmux-cmd
+    source $TMUXDIR/config/utils
 
     # Set the defailt terminal and use true color mode
     tmux-set -gq default-terminal "screen-256color"

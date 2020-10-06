@@ -1,6 +1,7 @@
 [[ -n "$TMUX" ]] && \
-[[ "$SOURCED_TMUX_UTILS_CMD" != "true" ]] && {
-    export SOURCED_TMUX_UTILS_CMD="true"
+[[ "$SOURCED_TMUX_CONF_UTILS" != "true" ]] && {
+    export SOURCED_TMUX_CONF_UTILS="true"
+
     function tmux-get() { tmux show-options "$@"; }
     function tmux-set() { tmux set-option "$@"; }
     function tmux-bind() { tmux bind-key "$@"; }
@@ -9,6 +10,16 @@
     export -f tmux-set
     export -f tmux-bind
     export -f tmux-plug
+
+    function strj() {
+        local tmpstr=""
+        for arg in "${@}"; do
+            local tmpstr="${tmpstr}${arg}"
+        done
+        echo "${tmpstr}"
+    }
+    export -f strj
+
 }
 
 # vim:ft=sh
