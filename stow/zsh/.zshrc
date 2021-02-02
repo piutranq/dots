@@ -98,5 +98,3 @@ source $ZSH/oh-my-zsh.sh
 alias ls='exa --group-directories-first'
 alias la='ls -al'
 alias ll='ls -l'
-
-eval $(thefuck --alias)

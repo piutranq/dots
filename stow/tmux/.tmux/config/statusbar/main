@@ -24,8 +24,8 @@
     declare segment_time="#[fg=$coF,bg=$co8] %H:%M #[default]"
 
     ## Segment: Ping (plugin required: tmux-plugins/tmux-online-status)
-    tmux-set -gq "@online_icon" "#[fg=$co8,bg=$coA,bold] PING #[default]"
-    tmux-set -gq "@offline_icon" "#[fg=$coF,bg=$co9,bold] PING #[default]"
+    tmux-set -gq "@online_icon" "#[fg=$co8,bg=$coA,bold] #[default]"
+    tmux-set -gq "@offline_icon" "#[fg=$coF,bg=$co9,bold] #[default]"
     declare segment_ping="#{online_status}"
 
     ## Segment: Prefix (plugin required: tmux-plugins/tmux-prefix-highlight)
