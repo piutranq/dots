@@ -11,8 +11,8 @@
     tmux-set -gq "status-position" "top"
     tmux-set -gq "status-justify" "left"
 
-    tmux-set -gq "status-bg" "default"
-    tmux-set -gq "status-fg" "$co7"
+    tmux-set -gq "status-style" "bg=default"
+    tmux-set -gq "status-style" "fg=$co7"
 
     ## Segment: Session
     declare seg_session="#[fg=$coF,bg=$co0,bold] #S #[default]"
