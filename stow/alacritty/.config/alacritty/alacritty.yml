@@ -1,0 +1,37 @@
+import:
+  - ~/.config/alacritty/colors.yml
+
+window:
+  dimensions:
+    columns: 80
+    lines: 24
+  padding:
+    x: 8
+    y: 8
+  decorations: none
+  startup_mode: Windowed
+
+font:
+  normal:
+    family: monospace
+    style: Regular
+  bold:
+    family: monospace
+    style: Bold
+  italic:
+    family: monospace
+    style: Italic
+  bold_italic:
+    family: monospace
+    style: Bold Italic
+  size: 8.0
+
+background_opacity: 0.8
+
+cursor:
+  style:
+    shape: Block
+    blinking: On
+  blink_interval: 500
+
+live_config_reload: true
