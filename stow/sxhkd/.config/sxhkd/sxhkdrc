@@ -14,11 +14,11 @@ super + ctrl + Escape
 
 # call terminal
 super + Return
-	termite
+	alacritty
 
 # call floating terminal
 ctrl + alt + t
-    termite --name=floatingTerm
+    alacritty --class=floatingTerm
 
 # call rofi
 alt + F1
