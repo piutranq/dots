@@ -1,9 +1,11 @@
-#!/usr/bin/env bash
-source "$COLOGEN_REFRESH_CONFIG/path.sh"
+#!/usr/bin/env sh
+LOCAL_CONFIG_DIR="${XDG_CONFIG_HOME:="${HOME}/.config"}/cologen-refresh"
+LOCAL_CACHE_DIR="${XDG_CACHE_HOME:="${HOME}/.cache"}/cologen-refresh"
+LOCAL_CACHED_SCHEME="${LOCAL_CACHE_DIR}/cached_scheme.yaml"
 
-declare -r INPUT="$COLOGEN_REFRESH_TEMPLATES/alacritty.template"
-declare -r OUTPUT="$XDG_CONFIG_HOME/alacritty/colors.yml"
-declare -r SCHEME="$COLOGEN_REFRESH_CURRENT_SCHEME"
+INPUT="${LOCAL_CONFIG_DIR}/templates/alacritty.template"
+OUTPUT="${XDG_CONFIG_HOME}/alacritty/colors.yml"
+SCHEME="$LOCAL_CACHED_SCHEME"
 
 generate() {
     [ -w "$OUTPUT" ] || touch "$OUTPUT" && chmod +w "$OUTPUT"
@@ -12,7 +14,7 @@ generate() {
 }
 
 refresh() {
-    touch $XDG_CONFIG_HOME/alacritty/alacritty.yml
+    touch "${XDG_CONFIG_HOME:-"${HOME}"}/alacritty/alacritty.yml"
 }
 
 generate

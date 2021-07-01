@@ -1,3 +1,5 @@
+background_opacity: @[grey0:%.A]
+
 colors:
   primary:
     background: @[grey0:'#%xR%xG%xB']

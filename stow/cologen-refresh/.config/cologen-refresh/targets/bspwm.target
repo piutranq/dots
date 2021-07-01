@@ -3,9 +3,9 @@ LOCAL_CONFIG_DIR="${XDG_CONFIG_HOME:="${HOME}/.config"}/cologen-refresh"
 LOCAL_CACHE_DIR="${XDG_CACHE_HOME:="${HOME}/.cache"}/cologen-refresh"
 LOCAL_CACHED_SCHEME="${LOCAL_CACHE_DIR}/cached_scheme.yaml"
 
-INPUT="${LOCAL_CONFIG_DIR}/templates/polybar.template"
-OUTPUT="${XDG_CONFIG_HOME}/polybar/color"
-SCHEME="$LOCAL_CACHED_SCHEME"
+INPUT="${LOCAL_CONFIG_DIR}/templates/bspwm.template"
+OUTPUT="${XDG_CONFIG_HOME}/bspwm/color"
+SCHEME="${LOCAL_CACHED_SCHEME}"
 
 generate() {
     [ -w "$OUTPUT" ] || touch "$OUTPUT" && chmod +w "$OUTPUT"
@@ -14,7 +14,7 @@ generate() {
 }
 
 refresh() {
-    $XDG_CONFIG_HOME/polybar/scripts/reload.sh &
+    ${XDG_CONFIG_HOME}/bspwm/color
 }
 
 generate
