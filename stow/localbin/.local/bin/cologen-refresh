@@ -1,1 +1,176 @@
-/home/piutranq/.config/cologen-refresh/cologen-refresh
+#!/usr/bin/env sh
+
+# Configurable
+readonly CONFIG_LOGLEVEL=2
+readonly CONFIG_TIMEOUT=5
+
+# The basename of script
+readonly BASENAME=$(basename -- $0)
+
+# Path of local configuration
+readonly LOCAL_CONFIG_DIR="${XDG_CONFIG_HOME:-"${HOME}/.config"}/${BASENAME}"
+readonly LOCAL_SCHEME_DIR="${LOCAL_CONFIG_DIR}/schemes"
+readonly LOCAL_TARGET_DIR="${LOCAL_CONFIG_DIR}/targets"
+
+# Path of cache files
+readonly LOCAL_CACHE_DIR="${XDG_CACHE_HOME:-"${HOME}/.cache"}/${BASENAME}"
+readonly LOCAL_CACHED_SCHEME="${LOCAL_CACHE_DIR}/cached_scheme.yaml"
+
+# Some text format to decorating messages
+readonly ERROR_PREFIX="\033[91m\033[1mERROR:\033[0m\033[39m"
+readonly WARN_PREFIX="\033[93m\033[1mWARN:\033[0m\033[39m"
+readonly INFO_PREFIX="\033[97m\033[1mINFO:\033[0m\033[39m"
+readonly QUOTING_PREFIX="\`\033[97m\033[1m"
+readonly QUOTING_SUFFIX="\033[0m\033[39m\`"
+
+# Hard-coded default color scheme.
+# The custom of base16-default-dark, originally written by chriskempson.
+# (https://github.com/chriskempson/base16)
+# (https://github.com/chriskempson/base16-default-schemes)
+readonly SCHEME_DEFAULT_ENCODED="IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KIyBUaGUgY3VzdG9tIG9mIGJhc2UxNi1kZWZhdWx0LWRhcmsgdGhlbWUgZm9yIGNvbG9nZW4KIyAgIC0gT3JpZ2luYWxseSB3cml0dGVuIGJ5IGNocmlza2VtcHNvbgojICAgLSBodHRwczovL2dpdGh1Yi5jb20vY2hyaXNrZW1wc29uL2Jhc2UxNgojICAgLSBodHRwczovL2dpdGh1Yi5jb20vY2hyaXNrZW1wc29uL2Jhc2UxNi1kZWZhdWx0LXNjaGVtZXMKIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCm5hbWU6ICJiYXNlMTYtZGVmYXVsdC1kYXJrIgpjb2xvcjoKICAjIEdyZXlzY2FsZQogIGdyZXkwOiAgICAgICAgICBbIDB4MTgsIDB4MTgsIDB4MTggXQogIGdyZXkxOiAgICAgICAgICBbIDB4MjgsIDB4MjgsIDB4MjggXSAjIGNvbG9yMAogIGdyZXkyOiAgICAgICAgICBbIDB4NTgsIDB4NTgsIDB4NTggXSAjIGNvbG9yOAogIGdyZXkzOiAgICAgICAgICBbIDB4QTgsIDB4QTgsIDB4QTggXQogIGdyZXk0OiAgICAgICAgICBbIDB4QzgsIDB4QzgsIDB4QzggXSAjIGNvbG9yNwogIGdyZXk1OiAgICAgICAgICBbIDB4RTgsIDB4RTgsIDB4RTggXSAjIGNvbG9yMTUKCiAgIyBOb3JtYWwgY29sb3IgKG5vbi1ib2xkKQogIHJlZDogICAgICAgICAgICBbIDB4QUIsIDB4NDYsIDB4NDIgXSAjIGNvbG9yMQogIGdyZWVuOiAgICAgICAgICBbIDB4QTEsIDB4QjUsIDB4NkMgXSAjIGNvbG9yMgogIHllbGxvdzogICAgICAgICBbIDB4RjcsIDB4Q0EsIDB4ODggXSAjIGNvbG9yMwogIGJsdWU6ICAgICAgICAgICBbIDB4N0MsIDB4QUYsIDB4QzIgXSAjIGNvbG9yNAogIG1hZ2VudGE6ICAgICAgICBbIDB4QkEsIDB4OEIsIDB4QUYgXSAjIGNvbG9yNQogIGN5YW46ICAgICAgICAgICBbIDB4ODYsIDB4QzEsIDB4QjkgXSAjIGNvbG9yNgoKICAjIEJyaWdodCBjb2xvciAoYm9sZCkKICBicmlnaHRyZWQ6ICAgICAgWyAweEFCLCAweDQ2LCAweDQyIF0gIyBjb2xvcjkKICBicmlnaHRncmVlbjogICAgWyAweEExLCAweEI1LCAweDZDIF0gIyBjb2xvcjEwCiAgYnJpZ2h0eWVsbG93OiAgIFsgMHhGNywgMHhDQSwgMHg4OCBdICMgY29sb3IxMQogIGJyaWdodGJsdWU6ICAgICBbIDB4N0MsIDB4QUYsIDB4QzIgXSAjIGNvbG9yMTIKICBicmlnaHRtYWdlbnRhOiAgWyAweEJBLCAweDhCLCAweEFGIF0gIyBjb2xvcjEzCiAgYnJpZ2h0Y3lhbjogICAgIFsgMHg4NiwgMHhDMSwgMHhCOSBdICMgY29sb3IxNAoK"
+
+# Mutable
+DO_CHANGE_COLORSCHEME="false"
+NEW_COLORSCHEME_NAME=""
+
+quoting() {
+    printf ${QUOTING_PREFIX}$@${QUOTING_SUFFIX}
+}
+printerr() {
+    printf "${ERROR_PREFIX} $@" >&2
+}
+printwarn() {
+    [ ${CONFIG_LOGLEVEL} -ge 1 ] && printf "${WARN_PREFIX} $@"
+}
+printinfo() {
+    [ ${CONFIG_LOGLEVEL} -ge 2 ] && printf "${INFO_PREFIX} $@"
+}
+
+warn_no_scheme() {
+    printwarn "The color scheme $(quoting $1) is not found.\n"
+    info_cached_scheme
+}
+warn_no_cached() {
+    printwarn "The cached color scheme is not found.\n"
+}
+warn_default_scheme() {
+    printwarn "Applying the default color scheme...\n"
+}
+
+info_scheme() {
+    printinfo "Applying the color scheme $(quoting $1)...\n"
+}
+info_cached_scheme() {
+    printinfo "Applying the cached color scheme...\n"
+}
+info_executing_target() {
+    printinfo "Executing the target script $(quoting $1)...\n"
+}
+
+print_default_scheme() {
+    printf $SCHEME_DEFAULT_ENCODED | base64 -d
+}
+
+directory_check() {
+    [ ! -d ${LOCAL_CONFIG_DIR} ] && mkdir -p ${LOCAL_CONFIG_DIR}
+    [ ! -d ${LOCAL_SCHEME_DIR} ] && mkdir -p ${LOCAL_SCHEME_DIR}
+    [ ! -d ${LOCAL_TARGET_DIR} ] && mkdir -p ${LOCAL_TARGET_DIR}
+    [ ! -d ${LOCAL_CACHE_DIR}  ] && mkdir -p ${LOCAL_CACHE_DIR}
+}
+
+change_colorscheme() {
+    if [ -r "${LOCAL_SCHEME_DIR}/$1.yaml" ]
+    then
+        change_scheme_file $1
+    else
+        warn_no_scheme $1
+    fi
+}
+
+change_scheme_file() {
+    touch ${LOCAL_CACHED_SCHEME}
+    chmod +w ${LOCAL_CACHED_SCHEME}
+        info_scheme $1
+        cat "${LOCAL_SCHEME_DIR}/$1.yaml" > ${LOCAL_CACHED_SCHEME}
+    chmod -w ${LOCAL_CACHED_SCHEME}
+}
+
+change_scheme_default() {
+    touch ${LOCAL_CACHED_SCHEME}
+    chmod +w ${LOCAL_CACHED_SCHEME}
+        warn_default_scheme
+        print_default_scheme > ${LOCAL_CACHED_SCHEME}
+    chmod -w ${LOCAL_CACHED_SCHEME}
+}
+
+check_cached_scheme() {
+    if [ ! -f ${LOCAL_CACHED_SCHEME} ]
+    then
+        warn_no_cached
+        change_scheme_default
+    fi
+}
+
+execute_all_targets() {
+    check_cached_scheme
+    chmod +r ${LOCAL_CACHED_SCHEME}
+    for target in $(ls ${LOCAL_TARGET_DIR})
+    do
+        if [ -x ${LOCAL_TARGET_DIR}/${target} ]
+        then
+            info_executing_target ${target}
+            timeout -k${CONFIG_TIMEOUT} ${CONFIG_TIMEOUT} \
+                ${LOCAL_TARGET_DIR}/${target}
+        fi
+    done
+    chmod -r ${LOCAL_CACHED_SCHEME}
+}
+
+list_all_schemes() {
+    ls ${LOCAL_SCHEME_DIR} | tr ' ' '\n' | cut -f 1 -d '.'
+}
+
+print_help() {
+    printf "Usage:\n"
+    printf "    ${BASENAME}                    # Refresh the configurations\n"
+    printf "    ${BASENAME} -c [COLORSCHEME]   # Change the color scheme\n"
+    printf "    ${BASENAME} -h                 # Print this help\n"
+}
+
+main() {
+    while getopts "hlc:" arg; do
+        case $arg in
+        c)
+            DO_CHANGE_COLORSCHEME="true"
+            NEW_COLORSCHEME_NAME="$OPTARG"
+        ;;
+        h)
+            print_help
+            exit 0
+        ;;
+        l)
+            list_all_schemes
+            exit 0
+        ;;
+        *)
+            print_help
+            exit 1
+        ;;
+        esac
+    done
+
+    directory_check
+    if [ "${DO_CHANGE_COLORSCHEME}" = "true" ]
+    then
+        change_colorscheme $NEW_COLORSCHEME_NAME
+        [ $? -eq 0 ] && execute_all_targets
+    else
+        info_cached_scheme
+        execute_all_targets
+    fi
+}
+
+main $@
+
+# vim:ft=sh
+# vim:wrap!

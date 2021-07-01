@@ -1,24 +1,24 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+# nowplaying: wrapper of `mpc -f`
 
-#==============================================================================
-#   nowplaying: wrapper of `mpc -f`
-#==============================================================================
+readonly FORMAT_ARG=$1
+readonly ERROR_MSG="mpd or any song isn't playing :("
+DEFAULT_FORMAT="[%artist% - ][%title%]|[%file%]"
 
-declare -r FORMAT_ARG=$1
-declare -r ERROR_MSG="mpd or any song isn't playing :("
-declare DEFAULT_FORMAT="[%artist% - ][%title%]|[%file%]"
-
-check_isplaying () {
-    local -r status="$(mpc status 2>/dev/null)"
-    [[ $status == *"[playing]"* ]] && return 0
-    [[ $status == *"[paused]"*  ]] && return 0
-    echo $ERROR_MSG > /dev/stderr  && exit 1
+check_isplaying() {
+    readonly status="$(mpc status 2>/dev/null)"
+    echo $status | grep "\[playing\]" >/dev/null && return 0
+    echo $status | grep "\[paused\]" >/dev/null && return 0
+    echo $ERROR_MSG > /dev/stderr && exit 1
 }
 
 format () {
-    [[ $MPC_FORMAT == "" ]] || DEFAULT_FORMAT="$MPC_FORMAT"
-    [[ $FORMAT_ARG == "" ]] && echo "$DEFAULT_FORMAT" || echo "$FORMAT_ARG"
+    [ -z $MPC_FORMAT ] || DEFAULT_FORMAT="$MPC_FORMAT"
+    [ -z $FORMAT_ARG ] && echo "$DEFAULT_FORMAT" || echo "$FORMAT_ARG"
 }
 
 check_isplaying
 echo "$(mpc -f "$(format)" 2>/dev/null | head -n -2)"
+
+# vim:ft=sh
+# vim:wrap!

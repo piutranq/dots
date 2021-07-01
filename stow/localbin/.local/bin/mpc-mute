@@ -1,7 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-echoerr () {
-    echo "$@" 1>&2;
+printerr () {
+    local ERROR_PREFIX="\033[91m\033[1mERROR:\033[0m\033[39m"
+    printf "${ERROR_PREFIX} $@" 1>&2;
 }
 
 show_help () {
@@ -29,17 +30,17 @@ show_help () {
 }
 
 option_error () {
-    echoerr 'Invalid option. please see `mpc-mute --help`.'
+    printerr 'Invalid option. please see `mpc-mute --help`.\n'
     exit 1
 }
 
 output_error () {
-    echoerr 'Invalid output argument. please see `mpc-mute --help`.'
+    printerr 'Invalid output argument. please see `mpc-mute --help`.\n'
     exit 1
 }
 
 not_found () {
-    echoerr "Output $1 is not found. please see \`mpc outputs\`"
+    printerr "Output $1 is not found. please see \`mpc outputs\`\n"
     exit 1
 }
 
@@ -71,15 +72,15 @@ while true; do
 done
 
 output_check () {
-    [[ $(echo $1 | egrep -c "[0-9]+") -le 0 ]] && output_error
+    [ $(echo $1 | egrep -c "[0-9]+") -le 0 ] && output_error
 
-    local -ri GREP=$(echo $(mpc outputs | grep -c "^Output $1"))
-    [[ $GREP -le 0 ]] && not_found $1
+    local GREP=$(echo $(mpc outputs | grep -c "^Output $1"))
+    [ $GREP -le 0 ] && not_found $1
 }
 
 mode_status () {
     local GREP=$(echo $(mpc outputs | grep "^Output $1" | grep -c "enabled$"))
-    [[ $GREP -gt 0 ]] && echo "unmuted" || echo "muted"
+    [ $GREP -gt 0 ] && echo "unmuted" || echo "muted"
 }
 
 output_check $1
@@ -96,4 +97,5 @@ case $MODE in
         option_error;;
 esac
 
-
+# vim:ft=sh
+# vim:wrap!

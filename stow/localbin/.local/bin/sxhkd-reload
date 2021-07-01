@@ -1,1 +1,32 @@
-/home/piutranq/.config/sxhkd/scripts/reload.sh
+#!/usr/bin/env sh
+
+readonly SXHKD_PID="$(pgrep -u $(id -ru) -x sxhkd | head -n1)"
+readonly SXHKD_CONFIG_DIR="${XDG_CONFIG_HOME:-"${HOME}/.config"}/sxhkd"
+readonly FIFO_PATH="/run/user/$(id -ru)/sxhkd.fifo"
+
+launch_sxhkd() {
+    # Kill previous sxhkd
+    killall -q sxhkd
+    while pgrep -u $(id -ru) -x sxhkd >/dev/null; do sleep 0; done;
+
+    # Reset fifo
+    [ -e "${FIFO_PATH}" ] && rm "${FIFO_PATH}"
+    mkfifo "${FIFO_PATH}"
+
+    # Launch new sxhkd
+    sxhkd -s "${FIFO_PATH}" &
+    sxhkd-statusd -l silent "${FIFO_PATH}" &
+}
+
+reload_sxhkd() {
+    pkill -USR1 -x sxhkd
+}
+
+main() {
+    [ -z ${SXHKD_PID} ] && launch_sxhkd || reload_sxhkd
+}
+
+main
+
+# vim:ft=sh
+# vim:wrap!
