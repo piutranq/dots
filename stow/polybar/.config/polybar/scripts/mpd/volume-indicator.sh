@@ -1,53 +1,53 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Requires
-source "$XDG_CONFIG_HOME/polybar/scripts/color.sh"
+. "$XDG_CONFIG_HOME/polybar/scripts/color.sh"
 
 # Configures
-declare OUTPUT=1 # Target mpd audio output
+# OUTPUT=1 # Target mpd audio output
 
 # Color and Icons
-declare -r ICON_UNMUTED="ﱘ"
-declare -r ICON_MUTED="ﱙ"
+readonly ICON_UNMUTED="ﱘ"
+readonly ICON_MUTED="ﱙ"
 
-declare -r COLOR_UNMUTED_BG=$COLOR_BACKGROUND
-declare -r COLOR_UNMUTED_FG=$COLOR_GREY4
-declare -r COLOR_UNMUTED_UL=$COLOR_GREY2
-declare -r COLOR_UNMUTED_OL=$COLOR_EMPTY
+readonly COLOR_UNMUTED_BG=$COLOR_BACKGROUND
+readonly COLOR_UNMUTED_FG=$COLOR_GREY4
+readonly COLOR_UNMUTED_UL=$COLOR_GREY2
+readonly COLOR_UNMUTED_OL=$COLOR_EMPTY
 
-declare -r COLOR_MUTED_BG=$COLOR_BACKGROUND
-declare -r COLOR_MUTED_FG=$COLOR_GREY2
-declare -r COLOR_MUTED_UL=$COLOR_GREY1
-declare -r COLOR_MUTED_OL=$COLOR_EMPTY
+readonly COLOR_MUTED_BG=$COLOR_BACKGROUND
+readonly COLOR_MUTED_FG=$COLOR_GREY2
+readonly COLOR_MUTED_UL=$COLOR_GREY1
+readonly COLOR_MUTED_OL=$COLOR_EMPTY
 
 getformat_unmuted () {
-    local -r BG=$COLOR_UNMUTED_BG
-    local -r FG=$COLOR_UNMUTED_FG
-    local -r UL=$COLOR_UNMUTED_UL
-    local -r OL=$COLOR_UNMUTED_OL
+    local BG=$COLOR_UNMUTED_BG
+    local FG=$COLOR_UNMUTED_FG
+    local UL=$COLOR_UNMUTED_UL
+    local OL=$COLOR_UNMUTED_OL
 
-    local -r COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
-    local -r ICON=$ICON_UNMUTED
+    local COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
+    local ICON=$ICON_UNMUTED
 
     export FORMAT="$COLOR $ICON $(printf '%2s' $volume)% "
 }
 
 getformat_muted () {
-    local -r BG=$COLOR_MUTED_BG
-    local -r FG=$COLOR_MUTED_FG
-    local -r UL=$COLOR_MUTED_UL
-    local -r OL=$COLOR_MUTED_OL
+    local BG=$COLOR_MUTED_BG
+    local FG=$COLOR_MUTED_FG
+    local UL=$COLOR_MUTED_UL
+    local OL=$COLOR_MUTED_OL
 
-    local -r COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
-    local -r ICON=$ICON_MUTED
+    local COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
+    local ICON=$ICON_MUTED
 
     export FORMAT="$COLOR $ICON     "
 }
 
 main () {
     # Get mpd status and volume
-    local -r player="$(mpc status 2>/dev/null | grep -oP "\[playing\]|\[paused\]")"
-    local -r volume="$(mpc volume 2>/dev/null | grep -oP "[0-9]+|n/a")"
+    local player="$(mpc status 2>/dev/null | grep -oP "\[playing\]|\[paused\]")"
+    local volume="$(mpc volume 2>/dev/null | grep -oP "[0-9]+|n/a")"
 
     # Get format
     case $volume in

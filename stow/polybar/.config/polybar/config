@@ -1,9 +1,5 @@
-[device-specific]
 include-file = $XDG_CONFIG_HOME/polybar/device-specific/current
-
-[color]
 include-file = $XDG_CONFIG_HOME/polybar/color
-
 
 [bar/top]
 locale=en_US.UTF-8

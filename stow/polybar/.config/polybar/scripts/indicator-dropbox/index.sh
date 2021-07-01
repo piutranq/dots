@@ -1,44 +1,32 @@
-#!/bin/sh
-
-# Command Alias
-CMD_DBOX_STATUS="dropbox-cli status"
+#!/usr/bin/env sh
 
 # Color Alias
-source "$XDG_CONFIG_HOME/polybar/scripts/color.sh"
+. "$XDG_CONFIG_HOME/polybar/scripts/color.sh"
 
 # Set Default Color & Icon
-COLOR_BG=$COLOR_TRANSPARENT
+COLOR_BG=$COLOR_BACKGROUND
 COLOR_FG=$COLOR_GREY4
 COLOR_UL=$COLOR_GREY2
 COLOR_OL=$COLOR_EMPTY
 INDICATOR_ICON=""
 
-
 # Get dropbox status string
-DBOX_STATUS=$($CMD_DBOX_STATUS)
+readonly DBOX_STATUS=$(dropbox-cli status)
 
-# If you want print status string directly for debug, just add 'echo $DBOX_STATUS' at below line:
-
-# echo $DBOX_STATUS
+# Check the dropbox status
+dropbox_status() {
+    echo $DBOX_STATUS | grep "$1" > /dev/null
+}
 
 # Get dropbox status
-if   [[ $(echo $DBOX_STATUS | grep "Dropbox isn't running!")     ]]; then
-    INDICATOR_STATUS='OFF'
-elif [[ $(echo $DBOX_STATUS | grep "Dropbox daemon stopped." )   ]]; then
-    INDICATOR_STATUS='OFF'
-elif [[ $(echo $DBOX_STATUS | grep "Starting..." )               ]]; then
-    INDICATOR_STATUS='OFF'
-elif [[ $(echo $DBOX_STATUS | grep "Connecting..." )             ]]; then
-    INDICATOR_STATUS='OFF'
-elif [[ $(echo $DBOX_STATUS | grep "Syncing")                    ]]; then
-    INDICATOR_STATUS='SYNC'
-elif [[ $(echo $DBOX_STATUS | grep "Up to date")                 ]]; then
-    INDICATOR_STATUS='OK'
-elif [[ $(echo $DBOX_STATUS | grep "Dropbox isn't responding!" ) ]]; then
-    INDICATOR_STATUS='ERROR'
-else
-    INDICATOR_STATUS='UNKNOWN'
-fi
+INDICATOR_STATUS='UNKNOWN'
+dropbox_status "isn't running!"    && INDICATOR_STATUS='OFF'
+dropbox_status "daemon stopped."   && INDICATOR_STATUS='OFF'
+dropbox_status "Starting..."       && INDICATOR_STATUS='OFF'
+dropbox_status "Connecting..."     && INDICATOR_STATUS='OFF'
+dropbox_status "Syncing"           && INDICATOR_STATUS='SYNC'
+dropbox_status "Up to date"        && INDICATOR_STATUS='OK'
+dropbox_status "isn't responding!" && INDICATOR_STATUS='ERROR'
 
 case $INDICATOR_STATUS in
 'OFF')
