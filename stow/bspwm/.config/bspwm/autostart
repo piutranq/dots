@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-$XDG_CONFIG_HOME/sxhkd/scripts/launch.sh
-$XDG_CONFIG_HOME/polybar/scripts/reload.sh
-dropbox-cli start 2> /dev/null &
+sxhkd-reload
+polybar-reload

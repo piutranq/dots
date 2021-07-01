@@ -1,8 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-BSPWM_DIR="$XDG_CONFIG_HOME/bspwm"
-
-$BSPWM_DIR/config
-$BSPWM_DIR/color
-$BSPWM_DIR/autostart
+BSPWM_DIR="${XDG_CONFIG_HOME:-"${HOME}/.config"}/bspwm"
+. $BSPWM_DIR/config
+. $BSPWM_DIR/color
+. $BSPWM_DIR/autostart
 
