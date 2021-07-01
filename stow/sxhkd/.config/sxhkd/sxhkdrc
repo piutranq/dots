@@ -10,7 +10,7 @@
 
 # reload sxhkd
 super + ctrl + Escape
-    $XDG_CONFIG_HOME/sxhkd/scripts/reload.sh
+    sxhkd-reload
 
 # call terminal
 super + Return
