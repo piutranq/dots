@@ -10,6 +10,7 @@ window:
     y: 8
   decorations: none
   startup_mode: Windowed
+  vsync: false
 
 font:
   normal:
@@ -25,8 +26,6 @@ font:
     family: monospace
     style: Bold Italic
   size: 8.0
-
-background_opacity: 0.8
 
 cursor:
   style:
