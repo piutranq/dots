@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ROFI_DIR="$XDG_CONFIG_HOME/rofi"
-ROFI_CONF="$ROFI_DIR/config"
+ROFI_CONF="$ROFI_DIR/config.rasi"
 ROFI_THEME="$ROFI_DIR/theme.rasi"
 
 TITLE=""

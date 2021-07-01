@@ -1,0 +1,6 @@
+configuration {
+	modi: "window,run,drun";
+    show-icons: true;
+	case-sensitive: false;
+	theme: "theme.rasi";
+}
