@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Theme
 hsetroot -cover $HOME/.wallpaper
 xsetroot -cursor_name left_ptr
@@ -7,9 +5,9 @@ picom &
 
 # Launch IME
 setxkbmap -option "korean:ralt_hangul, korean:rctrl_hanja"
-# nimf &
-# export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
 export GTK_IM_MODULE='kime'
 export QT_IM_MODULE='kime'
 export XMODIFIERS='@im=kime'
 kime-xim &
+
+# vim:ft=sh

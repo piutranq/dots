@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-
-source $HOME/.xprofile
+. $HOME/.xprofile
 exec bspwm
 
+# vim:ft=sh
