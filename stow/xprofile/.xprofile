@@ -1,5 +1,5 @@
 # Theme
-hsetroot -cover $HOME/.wallpaper
+hsetroot -cover "${XDG_CACHE_HOME:-"${HOME}/.config"}/.wallpaper"
 xsetroot -cursor_name left_ptr
 picom &
 

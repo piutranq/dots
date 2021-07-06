@@ -11,10 +11,11 @@ generate() {
     [ -w "$OUTPUT" ] || touch "$OUTPUT" && chmod +w "$OUTPUT"
     cat "$INPUT" | cologen "$SCHEME" > "$OUTPUT"
     chmod -w "$OUTPUT"
+    chmod +x "$OUTPUT"
 }
 
 refresh() {
-    ${XDG_CONFIG_HOME}/bspwm/color
+    $OUTPUT
 }
 
 generate

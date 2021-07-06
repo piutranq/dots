@@ -14,7 +14,7 @@ generate() {
 }
 
 refresh() {
-    $XDG_CONFIG_HOME/polybar/scripts/reload.sh &
+    polybar-reload
 }
 
 generate

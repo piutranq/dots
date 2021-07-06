@@ -1,11 +1,13 @@
 # Ignore the auto-generated / temporary config files
 stow/alacritty/.config/alacritty/colors.yml
+stow/bspwm/.config/bspwm/color
 stow/polybar/.config/polybar/color
 stow/polybar/.config/polybar/device-specific/current
 stow/rofi/.config/rofi/color.rasi
-stow/termite/.config/termite/config
-stow/cologen-refresh/.config/cologen-refresh/source.sh
 
 # Ignore the external plugins
 stow/nvim/.config/nvim/plugged/
 stow/tmux/.tmux/plugins/
+
+# Ignore the git commit message
+*.gitcommit
