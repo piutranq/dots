@@ -45,13 +45,16 @@ shrink_message () {
         echo "${1:0:$(($LENGTH_MAX-6))}..." || echo "$1"
 }
 
-main () {
+indicator () {
+    # Get mpd status: It should be [playing] or [paused]
     local STATUS="$(mpc status 2>/dev/null | grep -oP "\[playing\]|\[paused\]")"
 
     case $STATUS in
+        # If the mpd is running correctly, get color from status
         "[playing]")    getcolor_playing;;
         "[paused]")     getcolor_paused;;
-        *)              echo && return 1
+        # If the mpd is not fine, print nothing and wait
+        *) echo && return 1
     esac
 
     local MESSAGE="$ICON $(nowplaying 2>/dev/null)"
@@ -60,10 +63,21 @@ main () {
 
 loop () {
     while read -r event; do
-        main
+        indicator
     done
     echo ""
 }
 
+main () {
+    if pidof mpd > /dev/null
+    then
+        indicator
+        mpc idleloop player 2>/dev/null | loop
+    else
+        sleep 0.1
+        exit 1
+    fi
+}
+
 main
-mpc idleloop player 2>/dev/null | loop
+

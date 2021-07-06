@@ -2,6 +2,7 @@
 stow/alacritty/.config/alacritty/colors.yml
 stow/bspwm/.config/bspwm/color
 stow/polybar/.config/polybar/color
+stow/polybar/.config/polybar/scripts/color.sh
 stow/polybar/.config/polybar/device-specific/current
 stow/rofi/.config/rofi/color.rasi
 

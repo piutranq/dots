@@ -29,7 +29,7 @@ getformat_unmuted () {
     local COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
     local ICON=$ICON_UNMUTED
 
-    export FORMAT="$COLOR $ICON $(printf '%2s' $volume)% "
+    echo "$COLOR $ICON $(printf '%2s' $1)% "
 }
 
 getformat_muted () {
@@ -41,33 +41,43 @@ getformat_muted () {
     local COLOR="%{F$FG}%{u$UL}%{+u}%{B$BG}%{o$OL}"
     local ICON=$ICON_MUTED
 
-    export FORMAT="$COLOR $ICON     "
+    echo "$COLOR $ICON     "
 }
 
-main () {
-    # Get mpd status and volume
-    local player="$(mpc status 2>/dev/null | grep -oP "\[playing\]|\[paused\]")"
-    local volume="$(mpc volume 2>/dev/null | grep -oP "[0-9]+|n/a")"
+indicator () {
+    # Get mpd status: It should be [playing] or [paused]
+    local STATUS=$(mpc status 2>/dev/null | grep -oP "\[playing\]|\[paused\]")
 
-    # Get format
-    case $volume in
-        "n/a" | "" )    getformat_muted;;
-        *)              getformat_unmuted;;
-    esac
-
-    # echo
-    case $player in
-        "[playing]" | "[paused]" )  echo "$FORMAT";;
-        *)                          echo "";;
+    case $STATUS in
+        # If the mpd is running correctly, print the volume
+        "[playing]" | "[paused]" )
+            local volume="$(mpc volume 2>/dev/null | grep -oP "[0-9]+|n/a")"
+            case $volume in
+                "n/a" | "" )    getformat_muted;;
+                *)              getformat_unmuted $volume;;
+            esac;;
+        # If the mpd is not fine, print nothing
+        *) echo && return 1
     esac
 }
 
 loop () {
     while read -r event; do
-        main
+        indicator
     done
     echo ""
 }
 
+main () {
+    if pidof mpd > /dev/null
+    then
+        indicator
+        mpc idleloop player mixer 2>/dev/null | loop
+    else
+        sleep 0.1
+        exit 1
+    fi
+}
+
 main
-mpc idleloop player mixer 2>/dev/null | loop
+

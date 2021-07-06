@@ -3,11 +3,18 @@ LOCAL_CONFIG_DIR="${XDG_CONFIG_HOME:="${HOME}/.config"}/cologen-refresh"
 LOCAL_CACHE_DIR="${XDG_CACHE_HOME:="${HOME}/.cache"}/cologen-refresh"
 LOCAL_CACHED_SCHEME="${LOCAL_CACHE_DIR}/cached_scheme.yaml"
 
-INPUT="${LOCAL_CONFIG_DIR}/templates/polybar.template"
-OUTPUT="${XDG_CONFIG_HOME}/polybar/color"
-SCHEME="$LOCAL_CACHED_SCHEME"
+INPUT_INI="${LOCAL_CONFIG_DIR}/templates/polybar.template"
+OUTPUT_INI="${XDG_CONFIG_HOME}/polybar/color"
+
+INPUT_SH="${LOCAL_CONFIG_DIR}/templates/polybar_sh.template"
+OUTPUT_SH="${XDG_CONFIG_HOME}/polybar/scripts/color.sh"
+
+SCHEME="${LOCAL_CACHED_SCHEME}"
 
 generate() {
+    local INPUT=$1
+    local OUTPUT=$2
+
     [ -w "$OUTPUT" ] || touch "$OUTPUT" && chmod +w "$OUTPUT"
     cat "$INPUT" | cologen "$SCHEME" > "$OUTPUT"
     chmod -w "$OUTPUT"
@@ -17,5 +24,6 @@ refresh() {
     polybar-reload
 }
 
-generate
+generate ${INPUT_INI} ${OUTPUT_INI}
+generate ${INPUT_SH} ${OUTPUT_SH}
 refresh
