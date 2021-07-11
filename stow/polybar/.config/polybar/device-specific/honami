@@ -1,7 +1,7 @@
 [device-specific]
 [device-specific/font]
-monospace = "monospace:size=10.5;1"
-symbols = "Symbols Nerd Font:size=10.5;1"
+monospace = "monospace:size=12;2"
+symbols = "Symbols Nerd Font:size=12;2"
 
 [device-specific/module-list]
 left = bspwm sxhkd
