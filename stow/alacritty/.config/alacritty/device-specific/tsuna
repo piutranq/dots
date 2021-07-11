@@ -1,0 +1,9 @@
+
+window:
+  padding:
+    x: 12
+    y: 12
+font:
+  size: 8.5
+
+# vim:ft=yaml

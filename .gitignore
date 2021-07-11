@@ -1,5 +1,7 @@
 # Ignore the auto-generated / temporary config files
 stow/alacritty/.config/alacritty/colors.yml
+stow/alacritty/.config/alacritty/device-specific/current
+stow/localbin/.local/bin/dropbox-cli
 stow/bspwm/.config/bspwm/color
 stow/polybar/.config/polybar/color
 stow/polybar/.config/polybar/scripts/color.sh
