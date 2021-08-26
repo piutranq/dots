@@ -6,7 +6,7 @@ symbols = "Symbols Nerd Font:size=12;2"
 [device-specific/module-list]
 left = bspwm sxhkd
 center = mpd-nowplaying
-right = dropbox wireless mpd-volume pulseaudio date
+right = maestral wireless mpd-volume pulseaudio date
 
 [device-specific/wireless]
 interface = wlan0
