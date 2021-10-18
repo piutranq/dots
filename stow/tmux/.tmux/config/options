@@ -10,7 +10,7 @@
     tmux-set -sqa terminal-override ",alacritty:RGB"
 
     # Server options
-    tmux-set -sq escape-time 0
+    tmux-set -sq escape-time 50
 
     # Global Session options
     tmux-set -gq default-shell "/usr/bin/zsh"
