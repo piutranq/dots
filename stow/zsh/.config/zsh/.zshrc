@@ -19,7 +19,7 @@ ZINIT[ZCOMPDUMP_PATH]="${XDG_CACHE_HOME:-"$HOME/.cache"}/zcompdump-${HOST}-${ZSH
 if [[ ! -f "${ZINIT[BIN_DIR]}/zinit.zsh" ]]; then
     print -P "%F{15}%BInstalling zinit...%f%b"
     mkdir -p "${ZINIT[HOME_DIR]}" && chmod g-rwX "${ZINIT[HOME_DIR]}"
-    git clone https://github.com/zdharma/zinit "${ZINIT[BIN_DIR]}" && \
+    git clone https://github.com/z-shell/zinit "${ZINIT[BIN_DIR]}" && \
         print -P "%F{10}%BInstallation successful.%f%b"|| \
         print -P "%F{9}%BFailed to clone zinit%f%b"
 fi
@@ -36,7 +36,7 @@ zinit snippet OMZL::directories.zsh
 
 zinit wait lucid light-mode for \
     atinit'zicompinit; zicdreplay' \
-        zdharma/fast-syntax-highlighting \
+        z-shell/fast-syntax-highlighting \
     atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions \
     blockf atpull'zinit creinstall -q .' \
