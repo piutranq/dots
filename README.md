@@ -4,8 +4,8 @@ My dotfiles and configuration backup. Managed by stow and git
 ## How to use
 ```
 $ git clone https://github.com/piutranq/dots $HOME/.dots # or another path you want
-$ cd $HOME/.dots/stow
-$ stow -S -v -t $HOME nvim # or someone you want
+$ cd $HOME/.dots/cli # or $HOME.dots/xorg
+$ ./.install # or someone you want
 ```
 
 ## See also
