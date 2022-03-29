@@ -1,16 +1,15 @@
 # Ignore the auto-generated / temporary config files
-stow/alacritty/.config/alacritty/colors.yml
-stow/alacritty/.config/alacritty/device-specific/current
-stow/localbin/.local/bin/dropbox-cli
-stow/bspwm/.config/bspwm/color
-stow/polybar/.config/polybar/color
-stow/polybar/.config/polybar/scripts/color.sh
-stow/polybar/.config/polybar/device-specific/current
-stow/rofi/.config/rofi/color.rasi
+xorg/alacritty/.config/alacritty/colors.yml
+xorg/alacritty/.config/alacritty/device-specific/current
+xorg/bspwm/.config/bspwm/color
+xorg/polybar/.config/polybar/color
+xorg/polybar/.config/polybar/scripts/color.sh
+xorg/polybar/.config/polybar/device-specific/current
+xorg/rofi/.config/rofi/color.rasi
 
 # Ignore the external plugins
-stow/nvim/.config/nvim/plugged/
-stow/tmux/.tmux/plugins/
+cli/nvim/.config/nvim/plugged/
+cli/tmux/.tmux/plugins/
 
 # Ignore the git commit message
 *.gitcommit

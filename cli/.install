@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+stow -Svt $HOME \
+    mpd \
+    nvim \
+    tmux \
+    zsh
+

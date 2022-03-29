@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+stow -Svt $HOME \
+    alacritty \
+    bspwm \
+    cologen-refresh \
+    fontconfig \
+    kime \
+    localbin \
+    polybar \
+    rofi \
+    xprofile
+
