@@ -1,6 +1,7 @@
-background_opacity: @[grey0:%.A]
+window.opacity: @[grey0:%.A]
 
 colors:
+  transparent_background_colors: true
   primary:
     background: @[grey0:'#%xR%xG%xB']
     foreground: @[grey4:'#%xR%xG%xB']
