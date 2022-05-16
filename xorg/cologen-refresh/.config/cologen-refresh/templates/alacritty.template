@@ -1,4 +1,5 @@
-window.opacity: @[grey0:%.A]
+window:
+    opacity: @[grey0:%.A]
 
 colors:
   transparent_background_colors: true
