@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+readonly HOSTNAME=$(cat /proc/sys/kernel/hostname)
+readonly XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+
+install () {
+    # cd to xorg directory
+    cd $(realpath $(dirname $0))
+    cd $(git rev-parse --show-cdup)/xorg
+
+    # stow subpkgs
+    stow -Svt $HOME \
+        alacritty bspwm cologen-refresh fontconfig \
+        kime localbin polybar rofi xprofile
+
+    # device-specific config of alacritty
+    ln -svf \
+        $XDG_CONFIG_HOME/alacritty/device-specific/$HOSTNAME \
+        $XDG_CONFIG_HOME/alacritty/device-specific/current
+
+    # device-specific config of polybar
+    ln -svf \
+        $XDG_CONFIG_HOME/polybar/device-specific/$HOSTNAME \
+        $XDG_CONFIG_HOME/polybar/device-specific/current
+
+    # Install cologen and launch cologen-refresh
+    [ -x $(which cologen) ] || cargo install cologen
+    cologen-refresh -c base16-default-dark
+
+}
+
+[ -x $(which stow) ] && install || stow
+
+# vim:ft=sh

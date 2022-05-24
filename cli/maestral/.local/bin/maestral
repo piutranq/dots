@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+readonly XDG_DATA_HOME=${XDG_DATA_HOME:-"${HOME}/.local/share"}
+readonly MAESTRAL_VENV=${XDG_DATA_HOME}/maestral_venv
+
+no_maestral () {
+    echo "maestral-cli is not installed"
+    exit 1
+}
+
+launch () {
+    . $MAESTRAL_VENV/bin/activate
+    exec maestral $@
+}
+
+[ -x ${MAESTRAL_VENV}/bin/maestral ] && launch $@ || no_maestral

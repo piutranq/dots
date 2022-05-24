@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+readonly XDG_DATA_HOME=${XDG_DATA_HOME:-"${HOME}/.local/share"}
+readonly MAESTRAL_VENV=${XDG_DATA_HOME}/maestral_venv
+
+stow_maestral () {
+    # cd to cli directory
+    cd $(realpath $(dirname $0))
+    cd $(git rev-parse --show-cdup)/cli
+
+    # stow maestral
+    stow -Svt $HOME maestral
+}
+
+install_maestral () {
+    # Create maestral_venv if not exists
+    [ -s ${MAESTRAL_VENV}/bin/activate ] || virtualenv $MAESTRAL_VENV
+
+    # Activate maestral_venv
+    . ${MAESTRAL_VENV}/bin/activate
+
+    # Install maestral-cli if not exists
+    [ -x ${MAESTRAL_VENV}/bin/maestral ] || pip3 install --upgrade maestral
+
+    # Install & start maestral
+    maestral start
+    maestral autostart -Y
+
+    # Exit the script
+    deactivate
+    exit 0
+}
+
+[ -x $(which stow) ] || stow
+[ -x $(which virtualenv) ] || virtualenv
+
+stow_maestral
+install_maestral

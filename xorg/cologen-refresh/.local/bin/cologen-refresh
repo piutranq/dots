@@ -20,8 +20,8 @@ readonly LOCAL_CACHED_SCHEME="${LOCAL_CACHE_DIR}/cached_scheme.yaml"
 readonly ERROR_PREFIX="\033[91m\033[1mERROR:\033[0m\033[39m"
 readonly WARN_PREFIX="\033[93m\033[1mWARN:\033[0m\033[39m"
 readonly INFO_PREFIX="\033[97m\033[1mINFO:\033[0m\033[39m"
-readonly QUOTING_PREFIX="\`\033[97m\033[1m"
-readonly QUOTING_SUFFIX="\033[0m\033[39m\`"
+readonly QUOTING_PREFIX="\"\033[97m\033[1m"
+readonly QUOTING_SUFFIX="\033[0m\033[39m\""
 
 # Hard-coded default color scheme.
 # The custom of base16-default-dark, originally written by chriskempson.
