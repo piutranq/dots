@@ -2,6 +2,16 @@
 readonly XDG_DATA_HOME=${XDG_DATA_HOME:-"${HOME}/.local/share"}
 readonly MAESTRAL_VENV=${XDG_DATA_HOME}/maestral_venv
 
+err_nostow () {
+    echo "ERROR: There is no stow" >&2
+    exit 1
+}
+
+err_novirtualenv () {
+    echo "ERROR: There is no virtualenv" >&2
+    exit 1
+}
+
 stow_maestral () {
     # cd to cli directory
     cd $(realpath $(dirname $0))
@@ -30,8 +40,8 @@ install_maestral () {
     exit 0
 }
 
-[ -x $(which stow) ] || stow
-[ -x $(which virtualenv) ] || virtualenv
+[ -x $(which stow) ] || err_nostow
+[ -x $(which virtualenv) ] || err_novirtualenv
 
 stow_maestral
 install_maestral

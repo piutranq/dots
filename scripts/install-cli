@@ -1,8 +1,14 @@
 #!/usr/bin/env sh
 readonly XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 
+err_nostow () {
+    echo "ERROR: There is no stow" >&2
+    exit 1
+}
+
 install () {
     # cd to cli directory
+    local BACKUP_PATH=$(pwd)
     cd $(realpath $(dirname $0))
     cd $(git rev-parse --show-cdup)/cli
 
@@ -21,10 +27,11 @@ install () {
     git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
     # reload zsh for install zinit (zsh)
-    exec zsh
+    exec zsh $BACKUP_PATH
 }
 
-[ -x $(which stow) ] && install || stow
+[ -x $(which stow) ] || err_nostow
+install
 
 # vim:ft=sh
 # vim:wrap!

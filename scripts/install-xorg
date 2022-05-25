@@ -2,6 +2,11 @@
 readonly HOSTNAME=$(cat /proc/sys/kernel/hostname)
 readonly XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
+err_nostow () {
+    echo "ERROR: There is no stow" >&2
+    exit 1
+}
+
 install () {
     # cd to xorg directory
     cd $(realpath $(dirname $0))
@@ -28,6 +33,7 @@ install () {
 
 }
 
-[ -x $(which stow) ] && install || stow
+[ -x $(which stow) ] || err_nostow
+install
 
 # vim:ft=sh
