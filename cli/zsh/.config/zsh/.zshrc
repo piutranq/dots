@@ -77,6 +77,10 @@ setopt hist_ignore_space
 setopt hist_verify
 setopt share_history
 
+# Setup NVM
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+
 # Aliases
 ## If it is possible, replace `ls` to `exa`
 [[ -x "$(which exa)" ]] && alias ls='exa --group-directories-first'
