@@ -42,7 +42,7 @@
   text-color: @red;
 }
 #element selected {
-  text-color: @white;
+  text-color: @fgbold;
   background-color: @grey1;
 }
 #element selected active {
