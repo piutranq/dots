@@ -1,4 +1,3 @@
-
 # $ZDOTDIR/.zshrc
 # ==================================================================
 
@@ -8,38 +7,38 @@
 # Ensure the $ZDOTDIR path
 ZDOTDIR=${ZDOTDIR:-$HOME}
 
-# Zinit config
-## Zinit Path
-declare -A ZINIT
-ZINIT[HOME_DIR]="${XDG_DATA_HOME:-"$HOME/.local/share"}/zinit"
-ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
-ZINIT[ZCOMPDUMP_PATH]="${XDG_CACHE_HOME:-"$HOME/.cache"}/zcompdump-${HOST}-${ZSH_VERSION}"
+# Zi config
+## Zi Path
+declare -A ZI
+ZI[HOME_DIR]="${XDG_DATA_HOME:-"$HOME/.local/share"}/zi"
+ZI[BIN_DIR]="${ZI[HOME_DIR]}/bin"
+ZI[ZCOMPDUMP_PATH]="${XDG_CACHE_HOME:-"$HOME/.cache"}/zcompdump-${HOST}-${ZSH_VERSION}"
 
-## Load Zinit
-if [[ ! -f "${ZINIT[BIN_DIR]}/zinit.zsh" ]]; then
-    print -P "%F{15}%BInstalling zinit...%f%b"
-    mkdir -p "${ZINIT[HOME_DIR]}" && chmod g-rwX "${ZINIT[HOME_DIR]}"
-    git clone https://github.com/z-shell/zinit "${ZINIT[BIN_DIR]}" && \
-        print -P "%F{10}%BInstallation successful.%f%b"|| \
-        print -P "%F{9}%BFailed to clone zinit%f%b"
+## Load Zi
+if [[ ! -f "${ZI[BIN_DIR]}/zi.zsh" ]]; then
+    print -P "%F{15}%BInstalling zi...%f%b"
+    mkdir -p "${ZI[HOME_DIR]}" && chmod g-rwX "${ZI[HOME_DIR]}"
+    git clone https://github.com/z-shell/zi "${ZI[BIN_DIR]}" && \
+        print -P "%F{10}%BInstalled successful.%f%b"|| \
+        print -P "%F{9}%BFailed to clone zi%f%b"
 fi
-source "${ZINIT[BIN_DIR]}/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+source "${ZI[BIN_DIR]}/zi.zsh"
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
-## Load Plugins
-zinit snippet OMZL::clipboard.zsh
-zinit snippet OMZL::termsupport.zsh
-zinit snippet OMZL::git.zsh
-zinit snippet OMZL::key-bindings.zsh
-zinit snippet OMZL::directories.zsh
+# Load Plugins
+zi snippet OMZL::clipboard.zsh
+zi snippet OMZL::termsupport.zsh
+zi snippet OMZL::git.zsh
+zi snippet OMZL::key-bindings.zsh
+zi snippet OMZL::directories.zsh
 
-zinit wait lucid light-mode for \
+zi wait lucid light-mode for \
     atinit'zicompinit; zicdreplay' \
-        z-shell/fast-syntax-highlighting \
+        z-shell/F-Sy-H \
     atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions \
-    blockf atpull'zinit creinstall -q .' \
+    blockf atpull'zi creinstall -q .' \
         zsh-users/zsh-completions
 
 # Prompt config
@@ -90,3 +89,4 @@ alias l='ls -lah'
 alias ll='ls -lh'
 
 # vim:wrap!
+
