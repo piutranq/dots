@@ -72,7 +72,7 @@ while true; do
 done
 
 output_check () {
-    [ $(echo $1 | egrep -c "[0-9]+") -le 0 ] && output_error
+    [ $(echo $1 | grep -Ec "[0-9]+") -le 0 ] && output_error
 
     local GREP=$(echo $(mpc outputs | grep -c "^Output $1"))
     [ $GREP -le 0 ] && not_found $1
