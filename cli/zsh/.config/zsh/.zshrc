@@ -27,6 +27,7 @@ autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 
 # Load Plugins
+zi snippet OMZL::functions.zsh
 zi snippet OMZL::clipboard.zsh
 zi snippet OMZL::termsupport.zsh
 zi snippet OMZL::git.zsh
