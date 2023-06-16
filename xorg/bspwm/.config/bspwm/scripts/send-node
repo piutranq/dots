@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+readonly DIR=$1
+readonly LAST_wID=$(bspc query -N -n)
+readonly LAST_mID=$(bspc query -M -m)
+
+bspc config pointer_follows_monitor true
+
+if ! bspc node -f $DIR; then
+    bspc node -m $DIR
+    bspc monitor -f $DIR
+else
+    NEW_mID=$(bspc query -M -m)
+    if [ $NEW_mID = $LAST_mID ]; then
+        bspc node -s $LAST_wID
+    else
+        bspc node $LAST_wID -m $NEW_mID
+    fi
+    bspc node -f $LAST_wID
+fi
+bspc config pointer_follows_monitor false
+
+# vim:ft=sh
+# vim:wrap!

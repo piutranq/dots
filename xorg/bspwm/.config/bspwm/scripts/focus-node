@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+readonly DIR=$1
+
+bspc config pointer_follows_monitor true
+if ! bspc node -f $DIR; then
+    bspc monitor -f $DIR
+fi
+bspc config pointer_follows_monitor false
+
+# vim:ft=sh
+# vim:wrap!

@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+readonly dID=$1
+readonly LAST_mID=$(bspc query -M -m)
+
+loop () {
+    while read -r mID; do
+        bspc desktop -f "$mID:^$dID"
+    done
+}
+
+bspc query -M 2>/dev/null | loop
+bspc desktop -f "$LAST_mID:^$dID"
+
+# vim:ft=sh
+# vim:wrap!

@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+readonly NODE_DIR=$1
+readonly SIZE_DIR=$(
+    case $NODE_DIR in
+        'west'|'east') echo 'right';;
+        'north'|'south') echo 'bottom';;
+    esac
+)
+readonly SIZE=$(
+    USIZE=$(echo $2 | tr -cd '[[:digit:]]\n' )
+    case $1 in
+        'west') echo "-$USIZE 0";;
+        'east') echo "+$USIZE 0";;
+        'north') echo "0 -$USIZE";;
+        'south') echo "0 +$USIZE";;
+    esac
+)
+readonly LAST_mID=$(bspc query -M -m)
+readonly LAST_wID=$(bspc query -N -n)
+
+# Try to change node size
+if ! bspc node -z $SIZE_DIR $SIZE; then
+    # If failed to change node size,
+    # The node may be last (eastest, southest) position on monitor.
+    # Try to change near node
+    case $NODE_DIR in
+        'east'|'west') ANOTHER_DIR='west';;
+        'south'|'north') ANOTHER_DIR='north';;
+    esac
+    if bspc node -f $ANOTHER_DIR; then
+        # Check the monitor ID has changed
+        NEW_mID=$(bspc query -M -m)
+        if [ $LAST_mID = $NEW_mID ]; then
+            # Monitor ID has not changed. can change node size.
+            bspc node -z $SIZE_DIR $SIZE
+        fi # Monitor ID has changed. do not change node size.
+        bspc node -f $LAST_wID # revert the node focus
+    fi
+    # If failed to change node focus, can't change node size.
+    # because it may be only one tiled node of given direction.
+fi
+
+# vim:ft=sh
+# vim:wrap!
