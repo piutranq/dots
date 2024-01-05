@@ -1,0 +1,23 @@
+import = [
+  "~/.config/alacritty/device-specific/current",
+  "~/.config/alacritty/colors.toml"
+]
+
+live_config_reload = true
+
+[cursor]
+blink_interval = 500
+
+[cursor.style]
+blinking = 'On'
+shape = 'Block'
+
+[colors]
+transparent_background_colors = true
+
+[font.normal]
+family = 'monospace'
+
+[window]
+startup_mode = 'Windowed'
+dimensions = { columns = 80, lines = 24 }

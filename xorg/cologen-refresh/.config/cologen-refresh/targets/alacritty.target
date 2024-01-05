@@ -4,7 +4,7 @@ LOCAL_CACHE_DIR="${XDG_CACHE_HOME:="${HOME}/.cache"}/cologen-refresh"
 LOCAL_CACHED_SCHEME="${LOCAL_CACHE_DIR}/cached_scheme.yaml"
 
 INPUT="${LOCAL_CONFIG_DIR}/templates/alacritty.template"
-OUTPUT="${XDG_CONFIG_HOME}/alacritty/colors.yml"
+OUTPUT="${XDG_CONFIG_HOME}/alacritty/colors.toml"
 SCHEME="$LOCAL_CACHED_SCHEME"
 
 generate() {
@@ -14,7 +14,7 @@ generate() {
 }
 
 refresh() {
-    touch "${XDG_CONFIG_HOME:-"${HOME}"}/alacritty/alacritty.yml"
+    touch "${XDG_CONFIG_HOME:-"${HOME}"}/alacritty/alacritty.toml"
 }
 
 generate

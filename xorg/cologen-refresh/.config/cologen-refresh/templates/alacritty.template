@@ -1,26 +1,26 @@
-window:
-    opacity: @[grey0:%.A]
+[window]
+opacity = @[background:%.A]
 
-colors:
-  transparent_background_colors: false
-  primary:
-    background: @[grey0:'#%xR%xG%xB']
-    foreground: @[grey4:'#%xR%xG%xB']
-  normal:
-    black:   @[grey1:'#%xR%xG%xB']
-    red:     @[red:'#%xR%xG%xB']
-    green:   @[green:'#%xR%xG%xB']
-    yellow:  @[yellow:'#%xR%xG%xB']
-    blue:    @[blue:'#%xR%xG%xB']
-    magenta: @[magenta:'#%xR%xG%xB']
-    cyan:    @[cyan:'#%xR%xG%xB']
-    white:   @[grey4:'#%xR%xG%xB']
-  bright:
-    black:   @[grey2:'#%xR%xG%xB']
-    red:     @[red:'#%xR%xG%xB']
-    green:   @[green:'#%xR%xG%xB']
-    yellow:  @[yellow:'#%xR%xG%xB']
-    blue:    @[blue:'#%xR%xG%xB']
-    magenta: @[magenta:'#%xR%xG%xB']
-    cyan:    @[cyan:'#%xR%xG%xB']
-    white:   @[grey5:'#%xR%xG%xB']
+[colors.primary]
+background= @[background:'#%xR%xG%xB']
+foreground= @[grey4:'#%xR%xG%xB']
+
+[colors.normal]
+black=   @[grey1:'#%xR%xG%xB']
+red=     @[red:'#%xR%xG%xB']
+green=   @[green:'#%xR%xG%xB']
+yellow=  @[yellow:'#%xR%xG%xB']
+blue=    @[blue:'#%xR%xG%xB']
+magenta= @[magenta:'#%xR%xG%xB']
+cyan=    @[cyan:'#%xR%xG%xB']
+white=   @[grey4:'#%xR%xG%xB']
+
+[colors.bright]
+black=   @[grey2:'#%xR%xG%xB']
+red=     @[red:'#%xR%xG%xB']
+green=   @[green:'#%xR%xG%xB']
+yellow=  @[yellow:'#%xR%xG%xB']
+blue=    @[blue:'#%xR%xG%xB']
+magenta= @[magenta:'#%xR%xG%xB']
+cyan=    @[cyan:'#%xR%xG%xB']
+white=   @[grey5:'#%xR%xG%xB']
