@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-export COLOR_EMPTY="#00000000"
-export COLOR_BACKGROUND="@[grey0:#%xA%xR%xG%xB]"
+export COLOR_EMPTY="@[empty:#%xA%xR%xG%xB]"
+export COLOR_BACKGROUND="@[background:#%xA%xR%xG%xB]"
 export COLOR_FOREGROUND="@[grey4:#%xR%xG%xB]"
 
 export COLOR_GREY0="@[grey0:#%xR%xG%xB]"

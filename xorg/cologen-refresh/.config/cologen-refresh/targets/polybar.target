@@ -21,7 +21,8 @@ generate() {
 }
 
 refresh() {
-    polybar-reload
+    [ -z $(pgrep -u $(id -ru) -x polybar | head -n1) ] \
+    || polybar-msg cmd restart
 }
 
 generate ${INPUT_INI} ${OUTPUT_INI}

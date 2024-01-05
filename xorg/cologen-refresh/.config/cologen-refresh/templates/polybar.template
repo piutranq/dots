@@ -1,6 +1,6 @@
 [color]
-empty = #00000000
-background = @[grey0:#%xA%xR%xG%xB]
+empty = @[empty:#%xA%xR%xG%xB]
+background = @[background:#%xA%xR%xG%xB]
 foreground = @[grey4:#%xR%xG%xB]
 
 grey0 = @[grey0:#%xR%xG%xB]

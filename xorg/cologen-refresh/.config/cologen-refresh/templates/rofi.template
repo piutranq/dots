@@ -17,8 +17,8 @@
     cyan: @[cyan:#%xR%xG%xB];
 
     /* Special Purpose */
-    empty: rgba(0, 0, 0, 0);
-    bg: @[grey0:rgba(%dR, %dG, %dB, %.A)];
+    empty: @[empty:rgba(%dR, %dG, %dB, %.A)];
+    bg: @[background:rgba(%dR, %dG, %dB, %.A)];
     fg: @[grey4:#%xR%xG%xB];
     fgbold: bold underline @[grey5:#%xR%xG%xB];
 }
