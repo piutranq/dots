@@ -17,6 +17,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
+Plug 'elkowar/yuck.vim'
 call plug#end()
 
 

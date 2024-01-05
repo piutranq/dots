@@ -10,28 +10,28 @@ color_red=f92672ff
 lock() {
 	i3lock \
         --blur 5 \
-		--timepos="x+60:h-80" \
-		--datepos="x+60:h-50" \
-        --indpos="x+320:h-86" \
-        --timesize=60 --time-font=Cantarell \
-        --datesize=20 --date-font=Cantarell \
+		--time-pos="x+60:h-80" \
+		--date-pos="x+60:h-50" \
+        --ind-pos="x+320:h-86" \
+        --time-size=60 --time-font=Cantarell \
+        --date-size=20 --date-font=Cantarell \
 		--radius=40 --ring-width=5 \
-		--clock --time-align 1 --timestr "$text_time" \
-        --date-align 1 --datestr "$text_date" \
-        --veriftext="" --wrongtext="" --noinputtext="" \
-        --separatorcolor=$color_empty \
-        --insidecolor=$color_empty \
-        --insidevercolor=$color_empty \
-        --insidewrongcolor=$color_empty \
+		--clock --time-align 1 --time-str "$text_time" \
+        --date-align 1 --date-str "$text_date" \
+        --verif-text="" --wrong-text="" --noinput-text="" \
+        --separator-color=$color_empty \
+        --inside-color=$color_empty \
+        --insidever-color=$color_empty \
+        --insidewrong-color=$color_empty \
         --line-uses-inside \
-        --ringcolor=$color_empty \
-		--ringvercolor=$color_empty \
-        --ringwrongcolor=$color_red \
-        --keyhlcolor=$color_white \
-        --bshlcolor=$color_white \
-		--verifcolor=$color_white \
-        --timecolor=$color_white \
-        --datecolor=$color_white \
+        --ring-color=$color_empty \
+		--ringver-color=$color_empty \
+        --ringwrong-color=$color_red \
+        --keyhl-color=$color_white \
+        --bshl-color=$color_white \
+		--verif-color=$color_white \
+        --time-color=$color_white \
+        --date-color=$color_white \
         --force-clock $lockargs
 }
 

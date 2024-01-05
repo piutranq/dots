@@ -1,6 +1,6 @@
 # Ignore the auto-generated / temporary config files
 cli/nvim/.config/nvim/.netrwhist
-xorg/alacritty/.config/alacritty/colors.yml
+xorg/alacritty/.config/alacritty/colors.toml
 xorg/alacritty/.config/alacritty/device-specific/current
 xorg/bspwm/.config/bspwm/color
 xorg/polybar/.config/polybar/color

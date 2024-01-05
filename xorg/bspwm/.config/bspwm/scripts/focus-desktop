@@ -1,15 +1,14 @@
 #!/usr/bin/env sh
-readonly dID=$1
-readonly LAST_mID=$(bspc query -M -m)
+readonly desktopID=$1
+readonly last_monitorID=$(bspc query -M -m)
 
-loop () {
-    while read -r mID; do
-        bspc desktop -f "$mID:^$dID"
-    done
-}
+# Focus to given desktop for all monitors
+bspc query -M 2>/dev/null | while read -r monitorID; do
+        bspc desktop -f "$monitorID:^$desktopID"
+done
 
-bspc query -M 2>/dev/null | loop
-bspc desktop -f "$LAST_mID:^$dID"
+# Restore monitor focusing
+bspc monitor -f "$last_monitorID"
 
 # vim:ft=sh
 # vim:wrap!

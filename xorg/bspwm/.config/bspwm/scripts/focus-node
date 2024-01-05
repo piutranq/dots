@@ -1,9 +1,11 @@
 #!/usr/bin/env sh
-readonly DIR=$1
+readonly direction=$1
 
 bspc config pointer_follows_monitor true
-if ! bspc node -f $DIR; then
-    bspc monitor -f $DIR
+# If no node for given direction,
+# try focusing monitor of the direction
+if ! bspc node -f $direction; then
+    bspc monitor -f $direction
 fi
 bspc config pointer_follows_monitor false
 

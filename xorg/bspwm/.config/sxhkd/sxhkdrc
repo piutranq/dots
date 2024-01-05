@@ -18,7 +18,7 @@ super + Return
 
 # call floating terminal
 ctrl + alt + t
-    alacritty --class=floatingTerm
+    alacritty --class="Alacritty,floatingTerm"
 
 # call rofi
 alt + F1
@@ -75,13 +75,9 @@ super + {Left,Down,Up,Right}
 super + shift + {Left,Down,Up,Right}
     $XDG_CONFIG_HOME/bspwm/scripts/send-node {west,south,north,east}
 
-# focus to desktop by number at all monitors
-super + {1-6}
-    $XDG_CONFIG_HOME/bspwm/scripts/focus-desktop {1-6}
-
-# send to desktop by number at focused monitors
-super + shift + {1-6}
-    bspc node -d "$(bspc query -M -m):^{1-6}"
+# focus/send to desktop by number at focused monitors
+super + {_,shift + }{1-6}
+    bspc {desktop -f,node -d} "$(bspc query -M -m):^{1-6}"
 
 # focus/send to the prev/next desktop
 super + {_,shift + }bracket{left,right}
