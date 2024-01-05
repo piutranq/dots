@@ -1,0 +1,68 @@
+(deflisten battery_listen "scripts/battery.sh")
+(defvar battery_name "BAT1")
+(defvar battery_hide_on_full "true")
+(defvar battery_hide_on_unknown "true")
+(defvar battery_icon_only "false")
+(defvar battery_thresholds "15 30 70 90")
+(defvar battery_icons "        ")
+
+(defwidget battery_comp [] (eventbox
+  :visible {battery_listen.visible}
+  :onrightclick {
+    battery_icon_only
+    ? "eww update battery_icon_only=false"
+    : "eww update battery_icon_only=true"
+  }
+  (box
+    :space-evenly "false"
+    (capsule
+      :type {
+          battery_icon_only ? "full"
+        : battery_listen.status == "unknown" ? "full"
+        : "head"
+      }
+      :bg-color {
+          battery_listen.status == "full"        ? "green"
+        : battery_listen.status == "charging"    ? "green"
+        : battery_listen.status == "notcharging" ? "grey1"
+        : battery_listen.status == "veryhigh"    ? "grey1"
+        : battery_listen.status == "high"        ? "grey1"
+        : battery_listen.status == "middle"      ? "grey1"
+        : battery_listen.status == "low"         ? "yellow"
+        : battery_listen.status == "verylow"     ? "red"
+        : "grey1"; "unknown"
+      }
+      :fg-color {
+          battery_listen.status == "full"        ? "grey0"
+        : battery_listen.status == "charging"    ? "grey0"
+        : battery_listen.status == "notcharging" ? "yellow"
+        : battery_listen.status == "veryhigh"    ? "grey5"
+        : battery_listen.status == "high"        ? "grey5"
+        : battery_listen.status == "middle"      ? "grey5"
+        : battery_listen.status == "low"         ? "grey1"
+        : battery_listen.status == "verylow"     ? "grey1"
+        : "yellow" ; "unknown"
+      }
+      (nficon :icon {battery_listen.icon})
+    )
+    (capsule
+      :visible {
+        !battery_icon_only && battery_listen.status != "unknown"
+      }
+      :type "tail"
+      :bg-color "grey0"
+      :fg-color {
+          battery_listen.status == "full"        ? "grey5"
+        : battery_listen.status == "charging"    ? "grey5"
+        : battery_listen.status == "notcharging" ? "yellow"
+        : battery_listen.status == "veryhigh"    ? "grey5"
+        : battery_listen.status == "high"        ? "grey5"
+        : battery_listen.status == "middle"      ? "grey5"
+        : battery_listen.status == "low"         ? "grey5"
+        : battery_listen.status == "verylow"     ? "grey5"
+        : "yellow" ; "unknown"
+      }
+      (label :text "${battery_listen.capacity}%")
+    )
+  )
+))

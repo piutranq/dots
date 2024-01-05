@@ -1,0 +1,28 @@
+(deflisten bspwm_listen "scripts/bspwm.sh listen")
+(defvar bspwm_hide_on_empty "true")
+
+(defwidget bspwm_button [workspace] (button
+  :visible {workspace.visible}
+  :onclick "scripts/bspwm.sh click ${workspace.id}"
+  (box
+    :class `cfull \
+      ${workspace.status == "urgent"
+          ? "bg-red fg-yellow"
+          : workspace.status == "occupied"
+            ? "fg-grey5"
+            : "fg-grey2"
+      } \
+      ${workspace.focused ? "bg-grey1" : "bg-grey0" } \
+    `
+    (nficon :icon {workspace.name})
+  )
+))
+
+(defwidget bspwm_comp [listen monitor] (eventbox
+  :onscroll "scripts/bspwm.sh scroll{}"
+  (box
+    (for entry in {jq(listen, `."${monitor}"`)}
+      (bspwm_button :workspace entry)
+    )
+  )
+))

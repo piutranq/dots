@@ -1,0 +1,45 @@
+(defpoll time_poll :interval "5s" `date +"%H:%M"`)
+(defpoll date_poll :interval "5s" `date +"%m/%d %a"`)
+(defvar date_visible "false")
+
+(defwidget timedate_comp [] (eventbox
+  :onrightclick {
+    date_visible
+    ? "eww update date_visible=false"
+    : "eww update date_visible=true"
+  }
+  (box :space-evenly "false" (date_comp) (time_comp))
+))
+
+(defwidget date_comp [] (box
+  :space-evenly "false"
+  :visible {date_visible}
+  (capsule
+    :type "head"
+    :bg-color "grey1"
+    :fg-color "grey4"
+    (nficon :icon "")
+  )
+  (capsule
+    :type "tail"
+    :bg-color "grey0"
+    :fg-color "grey4"
+    (label :text {date_poll})
+  )
+))
+
+(defwidget time_comp [] (box
+  :space-evenly "false"
+  (capsule
+    :type "head"
+    :bg-color "grey1"
+    :fg-color "grey4"
+    (nficon :icon "")
+  )
+  (capsule
+    :type "tail"
+    :bg-color "grey0"
+    :fg-color "grey4"
+    (label :text {time_poll})
+  )
+))

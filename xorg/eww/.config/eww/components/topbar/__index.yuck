@@ -1,0 +1,7 @@
+(include "./components/topbar/battery.yuck")
+(include "./components/topbar/bspwm.yuck")
+(include "./components/topbar/volume.yuck")
+(include "./components/topbar/timedate.yuck")
+(include "./components/topbar/maestral.yuck")
+(include "./components/topbar/nowplaying.yuck")
+(include "./components/topbar/sxhkd.yuck")

@@ -1,0 +1,22 @@
+$co_empty: @[empty:rgba(#%xR%xG%xB, %.A)];
+$co_greybg: @[background:rgba(#%xR%xG%xB, %.A)];
+$co_grey0: @[grey0:#%xR%xG%xB];
+$co_grey1: @[grey1:#%xR%xG%xB];
+$co_grey2: @[grey2:#%xR%xG%xB];
+$co_grey3: @[grey3:#%xR%xG%xB];
+$co_grey4: @[grey4:#%xR%xG%xB];
+$co_grey5: @[grey5:#%xR%xG%xB];
+
+$co_red: @[red:#%xR%xG%xB];
+$co_green: @[green:#%xR%xG%xB];
+$co_yellow: @[yellow:#%xR%xG%xB];
+$co_blue: @[blue:#%xR%xG%xB];
+$co_magenta: @[magenta:#%xR%xG%xB];
+$co_cyan: @[cyan:#%xR%xG%xB];
+
+$co_brightred: @[red:#%xR%xG%xB];
+$co_brightgreen: @[green:#%xR%xG%xB];
+$co_brightyellow: @[yellow:#%xR%xG%xB];
+$co_brightblue: @[blue:#%xR%xG%xB];
+$co_brightmagenta: @[magenta:#%xR%xG%xB];
+$co_brightcyan: @[cyan:#%xR%xG%xB];

@@ -1,0 +1,79 @@
+@mixin hbar($size_scale) {
+    $scale: $global_scale*$size_scale;
+
+    $content_height: $scale*6px;
+    $bar_height: $scale*16px;
+    $capsule_height: $scale*12px;
+    $capsule_marginV: ($bar_height - $capsule_height)/2;
+    $capsule_marginH: $scale*1px;
+    $capsule_paddingH: $content_height * 0.75;
+    $capsule_rounding: $scale*2px;
+
+    margin: 0;
+    padding: 0 $content_height/2;
+    min-height: $bar_height;
+    font-size: $content_height;
+    font-family: "Roboto";
+    font-weight: 700;
+
+    label.nficon {
+        margin: 0;
+        padding: 0;
+        min-height: $content_height;
+        font-size: $content_height;
+        font-family: "Symbols Nerd Font";
+    }
+
+    box.cfull {
+        padding: 0 $capsule_paddingH;
+        border-radius: $capsule_rounding;
+        margin: $capsule_marginV $capsule_marginH;
+        min-height: $capsule_height;
+    }
+
+    box.chead {
+        padding: 0 $capsule_paddingH;
+        border-radius: $capsule_rounding 0 0 $capsule_rounding;
+        margin: $capsule_marginV 0 $capsule_marginV $capsule_marginH;
+        min-height: $capsule_height;
+    }
+
+    box.cbody {
+        padding: 0 $capsule_paddingH;
+        border-radius: 0;
+        margin: $capsule_marginV 0;
+        min-height: $capsule_height;
+    }
+
+    box.ctail {
+        padding: 0 $capsule_paddingH;
+        border-radius: 0 $capsule_rounding $capsule_rounding 0;
+        margin: $capsule_marginV $capsule_marginH $capsule_marginV 0;
+        min-height: $capsule_height;
+    }
+}
+
+.hbar-xsmall {
+    $size_scale: $size_xsmall;
+    @include hbar($size_scale);
+}
+
+.hbar-small {
+    $size_scale: $size_small;
+    @include hbar($size_scale);
+}
+
+.hbar-medium {
+    $size_scale: $size_medium;
+    @include hbar($size_scale);
+}
+
+.hbar-large {
+    $size_scale: $size_large;
+    @include hbar($size_scale);
+}
+
+.hbar-xlarge {
+    $size_scale: $size_xlarge;
+    @include hbar($size_scale);
+}

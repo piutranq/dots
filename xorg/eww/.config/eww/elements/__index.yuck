@@ -1,0 +1,44 @@
+(defwidget hbar
+  [
+    ?size     ; size: see "scss/global.scss"
+    ?bg-color ; background-color: see "scss/global.scss"
+    ?space-evenly ; boolean, same as box
+  ]
+  (box
+    :class ` \
+    hbar-${size ?: "small"} \
+    bg-${bg-color ?: "empty"} \
+    `
+    :space-evenly {space-evenly}
+    (children)
+  )
+)
+
+(defwidget capsule
+  [
+    ?type     ; "full" | "head" | "body" | "tail"
+    ?bg-color ; background-color: see "scss/global.scss"
+    ?fg-color ; foreground-color: see "scss/global.scss"
+    ?visible  ; boolean, same as box
+  ]
+  (box
+    :visible {visible}
+    :class ` \
+      c${type ?: "full"} \
+      bg-${bg-color ?: "grey0"} \
+      fg-${fg-color ?: "grey5"} \
+    `
+    (children :nth 0)
+  )
+)
+
+(defwidget nficon
+  [
+    ?icon      ; plain text, but takes only use single character
+  ]
+  (label
+    :class "nficon"
+    :text {icon ?: ""}
+    :limit-width 1
+  )
+)

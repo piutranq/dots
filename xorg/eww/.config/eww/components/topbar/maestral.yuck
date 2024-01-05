@@ -1,0 +1,23 @@
+(deflisten maestral_listen "scripts/maestral.sh")
+(defvar maestral_icon_ok "")
+(defvar maestral_icon_unknown "")
+
+(defwidget maestral_comp [] (box
+  (capsule
+    :bg-color {
+        maestral_listen.status == "error" ? "red"
+      : maestral_listen.status == "sync"  ? "blue"
+      : maestral_listen.status == "ok"    ? "grey1"
+      : maestral_listen.status == "off"   ? "grey0"
+      : "grey1"
+    }
+    :fg-color {
+        maestral_listen.status == "error" ? "grey0"
+      : maestral_listen.status == "sync"  ? "grey0"
+      : maestral_listen.status == "ok"    ? "grey5"
+      : maestral_listen.status == "off"   ? "grey1"
+      : "yellow"
+    }
+    (nficon :icon {maestral_listen.icon})
+  )
+))

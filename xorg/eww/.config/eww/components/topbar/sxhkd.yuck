@@ -1,0 +1,30 @@
+(deflisten sxhkd_listen "scripts/sxhkd.sh")
+
+(defvar sxhkd_socket "/run/user/$(id -ru)/sxhkd.fifo.sxhkd-statusd")
+(defvar sxhkd_keychain_table `{
+  "Hsuper + r": {
+    "icon": "",
+    "text": "Resize Window",
+    "fg-color":"grey0",
+    "bg-color":"green",
+    "visible": "true"
+  }
+}`)
+
+
+(defwidget sxhkd_comp []
+  (box
+    :visible {sxhkd_listen.visible}
+    :space-evenly "false"
+    (capsule
+      :type "head"
+      :fg-color {sxhkd_listen.fg-color ?: "grey5"}
+      :bg-color {sxhkd_listen.bg-color ?: "grey1"}
+      (nficon :icon {sxhkd_listen.icon})
+    )
+    (capsule
+      :type "tail"
+      (label :text {sxhkd_listen.text})
+    )
+  )
+)

@@ -1,0 +1,68 @@
+(defwindow xorg/honami/topbar0
+  :monitor "DP-1"
+  :geometry (geometry
+      :x "0%"
+      :width "100%"
+      :anchor "top center"
+  )
+  :stacking "fg"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dock"
+  :wm-ignore "false"
+
+  (hbar
+    :bg-color "greybg"
+    :size "small"
+    :space-evenly "true"
+    (centerbox
+      (box :space-evenly "false"
+        (bspwm_comp :listen bspwm_listen :monitor "DP-1")
+        (sxhkd_comp)
+      )
+      (box :space-evenly "false"
+        (nowplaying_comp)
+      )
+      (box :space-evenly "false" :halign "end" 
+        (maestral_comp)
+        (mpdvol_comp)
+        (pavol_comp)
+        (timedate_comp)
+        (battery_comp)
+      )
+    )
+  )
+)
+
+(defwindow xorg/honami/topbar1
+  :monitor "DVI-D-0"
+  :geometry (geometry
+      :x "0%"
+      :width "100%"
+      :anchor "top center"
+  )
+  :stacking "fg"
+  :reserve (struts :distance "40px" :side "top")
+  :windowtype "dock"
+  :wm-ignore "false"
+
+  (hbar
+    :bg-color "greybg"
+    :size "small"
+    :space-evenly "true"
+    (centerbox
+      (box :space-evenly "false"
+        (bspwm_comp :listen bspwm_listen :monitor "DVI-D-0")
+        (sxhkd_comp)
+      )
+      (box :space-evenly "false"
+      )
+      (box :space-evenly "false" :halign "end"
+        (maestral_comp)
+        (mpdvol_comp)
+        (pavol_comp)
+        (timedate_comp)
+        (battery_comp)
+      )
+    )
+  )
+)

@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+LOCAL_CONFIG_DIR="${XDG_CONFIG_HOME:="${HOME}/.config"}/cologen-refresh"
+LOCAL_CACHE_DIR="${XDG_CACHE_HOME:="${HOME}/.cache"}/cologen-refresh"
+LOCAL_CACHED_SCHEME="${LOCAL_CACHE_DIR}/cached_scheme.yaml"
+
+INPUT="${LOCAL_CONFIG_DIR}/templates/eww.template"
+OUTPUT="${XDG_CONFIG_HOME}/eww/styles/color.scss"
+
+SCHEME="${LOCAL_CACHED_SCHEME}"
+
+generate() {
+    local INPUT=$1
+    local OUTPUT=$2
+
+    [ -w "$OUTPUT" ] || touch "$OUTPUT" && chmod +w "$OUTPUT"
+    cat "$INPUT" | cologen "$SCHEME" > "$OUTPUT"
+    chmod -w "$OUTPUT"
+}
+
+refresh() {
+    eww reload 2>/dev/null
+}
+
+generate ${INPUT} ${OUTPUT}
+refresh

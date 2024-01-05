@@ -1,0 +1,32 @@
+(deflisten nowplaying_listen "scripts/nowplaying.sh")
+(defvar nowplaying_limit_length "40")
+(defvar nowplaying_icon_playing "")
+(defvar nowplaying_icon_paused "")
+
+(defwidget nowplaying_comp [] (eventbox
+  :onclick "mpc toggle"
+  (box
+    :space-evenly "false"
+    :visible {matches(nowplaying_listen.status, "playing|paused")}
+    (capsule
+      :type "head"
+      :bg-color {
+        nowplaying_listen.status == "playing" ? "blue" : "grey1"
+      }
+      :fg-color {
+        nowplaying_listen.status == "playing" ? "grey0" : "grey2"
+      }
+      (nficon :icon {nowplaying_listen.icon})
+    )
+    (capsule
+      :type "tail"
+      :fg-color {
+        nowplaying_listen.status == "playing" ? "grey5" : "grey2"
+      }
+      (label
+        :text {nowplaying_listen.title}
+        :limit-width {nowplaying_limit_length}
+      )
+    )
+  )
+))

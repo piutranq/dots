@@ -14,7 +14,7 @@ install () {
 
     # stow subpkgs
     stow -Svt $HOME \
-        alacritty bspwm cologen-refresh fontconfig \
+        alacritty bspwm cologen-refresh eww fontconfig \
         kime localbin polybar rofi xprofile
 
     # device-specific config of alacritty

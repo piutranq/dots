@@ -3,6 +3,7 @@ cli/nvim/.config/nvim/.netrwhist
 xorg/alacritty/.config/alacritty/colors.toml
 xorg/alacritty/.config/alacritty/device-specific/current
 xorg/bspwm/.config/bspwm/color
+xorg/eww/styles/color.scss
 xorg/polybar/.config/polybar/color
 xorg/polybar/.config/polybar/scripts/color.sh
 xorg/polybar/.config/polybar/device-specific/current

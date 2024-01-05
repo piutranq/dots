@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
 
 sxhkd-reload
-polybar-reload
+
+eww daemon
+eww open xorg/honami/topbar0
+eww open xorg/honami/topbar1

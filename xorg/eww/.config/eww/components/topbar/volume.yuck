@@ -1,0 +1,70 @@
+(deflisten pavol_listen "scripts/pavol.sh listen")
+(defvar pavol_icon_only "false")
+(defvar pavol_icon_unmuted "墳")
+(defvar pavol_icon_muted   "婢")
+(defvar pavol_muted_format "00%")
+
+(deflisten mpdvol_listen "scripts/mpdvol.sh listen")
+(defvar mpdvol_icon_only "false")
+(defvar mpdvol_icon_unmuted "ﱘ")
+(defvar mpdvol_icon_muted   "ﱙ")
+(defvar mpdvol_muted_format "00%")
+
+(defwidget pavol_comp []
+  (volume_comp
+    :listen pavol_listen
+    :onscroll "scripts/pavol.sh scroll{}"
+    :onclick "scripts/pavol.sh click"
+    :onrightclick {
+    pavol_icon_only == "true"
+    ? "eww update pavol_icon_only=false"
+    : "eww update pavol_icon_only=true"
+  }
+  :icon_only pavol_icon_only
+)
+)
+
+(defwidget mpdvol_comp []
+  (volume_comp
+    :listen mpdvol_listen
+    :onscroll "scripts/mpdvol.sh scroll{}"
+    :onclick "scripts/mpdvol.sh click"
+    :onrightclick {
+    mpdvol_icon_only == "true"
+    ? "eww update mpdvol_icon_only=false"
+    : "eww update mpdvol_icon_only=true"
+  }
+  :icon_only mpdvol_icon_only
+)
+)
+
+(defwidget volume_comp
+  [
+    listen
+    ?onscroll
+    ?onclick
+    ?onrightclick
+    ?icon_only
+  ]
+  (eventbox
+    :visible "${listen.visible}"
+    :onscroll {onscroll}
+    :onclick {onclick}
+    :onrightclick {onrightclick}
+    (box
+      :space-evenly "false"
+      (capsule
+        :type {icon_only ? "full" : "head"}
+        :bg-color {listen.audible ? "grey1" : "grey0"}
+        :fg-color {listen.audible ? "grey5" : "grey1"}
+        (nficon :icon "${listen.icon}")
+      )
+      (capsule
+        :visible {icon_only ? "false" : "true" }
+        :type "tail"
+        :fg-color {listen.audible ? "grey5" : "grey0"}
+        (label :text "${listen.volume}")
+      )
+    )
+  )
+)
