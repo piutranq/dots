@@ -52,28 +52,8 @@
         min-height: $capsule_height;
     }
 }
-
-.hbar-xsmall {
-    $size_scale: $size_xsmall;
-    @include hbar($size_scale);
-}
-
-.hbar-small {
-    $size_scale: $size_small;
-    @include hbar($size_scale);
-}
-
-.hbar-medium {
-    $size_scale: $size_medium;
-    @include hbar($size_scale);
-}
-
-.hbar-large {
-    $size_scale: $size_large;
-    @include hbar($size_scale);
-}
-
-.hbar-xlarge {
-    $size_scale: $size_xlarge;
-    @include hbar($size_scale);
-}
+.hbar-xsmall { @include hbar($size_xsmall); }
+.hbar-small { @include hbar($size_small); }
+.hbar-medium { @include hbar($size_medium); }
+.hbar-large { @include hbar($size_large); }
+.hbar-xlarge { @include hbar($size_xlarge); }

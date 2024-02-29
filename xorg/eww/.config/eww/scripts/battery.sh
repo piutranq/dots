@@ -102,45 +102,40 @@ render_icon () {
 }
 
 refresh () {(
-    # Actual Battery Info
-    bat_status=$(info ${BAT_NAME} "status" | tr -d ' ')
-    capacity=$(info ${BAT_NAME} "capacity")
-
-    # # Mock Scenario 1: Full
-    # bat_status="Full"
-    # capacity="100"
-
-    # # Mock Scenario 2: Charging
-    # bat_status="Charging"
-    # capacity="95" # Threshold: 15 30 70 90
-
-    # # Mock Scenario 3: Notcharging
-    # bat_status="Notcharging"
-    # capacity="95"
-
-    # # Mock Scenario 4: Discharging VeryHigh (90~)
-    # bat_status="Discharging"
-    # capacity="95"
-
-    # # Mock Scenario 5: Discharging High (70~89)
-    # bat_status="Discharging"
-    # capacity="75"
-
-    # # Mock Scenario 6: Discharging Middle (30~69)
-    # bat_status="Discharging"
-    # capacity="35"
-
-    # # Mock Scenario 7: Discharging Low (15~29)
-    # bat_status="Discharging"
-    # capacity="25"
-
-    # # Mock Scenario 8: Discharging VeryLow (~15)
-    # bat_status="Discharging"
-    # capacity="14"
-
-    # # Mock Scenario 9: Unknown
-    # bat_status=
-    # bat_capacity=
+    # If the function has [1-9] as first parameter,
+    # Show the mock scenario instead of actual battery status
+    case "${1}" in
+        "1") # Mock Scenario 1: Full
+            bat_status="Full"
+            capacity="100";;
+        "2") # Mock Scenario 2: Charging
+            bat_status="Charging"
+            capacity="95";; # Threshold: 15 30 70 90
+        "3") # Mock Scenario 3: NotCharging
+            bat_status="Notcharging"
+            capacity="95";;
+        "4") # Mock Scenario 4: Discharging VeryHigh (90~)
+            bat_status="Discharging"
+            capacity="95";;
+        "5") # Mock Scenario 5: Discharging High (70~89)
+            bat_status="Discharging"
+            capacity="75";;
+        "6") # Mock Scenario 6: Discharging Middle (30~69)
+            bat_status="Discharging"
+            capacity="35";;
+        "7") # Mock Scenario 7: Discharging Low (15~29)
+            bat_status="Discharging"
+            capacity="25";;
+        "8") # Mock Scenario 8: Discharging VeryLow (~15)
+            bat_status="Discharging"
+            capacity="14";;
+        "9") # Mock Scenario 9: Unknown
+            bat_status=""
+            bat_capacity="";;
+        *) # Actual Battery Info
+            bat_status=$(info ${BAT_NAME} "status" | tr -d ' ')
+            capacity=$(info ${BAT_NAME} "capacity");;
+    esac
 
     status=$(get_status ${bat_status} ${capacity})
     visible="true"

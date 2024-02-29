@@ -4,7 +4,7 @@
 (defvar battery_hide_on_unknown "true")
 (defvar battery_icon_only "false")
 (defvar battery_thresholds "15 30 70 90")
-(defvar battery_icons "        ")
+(defvar battery_icons "󰂄 󰂄 󰂃 󰁹 󰂁 󰁾 󰁻 󰂎 ")
 
 (defwidget battery_comp [] (eventbox
   :visible {battery_listen.visible}

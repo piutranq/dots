@@ -5,10 +5,13 @@
       :width "100%"
       :anchor "top center"
   )
-  :stacking "fg"
+  :windowtype "desktop"
+    ; The status bar is treated as desktop widget
   :reserve (struts :distance "40px" :side "top")
-  :windowtype "dock"
+    ; But the bar is treated as dock,
+    ; so WM must be reserve some place for the bar 
   :wm-ignore "false"
+    ; If "true" | "false", The bar is always on the top | bottom
 
   (hbar
     :bg-color "greybg"
@@ -40,10 +43,13 @@
       :width "100%"
       :anchor "top center"
   )
-  :stacking "fg"
+  :windowtype "desktop"
+    ; The status bar is treated as desktop widget
   :reserve (struts :distance "40px" :side "top")
-  :windowtype "dock"
+    ; But the bar is treated as dock,
+    ; so WM must be reserve some place for the bar 
   :wm-ignore "false"
+    ; If "true" | "false", The bar is always on the top | bottom
 
   (hbar
     :bg-color "greybg"
