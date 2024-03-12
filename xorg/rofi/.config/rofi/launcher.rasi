@@ -1,0 +1,37 @@
+@import "shared/theme.rasi"
+
+configuration {
+	modi: "drun";
+	drun-display-format: "{name}";
+    show-icons: true;
+    case-sensitive: false;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 960px;
+    x-offset: 0px;
+    y-offset: 0px;
+    font: "Roboto 13.5";
+}
+
+textbox-prompt-colon { str: ""; }
+
+listview {
+    enabled: true;
+    columns: 4;
+    lines: 3;
+    fixed-height: true;
+    fixed-columns: true;
+}
+
+element {
+    orientation: vertical;
+}
+element-icon {
+    size: 96px;
+}
+element-text {
+    horizontal-align: 0.5;
+}

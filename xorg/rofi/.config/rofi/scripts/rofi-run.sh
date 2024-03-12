@@ -1,13 +1,3 @@
 #!/usr/bin/env bash
-
-ROFI_DIR="$XDG_CONFIG_HOME/rofi"
-ROFI_CONF="$ROFI_DIR/config.rasi"
-ROFI_THEME="$ROFI_DIR/theme.rasi"
-
-TITLE=""
-
-exec rofi\
-    -show run\
-    -display-run    $TITLE\
-    -config         $ROFI_CONF\
-    -theme          $ROFI_THEME
+exec rofi -show run\
+    -theme-str "textbox-prompt-colon { str:\"\"; }"

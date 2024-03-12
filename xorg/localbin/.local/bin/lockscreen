@@ -1,6 +1,6 @@
 #!/bin/sh
 
-text_time="%H:%M"
+text_time="%H:%M:%S"
 text_date="%Y-%m-%d, %A"
 
 color_empty=00000000
@@ -8,14 +8,15 @@ color_white=f5f4f1ff
 color_red=f92672ff
 
 lock() {
+    sleep 0.1
 	i3lock \
         --blur 5 \
-		--time-pos="x+60:h-80" \
-		--date-pos="x+60:h-50" \
-        --ind-pos="x+320:h-86" \
-        --time-size=60 --time-font=Cantarell \
-        --date-size=20 --date-font=Cantarell \
-		--radius=40 --ring-width=5 \
+		--time-pos="x+80:h-140" \
+		--date-pos="x+80:h-80" \
+        --ind-pos="x+180:h-180" \
+        --time-size=120 --time-font=Roboto \
+        --date-size=40 --date-font=Roboto \
+		--radius=120 --ring-width=24 \
 		--clock --time-align 1 --time-str "$text_time" \
         --date-align 1 --date-str "$text_date" \
         --verif-text="" --wrong-text="" --noinput-text="" \

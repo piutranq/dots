@@ -1,6 +1,6 @@
 configuration {
-	modi: "window,run,drun";
-    show-icons: false;
-	case-sensitive: false;
+    show-icons:                 false;
+    case-sensitive:             false;
 }
-@theme "theme.rasi"
+
+@theme "shared/theme.rasi"

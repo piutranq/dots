@@ -1,0 +1,35 @@
+{
+  "prompt": "",
+  "entries": [
+    {
+      "icon": "",
+      "key": "Lockscreen",
+      "value": "lockscreen",
+      "confirm": false
+    },
+    {
+      "icon": "󰒲",
+      "key": "Suspend",
+      "value": "systemctl suspend",
+      "confirm": true
+    },
+    {
+      "icon": "󰍃",
+      "key": "Logout",
+      "value": "bspc quit",
+      "confirm": true
+    },
+    {
+      "icon": "󰑐",
+      "key": "Reboot",
+      "value": "systemctl reboot",
+      "confirm": true
+    },
+    {
+      "icon": "󰐥",
+      "key": "Poweroff",
+      "value": "systemctl poweroff",
+      "confirm": true
+    }
+  ]
+}

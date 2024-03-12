@@ -16,7 +16,7 @@ render_on () {(
     # Get mpd status: It should be [playing] or [paused]
     export status="$(mpc status 2>/dev/null |\
         grep -oP "\[playing\]|\[paused\]")"
-    export title="$(nowplaying 2>/dev/null)"
+    export title="$(nowplaying 2>/dev/null | sed 's/"/\\"/g')"
 
     case ${status} in
         "[playing]")

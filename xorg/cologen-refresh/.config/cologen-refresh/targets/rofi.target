@@ -4,7 +4,7 @@ LOCAL_CACHE_DIR="${XDG_CACHE_HOME:="${HOME}/.cache"}/cologen-refresh"
 LOCAL_CACHED_SCHEME="${LOCAL_CACHE_DIR}/cached_scheme.yaml"
 
 INPUT="${LOCAL_CONFIG_DIR}/templates/rofi.template"
-OUTPUT="${XDG_CONFIG_HOME}/rofi/color.rasi"
+OUTPUT="${XDG_CONFIG_HOME}/rofi/shared/colors.rasi"
 SCHEME="$LOCAL_CACHED_SCHEME"
 
 generate() {

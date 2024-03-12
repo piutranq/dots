@@ -1,0 +1,52 @@
+@import "shared/theme.rasi"
+
+configuration {
+    show-icons: true;
+    case-sensitive: false;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 800px;
+    x-offset: 0px;
+    y-offset: 0px;
+    font: "Roboto Bold 10.5";
+}
+
+mainbox {
+    children: [ "inputbar", "listview" ];
+}
+
+inputbar {
+    enabled: true;
+    children: [ "textbox-prompt-colon", "prompt" ];
+    padding: 5px 15px;
+}
+
+textbox-prompt-colon {
+    padding: 0px 5px;
+    font: "Symbols Nerd Font 24";
+}
+
+prompt {
+    font: "monospace bold 15";
+}
+
+listview {
+    enabled: true;
+    columns: 5;
+    lines: 1;
+    fixed-height: true;
+    fixed-columns: true;
+}
+
+element {
+    orientation: vertical;
+}
+element-icon {
+    size: 96px;
+}
+element-text {
+    horizontal-align: 0.5;
+}

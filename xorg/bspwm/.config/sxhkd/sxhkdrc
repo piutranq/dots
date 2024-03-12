@@ -28,7 +28,7 @@ alt + F2
 super + Tab
     $XDG_CONFIG_HOME/rofi/scripts/rofi-win.sh
 ctrl + alt + Delete
-    $XDG_CONFIG_HOME/rofi/scripts/rofi-dmenu-exit.sh
+    $XDG_CONFIG_HOME/rofi/scripts/powermenu/index.sh
 
 # set volume
 {_,shift +} XF86AudioRaiseVolume
