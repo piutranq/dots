@@ -7,7 +7,7 @@ xorg/eww/.config/eww/styles/color.scss
 xorg/polybar/.config/polybar/color
 xorg/polybar/.config/polybar/scripts/color.sh
 xorg/polybar/.config/polybar/device-specific/current
-xorg/rofi/.config/rofi/color.rasi
+xorg/rofi/.config/rofi/shared/colors.rasi
 
 # Ignore the external plugins
 cli/nvim/.config/nvim/plugged/
