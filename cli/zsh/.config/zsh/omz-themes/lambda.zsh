@@ -1,4 +1,3 @@
-
 # lambda, the ohmyzsh theme customed by piutranq
 # =========================================================================
 #   Based on halfo/lambda-mod-zsh-theme

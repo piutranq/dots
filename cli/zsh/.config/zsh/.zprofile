@@ -1,4 +1,3 @@
-
 # $ZDOTDIR/.zprofile
 # ==================================================================
 
@@ -10,6 +9,7 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 # Path Appends
 path+="$HOME/.local/bin"
 path+="$HOME/.cargo/bin"
+path+="$HOME/.bun/bin"
 typeset -U path # remove dups
 
 # Default Apps
