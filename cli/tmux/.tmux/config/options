@@ -5,9 +5,11 @@
 
     source $TMUXDIR/config/utils
 
-    # Set the defailt terminal and use true color mode
-    tmux-set -gq default-terminal "screen-256color"
-    tmux-set -sqa terminal-override ",alacritty:RGB"
+    # Set the default terminal and use true color mode
+    # tmux-set -gq default-terminal "screen-256color"
+    # tmux-set -sqa terminal-override ",alacritty:RGB"
+    tmux-set -gq default-terminal "tmux-256color"
+    tmux-set -sqa terminal-override ",xterm-256color:RGB"
 
     # Server options
     tmux-set -sq escape-time 50
